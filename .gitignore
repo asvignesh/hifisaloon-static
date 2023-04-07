@@ -1,0 +1,15 @@
+# IntelliJ-specific files
+.idea/
+
+# Compiled output
+out/
+
+# Node.js dependencies
+node_modules/
+
+# Temporary files
+*.log
+*.log.*
+*.tmp
+*.bak
+*.swp
