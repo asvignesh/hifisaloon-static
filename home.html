@@ -5,7 +5,7 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Qc4ppyfEUQDIfazWgVO7oGe1UYFVuPf34Wjh4ecb" name="csrf-token">
-    <meta content="https://thebarber-single.saasmonks.in/public" name="base_url">
+    <meta content="public" name="base_url">
 
     <style>
         :root {
@@ -24,10 +24,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!-- CSS -->
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/nucleo.css" rel="stylesheet">
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/all.min.css" rel="stylesheet">
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/sweetalert2.scss">
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/jquery.timepicker.css" rel="stylesheet">
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" rel="stylesheet"
@@ -39,18 +39,24 @@
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/argon.css" rel="stylesheet">
-    <link href="https://thebarber-single.saasmonks.in/public/includes/css/mystyle.css" rel="stylesheet">
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script> 
+        $(function(){
+          $("#navbar-left").load("inc/navbar.inc.html"); 
+        });
+
+    </script>
 </head>
 <body class="">
 <div class="preload">
     <img alt="" class="loader" src="public/storage/images/app/loader.gif">
 </div>
 <div class="for-loader">
-    <form action="https://thebarber-single.saasmonks.in/public/logout" id="logout-form" method="POST"
+    <form action="public/logout" id="logout-form" method="POST"
           style="display: none;">
         <input name="_token" type="hidden" value="Qc4ppyfEUQDIfazWgVO7oGe1UYFVuPf34Wjh4ecb"></form>
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -61,7 +67,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Brand -->
-            <a class="navbar-brand pt-0" href="https://thebarber-single.saasmonks.in/public/admin/dashboard">
+            <a class="navbar-brand pt-0" href="public/admin/dashboard">
                 <img alt="..." class="navbar-brand-img sidebar-logo" src="public/storage/images/app/black_logo.png">
             </a>
 
@@ -80,12 +86,12 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a class="dropdown-item" href="https://thebarber-single.saasmonks.in/public/admin/profile/1">
+                        <a class="dropdown-item" href="public/admin/profile/1">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="https://thebarber-single.saasmonks.in/public/admin/logout">
+                        <a class="dropdown-item" href="public/admin/logout">
                             <i class="ni ni-single-02"></i>
                             <span>Logout</span>
                         </a>
@@ -99,160 +105,14 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a class="navbar-brand pt-0"
-                               href="https://thebarber-single.saasmonks.in/public/admin/dashboard">
+                               href="public/admin/dashboard">
                                 <img alt="..." class="navbar-brand-img" src="public/storage/images/app/black_logo.png">
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="https://thebarber-single.saasmonks.in/public/admin/dashboard">
-                            <i class="ni ni-tv-2 text-teal"></i>
-                            <span class="nav-link-text">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/calendar">
-                            <i class="ni ni-calendar-grid-58 text-pink"></i>
-                            <span class="nav-link-text">Calender</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/booking">
-                            <i class="ni ni-collection text-blue"></i>
-                            <span class="nav-link-text">Booking</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/users">
-                            <i class="fa fa-user text-cyan"></i>
-                            <span class="nav-link-text">Client</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/categories">
-                            <i class="fa fa-list text-orange"></i>
-                            <span class="nav-link-text">Category</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/services">
-                            <i class="fa fa-magic text-teal"></i>
-                            <span class="nav-link-text">Services</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/employee">
-                            <i class="fa fa-users text-orange"></i>
-                            <span class="nav-link-text">Employee</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/banner">
-                            <i class="fa fa-image  text-purple"></i>
-                            <span class="nav-link-text">Banner</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/gallery">
-                            <i class="fas fa-images  text-green"></i>
-                            <span class="nav-link-text">Gallery</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/coupon">
-                            <i class="fas fa-tag text-orange"></i>
-                            <span class="nav-link-text">Coupon</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/offer">
-                            <i class="fa fa-gift "></i>
-                            <span class="nav-link-text">Offer</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/review">
-                            <i class="fas fa-star text-yellow"></i>
-                            <span class="nav-link-text">Review</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a aria-controls="navbar-examples" aria-expanded=" " class="nav-link " data-toggle="collapse"
-                           href="#navbar-examples1" role="button">
-                            <i class="fa fa-file text-blue"></i>
-                            <span class="nav-link-text">Reports</span>
-                        </a>
-
-                        <div class="collapse  " id="navbar-examples1">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link "
-                                       href="https://thebarber-single.saasmonks.in/public/admin/report/user">User
-                                        Report</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link "
-                                       href="https://thebarber-single.saasmonks.in/public/admin/report/revenue">Revenue
-                                        Report</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <a aria-controls="navbar-examples" aria-expanded=" " class="nav-link " data-toggle="collapse"
-                           href="#navbar-examples" role="button">
-                            <i class="fa fa-bell text-red"></i>
-                            <span class="nav-link-text">Notification</span>
-                        </a>
-
-                        <div class="collapse  " id="navbar-examples">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link "
-                                       href="https://thebarber-single.saasmonks.in/public/admin/notification/template">Template</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link "
-                                       href="https://thebarber-single.saasmonks.in/public/admin/notification/send">Send
-                                        Notification</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/language">
-                            <i class="fas fa-language text-pink"></i>
-                            <span class="nav-link-text">Language</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://thebarber-single.saasmonks.in/public/admin/settings">
-                            <i class="fa fa-cog text-green"></i>
-                            <span class="nav-link-text">Settings</span>
-                        </a>
-                    </li>
-
-                </ul>
+                <div id="navbar-left"></div>
             </div>
         </div>
     </nav>
@@ -298,14 +158,14 @@
                                     <h6 class="text-overflow m-0">Language</h6>
                                 </div>
                                 <a class="dropdown-item"
-                                   href="https://thebarber-single.saasmonks.in/public/admin/language/English">
+                                   href="public/admin/language/English">
                 <span class="avatar avatar-sm">
                   <img class="small_round flag" src="public/storage/images/language/English.jpg">
                 </span>
                                     <span>English</span>
                                 </a>
                                 <a class="dropdown-item"
-                                   href="https://thebarber-single.saasmonks.in/public/admin/language/Arabic">
+                                   href="public/admin/language/Arabic">
                 <span class="avatar avatar-sm">
                   <img class="small_round flag" src="public/storage/images/language/Arabic.jpg">
                 </span>
@@ -334,7 +194,7 @@
                                 </div>
 
                                 <a class="dropdown-item"
-                                   href="https://thebarber-single.saasmonks.in/public/admin/profile">
+                                   href="public/admin/profile">
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
                                 </a>
@@ -342,13 +202,13 @@
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item"
-                                   href="https://thebarber-single.saasmonks.in/public/admin/salon">
+                                   href="public/admin/salon">
                                     <i class="ni ni-scissors"></i>
                                     <span>My Salon</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item"
-                                   href="https://thebarber-single.saasmonks.in/public/admin/logout">
+                                   href="public/admin/logout">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -574,7 +434,7 @@
                                 </div>
                                 <div class="col text-right">
                                     <a class="btn btn-sm btn-primary"
-                                       href="https://thebarber-single.saasmonks.in/public/admin/categories">See all</a>
+                                       href="public/admin/categories">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -644,7 +504,7 @@
                                 </div>
                                 <div class="col text-right">
                                     <a class="btn btn-sm btn-primary"
-                                       href="https://thebarber-single.saasmonks.in/public/admin/users">See all</a>
+                                       href="public/admin/users">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -725,7 +585,7 @@
                                 </div>
                                 <div class="col text-right">
                                     <a class="btn btn-sm btn-primary"
-                                       href="https://thebarber-single.saasmonks.in/public/admin/services">See all</a>
+                                       href="public/admin/services">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -834,18 +694,18 @@
             src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
 
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/Chart.min.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/Chart.extension.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/jquery.min.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/bootstrap.bundle.min.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/argon.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/jquery.scrollbar.min.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/jquery-scrollLock.min.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/sweetalert.all.js"></script>
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/jquery.timepicker.js"></script>
+    <script src="public/includes/js/Chart.min.js"></script>
+    <script src="public/includes/js/Chart.extension.js"></script>
+    <script src="public/includes/js/jquery.min.js"></script>
+    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+    <script src="public/includes/js/argon.js"></script>
+    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+    <script src="public/includes/js/sweetalert.all.js"></script>
+    <script src="public/includes/js/jquery.timepicker.js"></script>
 
 
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/map.js"></script>
+    <script src="public/includes/js/map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key="></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
@@ -862,7 +722,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <script src="https://thebarber-single.saasmonks.in/public/includes/js/myjavascript.js"></script>
+    <script src="public/includes/js/myjavascript.js"></script>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
