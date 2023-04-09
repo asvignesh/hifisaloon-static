@@ -1,737 +1,464 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="Qc4ppyfEUQDIfazWgVO7oGe1UYFVuPf34Wjh4ecb">
-    <meta name="base_url" content="public">
-
-    <style>
-        :root {
-            --primary_color: #e06287;
-            --primary_color_hover: #e06287cc;
-        }
-    </style>
-
-    <!-- Title -->
-    <title>The Barber- single</title>
-
-    <!-- Favicon -->
-    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-
-    <!-- CSS -->
-    <link href="public/includes/css/nucleo.css" rel="stylesheet">
-    <link href="public/includes/css/all.min.css" rel="stylesheet">
-    <link href="public/includes/css/sweetalert2.scss">
-    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
-    <!-- Argon CSS -->
-    <link href="public/includes/css/argon.css" rel="stylesheet">
-    <link href="public/includes/css/mystyle.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-
-    <script> 
-        $(function(){
-          $("#navbar-left").load("inc/navbar.inc.html"); 
-        });
-
-    </script>
-</head>
-
-<body class="">
-<div class="preload">
-    <img src="public/storage/images/app/loader.gif" class="loader" alt="">
-</div>
-<div class="for-loader">
-    <form id="logout-form" action="public/logout" method="POST" style="display: none;">
-        <input type="hidden" name="_token" value="Qc4ppyfEUQDIfazWgVO7oGe1UYFVuPf34Wjh4ecb">
-    </form>
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        <div class="container-fluid">
-            <!-- Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
-                    aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Brand -->
-            <a class="navbar-brand pt-0" href="dashboard">
-                <img src="public/storage/images/app/black_logo.png" class="navbar-brand-img sidebar-logo" alt="...">
-            </a>
-
-            <!-- User -->
-            <ul class="nav align-items-center d-md-none">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        <div class="media align-items-center">
-                                <span class="avatar avatar-sm rounded-circle">
-                                    <img alt="Image placeholder" src="public/storage/images/users/admin_1602138472.jpg">
-                                </span>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        <div class=" dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Welcome!</h6>
-                        </div>
-                        <a href="profile/1" class="dropdown-item">
-                            <i class="ni ni-single-02"></i>
-                            <span>My profile</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="logout" class="dropdown-item">
-                            <i class="ni ni-single-02"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <!-- Collapse -->
-            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                <!-- Collapse header -->
-                <div class="navbar-collapse-header d-md-none">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a class="navbar-brand pt-0" href="dashboard">
-                                <img src="public/storage/images/app/black_logo.png" class="navbar-brand-img"
-                                     alt="...">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="navbar-left"></div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-content">
-        <nav class="navbar navbar-top navbar-expand navbar-dark">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <!-- Navbar links -->
-                    <ul class="navbar-nav align-items-center  ml-md-auto ">
-                        <li class="nav-item d-xl-none">
-                            <!-- Sidenav toggler -->
-                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
-                                 data-target="#sidenav-main">
-                                <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item d-sm-none">
-                            <a class="nav-link" href="#" data-action="search-show"
-                               data-target="#navbar-search-main">
-                                <i class="ni ni-zoom-split-in"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-
-                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 flag-ul ">
-                        <li class="nav-item dropdown rtl-flag">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <div class="media align-items-center">
-                                        <span class="avatar avatar-sm">
-                                            <img class="small_round flag"
-                                                 src="public/storage/images/language/English.jpg">
-                                        </span>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu  dropdown-menu-right dropdown-menu-flag ">
-                                <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Language</h6>
-                                </div>
-                                <a href="language/English" class="dropdown-item">
-                                        <span class="avatar avatar-sm">
-                                            <img class="small_round flag"
-                                                 src="public/storage/images/language/English.jpg">
-                                        </span>
-                                    <span>English</span>
-                                </a>
-                                <a href="language/Arabic" class="dropdown-item">
-                                        <span class="avatar avatar-sm">
-                                            <img class="small_round flag"
-                                                 src="public/storage/images/language/Arabic.jpg">
-                                        </span>
-                                    <span>Arabic</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <div class="media align-items-center">
-                                        <span class="avatar avatar-sm rounded-circle rtl-avatar">
-                                            <img class="small_round"
-                                                 src="public/storage/images/users/admin_1602138472.jpg">
-                                        </span>
-                                    <div class="media-body  ml-2  d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold"> Super Admin </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu  dropdown-menu-right ">
-                                <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome!</h6>
-                                </div>
-
-                                <a href="profile" class="dropdown-item">
-                                    <i class="ni ni-single-02"></i>
-                                    <span>My profile</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a href="salon" class="dropdown-item">
-                                    <i class="ni ni-scissors"></i>
-                                    <span>My Salon</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="logout" class="dropdown-item">
-                                    <i class="ni ni-user-run"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="header pt-9"
-             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;padding-bottom: 50px;">
-            <span class="mask bg-gradient-dark opacity-7"></span>
-            <div class="container-fluid">
-                <div class="header-body">
-                    <!-- Card stats -->
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
-                                            <span class="h2 font-weight-bold mb-0">900</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                <i class="fa fa-user"></i>
+<div class="header pt-9"
+                style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;padding-bottom: 50px;">
+                <span class="mask bg-gradient-dark opacity-7"></span>
+                <div class="container-fluid">
+                    <div class="header-body">
+                        <!-- Card stats -->
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
+                                                <span class="h2 font-weight-bold mb-0">900</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-nowrap">Since app launch</span>
+                                        </p>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-nowrap">Since app launch</span>
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Services</h5>
-                                            <span class="h2 font-weight-bold mb-0">6</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-green text-white rounded-circle shadow">
-                                                <i class="ni ni-scissors"></i>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Services</h5>
+                                                <span class="h2 font-weight-bold mb-0">6</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+                                                    <i class="ni ni-scissors"></i>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-nowrap">Since app launch</span>
+                                        </p>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-nowrap">Since app launch</span>
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Income</h5>
-                                            <span class="h2 font-weight-bold mb-0">$69755</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Income</h5>
+                                                <span class="h2 font-weight-bold mb-0">$69755</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div
                                                     class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                <i class="ni ni-money-coins"></i>
+                                                    <i class="ni ni-money-coins"></i>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-nowrap">Since app launch</span>
+                                        </p>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-nowrap">Since app launch</span>
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card card-stats mb-4 mb-xl-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Category</h5>
-                                            <span class="h2 font-weight-bold mb-0">5</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                <i class="fa fa-list"></i>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Category</h5>
+                                                <span class="h2 font-weight-bold mb-0">5</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                                    <i class="fa fa-list"></i>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-nowrap">Since app launch</span>
+                                        </p>
                                     </div>
-                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                        <span class="text-nowrap">Since app launch</span>
-                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="container-fluid mt--4">
-            <div class="row">
-                <div class="col-xl-12 mb-5 mb-xl-0">
-                    <div class="card shadow">
-                        <div class="card-header bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
-                                    <h2 class="text-default mb-0">User</h2>
-                                </div>
-                                <div class="col">
-                                    <ul class="nav nav-pills justify-content-end">
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#users_chart">
-                                            <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
-                                               id="adminWeekUser">
-                                                <span class="d-none d-md-block">Week</span>
-                                                <span class="d-md-none">W</span>
-                                            </a>
-                                        </li>
+            <div class="container-fluid mt--4">
+                <div class="row">
+                    <div class="col-xl-12 mb-5 mb-xl-0">
+                        <div class="card shadow">
+                            <div class="card-header bg-transparent">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h2 class="text-default mb-0">User</h2>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="nav nav-pills justify-content-end">
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#users_chart">
+                                                <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
+                                                    id="adminWeekUser">
+                                                    <span class="d-none d-md-block">Week</span>
+                                                    <span class="d-md-none">W</span>
+                                                </a>
+                                            </li>
 
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#users_chart">
-                                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                               id="adminMonthUser">
-                                                <span class="d-none d-md-block">Month</span>
-                                                <span class="d-md-none">M</span>
-                                            </a>
-                                        </li>
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#users_chart">
+                                                <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
+                                                    id="adminMonthUser">
+                                                    <span class="d-none d-md-block">Month</span>
+                                                    <span class="d-md-none">M</span>
+                                                </a>
+                                            </li>
 
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#users_chart">
-                                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                               id="adminYearUser">
-                                                <span class="d-none d-md-block">Year</span>
-                                                <span class="d-md-none">Y</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <!-- Chart -->
-                            <div class="chart">
-                                <!-- Chart wrapper -->
-                                <canvas id="users_chart" class="chart-canvas"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="container-fluid mt-4">
-            <div class="row">
-                <div class="col-xl-12 mb-5 mb-xl-0">
-                    <div class="card shadow">
-                        <div class="card-header bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="text-uppercase text-muted ls-1 mb-1">Income</h6>
-                                    <h2 class="text-default mb-0">Revenue</h2>
-                                </div>
-                                <div class="col">
-                                    <ul class="nav nav-pills justify-content-end">
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#revenue_chart">
-                                            <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
-                                               id="adminWeekRevenue">
-                                                <span class="d-none d-md-block">Week</span>
-                                                <span class="d-md-none">W</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#revenue_chart">
-                                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                               id="adminMonthRevenue">
-                                                <span class="d-none d-md-block">Month</span>
-                                                <span class="d-md-none">M</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                            data-target="#revenue_chart" data-prefix="a">
-                                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                               id="adminYearRevenue">
-                                                <span class="d-none d-md-block">Year</span>
-                                                <span class="d-md-none">Y</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#users_chart">
+                                                <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
+                                                    id="adminYearUser">
+                                                    <span class="d-none d-md-block">Year</span>
+                                                    <span class="d-md-none">Y</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <!-- Chart -->
-                            <div class="chart">
-                                <!-- Chart wrapper -->
-                                <canvas id="revenue_chart" class="chart-canvas"></canvas>
+                            <div class="card-body">
+                                <!-- Chart -->
+                                <div class="chart">
+                                    <!-- Chart wrapper -->
+                                    <canvas id="users_chart" class="chart-canvas"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="container-fluid mt-4 mb-4">
-            <div class="row">
-                <div class="col-xl-5">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
-                                    <h3 class="mb-0">Categories</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="categories" class="btn btn-sm btn-primary">See all</a>
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-xl-12 mb-5 mb-xl-0">
+                        <div class="card shadow">
+                            <div class="card-header bg-transparent">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">Income</h6>
+                                        <h2 class="text-default mb-0">Revenue</h2>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="nav nav-pills justify-content-end">
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#revenue_chart">
+                                                <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
+                                                    id="adminWeekRevenue">
+                                                    <span class="d-none d-md-block">Week</span>
+                                                    <span class="d-md-none">W</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#revenue_chart">
+                                                <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
+                                                    id="adminMonthRevenue">
+                                                    <span class="d-none d-md-block">Month</span>
+                                                    <span class="d-md-none">M</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
+                                                data-target="#revenue_chart" data-prefix="a">
+                                                <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
+                                                    id="adminYearRevenue">
+                                                    <span class="d-none d-md-block">Year</span>
+                                                    <span class="d-md-none">Y</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" class="sort">#</th>
-                                    <th scope="col" class="sort">Image</th>
-                                    <th scope="col" class="sort">Category</th>
-                                </tr>
-                                </thead>
-                                <tbody class="list">
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/categories/category_1612759191.png">
-                                    </td>
-                                    <td>Haircut</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/categories/category_1611306277.png">
-                                    </td>
-                                    <td>Shampoo</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/categories/category_1611306208.png">
-                                    </td>
-                                    <td>Makeup</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/categories/category_1611306219.png">
-                                    </td>
-                                    <td>Hairstyle</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/categories/category_1611306290.png">
-                                    </td>
-                                    <td>Nails</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-7">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
-                                    <h3 class="mb-0">Users</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="users" class="btn btn-sm btn-primary">See all</a>
+                            <div class="card-body">
+                                <!-- Chart -->
+                                <div class="chart">
+                                    <!-- Chart wrapper -->
+                                    <canvas id="revenue_chart" class="chart-canvas"></canvas>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" class="sort">#</th>
-                                    <th scope="col" class="sort">Image</th>
-                                    <th scope="col" class="sort">Name</th>
-                                    <th scope="col" class="sort">Email</th>
-                                </tr>
-                                </thead>
-                                <tbody class="list">
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/users/noimage.jpg">
-                                    </td>
-                                    <td>james smith</td>
-                                    <td>waxy@waxy.com</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/users/noimage.jpg">
-                                    </td>
-                                    <td>mm mmm</td>
-                                    <td>mm@mmm.gr</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/users/noimage.jpg">
-                                    </td>
-                                    <td>niod dss</td>
-                                    <td>uvuvucu@ufucuc.gr</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/users/noimage.jpg">
-                                    </td>
-                                    <td>bello</td>
-                                    <td>bello@gmail.com</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>
-                                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                                             src="public/storage/images/users/noimage.jpg">
-                                    </td>
-                                    <td>Den</td>
-                                    <td>comandir41k1@gmail.com</td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container-fluid mt-4 mb-4">
 
-            <div class="row">
-                <!-- Service table -->
-                <div class="col-xl-4 mb-5 mb-xl-0">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="mb-0">Top Services</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="services" class="btn btn-sm btn-primary">See all</a>
+            <div class="container-fluid mt-4 mb-4">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h3 class="mb-0">Categories</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="categories" class="btn btn-sm btn-primary">See all</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <img src="public/storage/images/services/Service_1602137926.jpg"
-                                             class="icon rounded-circle">
-                                    </td>
-                                    <td>Manicure</td>
-                                    <td>Nails</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>
-                                        <img src="public/storage/images/services/Service_1602137942.jpg"
-                                             class="icon rounded-circle">
-                                    </td>
-                                    <td>Pedicure</td>
-                                    <td>Nails</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>
-                                        <img src="public/storage/images/services/Service_1602137966.jpg"
-                                             class="icon rounded-circle">
-                                    </td>
-                                    <td>Hair color</td>
-                                    <td>Hairstyle</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>
-                                        <img src="public/storage/images/services/Service_1602138017.jpg"
-                                             class="icon rounded-circle">
-                                    </td>
-                                    <td>Bridal</td>
-                                    <td>Makeup</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>
-                                        <img src="public/storage/images/services/Service_1602138069.jpg"
-                                             class="icon rounded-circle">
-                                    </td>
-                                    <td>Matte</td>
-                                    <td>Makeup</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">#</th>
+                                            <th scope="col" class="sort">Image</th>
+                                            <th scope="col" class="sort">Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <tr>
+                                            <th>1</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1612759191.png">
+                                            </td>
+                                            <td>Haircut</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306277.png">
+                                            </td>
+                                            <td>Shampoo</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306208.png">
+                                            </td>
+                                            <td>Makeup</td>
+                                        </tr>
+                                        <tr>
+                                            <th>4</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306219.png">
+                                            </td>
+                                            <td>Hairstyle</td>
+                                        </tr>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306290.png">
+                                            </td>
+                                            <td>Nails</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-xl-8">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="mb-0">Upcoming Approved Appointments</h3>
+                    <div class="col-xl-7">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h3 class="mb-0">Users</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="users" class="btn btn-sm btn-primary">See all</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Booking Id</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Service</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Payment</th>
-                                    <th scope="col">Payment Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th colspan="10" class="text-center">No Upcomming Appointments</th>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">#</th>
+                                            <th scope="col" class="sort">Image</th>
+                                            <th scope="col" class="sort">Name</th>
+                                            <th scope="col" class="sort">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <tr>
+                                            <th>1</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>james smith</td>
+                                            <td>waxy@waxy.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>mm mmm</td>
+                                            <td>mm@mmm.gr</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>niod dss</td>
+                                            <td>uvuvucu@ufucuc.gr</td>
+                                        </tr>
+                                        <tr>
+                                            <th>4</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>bello</td>
+                                            <td>bello@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>Den</td>
+                                            <td>comandir41k1@gmail.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="container-fluid mt-4 mb-4">
 
-    </div>
+                <div class="row">
+                    <!-- Service table -->
+                    <div class="col-xl-4 mb-5 mb-xl-0">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h3 class="mb-0">Top Services</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="services" class="btn btn-sm btn-primary">See all</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602137926.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Manicure</td>
+                                            <td>Nails</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602137942.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Pedicure</td>
+                                            <td>Nails</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602137966.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Hair color</td>
+                                            <td>Hairstyle</td>
+                                        </tr>
+                                        <tr>
+                                            <th>4</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602138017.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Bridal</td>
+                                            <td>Makeup</td>
+                                        </tr>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602138069.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Matte</td>
+                                            <td>Makeup</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-
-
-    <script src="public/includes/js/Chart.min.js"></script>
-    <script src="public/includes/js/Chart.extension.js"></script>
-    <script src="public/includes/js/jquery.min.js"></script>
-    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
-    <script src="public/includes/js/argon.js"></script>
-    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
-    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
-    <script src="public/includes/js/sweetalert.all.js"></script>
-    <script src="public/includes/js/jquery.timepicker.js"></script>
-
-
-    <script src="public/includes/js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-
-    <script type="text/javascript"
-            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <script src="public/includes/js/myjavascript.js"></script>
-
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-
-    <!-- Argon JS -->
-</div>
-</body>
-
-</html>
+                    <div class="col-xl-8">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h3 class="mb-0">Upcoming Approved Appointments</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <!-- Projects table -->
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Booking Id</th>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col">Payment</th>
+                                            <th scope="col">Payment Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="10" class="text-center">No Upcomming Appointments</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
