@@ -51,7 +51,12 @@
             // Set the initial content
             $("#navbar-left").load("inc/navbar.inc.html");
             $("#navbar-top").load("inc/navbar-top-inc.html");
+            $(document).on('click', '.nav-booking', function () {
+                $("#body-content").load("booking.html");
+            });
         });
+
+
     </script>
 </head>
 
@@ -135,6 +140,39 @@
 
                 calendar.render();
             });
+
+            // function demo() {
+
+            //     var user = prompt('Please enter name.');
+
+            //     var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+
+            //     var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+
+
+
+            //     if (!isNaN(date.valueOf())) { // valid?
+
+            //         calendar.addEvent({
+
+            //             title: 'Appointment Created for ' + user,
+
+            //             start: date,
+
+            //             allDay: false
+
+            //         });
+
+            //         alert('Appointment is created successfully');
+
+            //     } else {
+
+            //         alert('Invalid date.');
+
+            //     }
+
+            // }
 
         </script>
 
