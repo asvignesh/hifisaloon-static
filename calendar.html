@@ -9,9 +9,13 @@
     <meta name="base_url" content="public">
 
     <style>
+        .add_appointment, .add_user{
+            --primary_color: #e06287cc;
+            --primary_color_hover: #e1688dcc;
+        }
         :root {
-            --primary_color: #e06287;
-            --primary_color_hover: #e06287cc;
+            --primary_color: #378de8;
+            --primary_color_hover: #59a2e1cc;
         }
     </style>
 
@@ -127,7 +131,7 @@
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     timeZone: 'UTC',
-                    themeSystem: 'bootstrap5',
+                    themeSystem: 'bootstrap',
                     headerToolbar: {
                         left: 'prev,next today',
                         center: 'title',
