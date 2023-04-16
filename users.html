@@ -47,6 +47,135 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script>
+
+
+        var _users;
+
+        $(document).ready(function () {
+            $.ajax({
+                url: 'public/data/users.json',
+                dataType: 'json',
+                success: function (users) {
+                    console.log(users);
+                    _users = users;
+                    // Clear existing table rows
+                    $('#dataTableUser tbody').empty();
+
+                    // Loop through each user object in the response data
+                    $.each(users, function (index, user) {
+                        console.log(user);
+                        // Create a new row with the user data
+                        var row = '<tr>' +
+                            '<td>' + user.id + '</td>' +
+                            '<td>' + user.name + '</td>' +
+                            '<td>' + user.email + '</td>' +
+                            '<td>' + user.mobile + '</td>' +
+                            '<td>' + user.firstVisit + '</td>' +
+                            '<td>' + user.lastVisit + '</td>' +
+                            '<td>' + user.spendByYear + '</td>' +
+                            '<td class="table-actions">' +
+                            '<a href="user-' + user.id + '.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
+                            '<i class="fas fa-eye"></i>' +
+                            '</a>' +
+                            '</td>' +
+                            '</tr>';
+
+                        // Append the row to the table body
+                        $('#dataTableUser tbody').append(row);
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+            // Set the initial content
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc.html");
+            $("#navbar-top").load("inc/navbar-top-inc.html");
+        });
+
+
+        $(document).ready(
+
+            function () {
+                $('.search-mobile').on('keyup', function () {
+                    var filter = $(this).value; // Get the value of the text box
+                    var filteredData = _users.filter(function (item) {
+                        return item.mobile.indexOf(filter) !== -1; // Filter the data based on the name field
+                    });
+                    console.log(filteredData); // Output the filtered data to the console
+                });
+            },
+        );
+
+        $(document).ready(function () {
+            $("#submit-btn").click(function (event) {
+                event.preventDefault();
+
+                var referralCode = $("#referral_code").val();
+                var friendCode = $("#friend_code").val();
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var mobile = $("#phone").val();
+                var dob = $("#dob").val();
+                var doa = $("#doa").val();
+
+
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth() + 1;
+                var day = now.getDate();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+
+                if (month.toString().length == 1) {
+                    month = '0' + month;
+                }
+                if (day.toString().length == 1) {
+                    day = '0' + day;
+                }
+                if (hours.toString().length == 1) {
+                    hours = '0' + hours;
+                }
+                if (minutes.toString().length == 1) {
+                    minutes = '0' + minutes;
+                }
+                if (seconds.toString().length == 1) {
+                    seconds = '0' + seconds;
+                }
+
+                var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+
+                var row = '<tr>' +
+                    '<td>0</td>' +
+                    '<td>' + name + '</td>' +
+                    '<td>' + email + '</td>' +
+                    '<td>' + mobile + '</td>' +
+                    '<td>' + dateTime + '</td>' +
+                    '<td>' + dateTime + '</td>' +
+                    '<td>  0 </td>' +
+                    '<td class="table-actions">' +
+                    '<a href="user-1.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
+                    '<i class="fas fa-eye"></i>' +
+                    '</a>' +
+                    '</td>' +
+                    '</tr>';
+
+                // Append the row to the table body
+                $('#dataTableUser tbody').append(row);
+
+                // validate the inputs here
+
+                // if all inputs are valid, submit the form
+                //$("form").submit();
+            });
+        });
+
+
+    </script>
 </head>
 
 <body class="">
@@ -334,7 +463,8 @@
                                 <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
                                 <div class="row rtl-date-filter-row">
                                     <div class="form-group col-3">
-                                        <input type="text" value="" class="form-control" placeholder="Search by Mobile">
+                                        <input type="text" value="" class="search-mobile"
+                                            placeholder="Search by Mobile">
 
                                     </div>
                                     <div class="form-group col-3">
@@ -362,22 +492,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="list">
-                                        <tr>
-                                            <th>1</th>
-                                            <td>Krishav Vignesh</td>
-                                            <td>krishav.vignesh@laserpoint.online</td>
-                                            <td>7892005217</td>
-                                            <td>2021-04-29 11:27:45</td>
-                                            <td>2023-04-10 05:47:53</td>
-                                            <td>3000</td>
-                                            <td class="table-actions">
-                                                <a href="user-1.html" class="table-action text-warning"
-                                                    data-toggle="tooltip" data-original-title="View client">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -396,7 +511,7 @@
                                 <button type="button" class="add_user close">&times;</button>
                             </div>
                             <form class="form-horizontal" id="create_user_form" method="post"
-                                enctype="multipart/form-data" action="public/owner/users">
+                                enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
                                 <div class="my-0">
 
@@ -438,21 +553,20 @@
 
                                     <div class="form-group">
                                         <label class="form-control-label" for="name">Date of Birth</label>
-                                        <input type="text" name="name" value="" id="name" class="form-control"
+                                        <input type="text" name="name" value="" id="dob" class="form-control"
                                             placeholder="User name" autofocus>
                                         <div class="invalid-div "><span class="name"></span></div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-control-label" for="name">Anniversary Date</label>
-                                        <input type="text" name="name" value="" id="name" class="form-control"
+                                        <input type="text" name="name" value="" id="doa" class="form-control"
                                             placeholder="User name" autofocus>
                                         <div class="invalid-div "><span class="name"></span></div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="button" id="create_btn"
-                                            onclick="all_create('create_user_form','users')"
+                                        <button type="button" id="submit-btn"
                                             class="btn btn-primary mt-4 mb-5 rtl-float-none">Create</button>
                                     </div>
 

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Krishav Vignesh",
+        "email": "krishav.vignesh@laserpoint.online",
+        "mobile": "7788894569",
+        "firstVisit": "2021-04-29 11:27:45",
+        "lastVisit": "2023-04-10 05:47:53",
+        "spendByYear": 3000
+    },
+    {
+        "id": 2,
+        "name": " Vignesh",
+        "email": "vignesh@laserpoint.online",
+        "mobile": "7788894560",
+        "firstVisit": "2021-04-29 11:27:45",
+        "lastVisit": "2023-04-10 05:47:53",
+        "spendByYear": 5000
+    }
+]
