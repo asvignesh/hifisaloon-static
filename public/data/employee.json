@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "image": "",
+        "name": "Wednesday Adams",
+        "salary": 15000,
+        "store": "T-Nagar",
+        "specialities": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "id": 2,
+        "image": "",
+        "name": "Caroline Forbe",
+        "salary": 15000,
+        "store": "T-Nagar",
+        "specialities": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "image": "",
+        "id": 3,
+        "name": "Stefan Salvatore",
+        "salary": 15000,
+        "store": "T-Nagar",
+        "specialities": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "image": "",
+        "id": 4,
+        "name": "Wednesday Adams",
+        "salary": 15000,
+        "store": "T-Nagar",
+        "specialities": [
+            "A",
+            "B"
+        ]
+    }
+]
