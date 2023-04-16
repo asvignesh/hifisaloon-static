@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "image": "public/storage/images/categories/category_1612759191.png",
+        "category": "Haircut",
+        "status": "ON"
+    },
+    {
+        "id": 2,
+        "image": "public/storage/images/categories/category_1611306277.png",
+        "category": "Shampoo",
+        "status": "ON"
+    },
+    {
+        "id": 3,
+        "image": "public/storage/images/categories/category_1611306208.png",
+        "category": "Makeup",
+        "status": "ON"
+    },
+    {
+        "id": 4,
+        "image": "public/storage/images/categories/category_1611306219.png",
+        "category": "Hairstyle",
+        "status": "ON"
+    },
+    {
+        "id": 5,
+        "image": "public/storage/images/categories/category_1611306290.png",
+        "category": "Nails",
+        "status": "ON"
+    }
+]

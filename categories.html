@@ -15,8 +15,8 @@
     }
   </style>
 
-        <!-- Title -->
-                <title>HiFi Salon</title>
+  <!-- Title -->
+  <title>HiFi Salon</title>
 
   <!-- Favicon -->
   <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
@@ -47,11 +47,50 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
   <script>
 
+    var _categories;
     $(document).ready(function () {
       // Set the initial content
       $("#body-content").load("dashboard.html");
       $("#navbar-left").load("inc/navbar.inc-admin.html");
       $("#navbar-top").load("inc/navbar-top-inc.html");
+
+      $.ajax({
+        url: 'public/data/categories.json',
+        dataType: 'json',
+        success: function (categories) {
+          console.log(categories);
+          _categories = categories;
+          // Clear existing table rows
+          $('#dataTableCategory tbody').empty();
+
+          // Loop through each user object in the response data
+          $.each(categories, function (index, category) {
+            console.log(category);
+            // Create a new row with the user data
+            var row = '<tr>' +
+              '<th>' + category.id + '</th>' +
+              '<td><img alt="Image placeholder" class="tableimage_cat rounded"  src="' + category.image + '"></td>' +
+              '<td>' + category.category + '</td>' +
+              '<td> <label class="custom-toggle">' +
+              ' <input type="checkbox" onchange="hideCategory(8)" checked>' +
+              ' <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"' +
+              '   data-label-on="ON"></span>' +
+              '  </label></td>' +
+              '<td class="table-actions"> ' +
+              '<button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick="edit_cat()" data-toggle="tooltip" data-original-title="Edit category">' +
+              '<i class="fas fa-user-edit"></i>' +
+              '</button></td>' +
+              '</tr>';
+
+            // Append the row to the table body
+            $('#dataTableCategory tbody').append(row);
+          });
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+
     });
     $(document).on("click", function (e) {
       console.log(e);
@@ -68,6 +107,7 @@
     <form id="logout-form" action="public/logout" method="POST" style="display: none;">
       <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
     </form>
+
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
       <div id="navbar-left"></div>
     </nav>
@@ -106,134 +146,19 @@
               </div>
               <!-- table -->
               <div class="table-responsive">
-                <table class="table align-items-center table-flush">
+                <table class="table align-items-center table-flush" id="dataTableCategory"
+                class="dataTableCategory">
                   <thead class="thead-light">
                     <tr>
                       <th scope="col" class="sort">#</th>
                       <th scope="col" class="sort">Image</th>
                       <th scope="col" class="sort">Category</th>
-                      <th scope="col" class="sort">Created_at</th>
-                      <th scope="col" class="sort">Updated_at</th>
                       <th scope="col" class="sort">Status</th>
                       <th scope="col" class="sort">Action</th>
                     </tr>
                   </thead>
                   <tbody class="list">
-                    <tr>
-                      <th>1</th>
-                      <td>
-                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                          src="public/storage/images/categories/category_1612759191.png">
-                      </td>
-                      <td>Haircut</td>
-                      <td>2021-01-22 09:07:13</td>
-                      <td>2023-04-09 15:15:33</td>
-                      <td>
-                        <label class="custom-toggle">
-                          <input type="checkbox" onchange="hideCategory(8)" checked>
-                          <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"
-                            data-label-on="ON"></span>
-                        </label>
-                      </td>
-                      <td class="table-actions">
-                        <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white"
-                          onclick="edit_cat(8,'public')" data-toggle="tooltip" data-original-title="Edit category">
-                          <i class="fas fa-user-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>
-                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                          src="public/storage/images/categories/category_1611306277.png">
-                      </td>
-                      <td>Shampoo</td>
-                      <td>2020-09-30 07:59:47</td>
-                      <td>2022-12-03 20:06:14</td>
-                      <td>
-                        <label class="custom-toggle">
-                          <input type="checkbox" onchange="hideCategory(5)" checked>
-                          <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"
-                            data-label-on="ON"></span>
-                        </label>
-                      </td>
-                      <td class="table-actions">
-                        <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white"
-                          onclick="edit_cat(5,'public')" data-toggle="tooltip" data-original-title="Edit category">
-                          <i class="fas fa-user-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>3</th>
-                      <td>
-                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                          src="public/storage/images/categories/category_1611306208.png">
-                      </td>
-                      <td>Makeup</td>
-                      <td>2020-09-30 07:59:35</td>
-                      <td>2022-12-03 05:28:13</td>
-                      <td>
-                        <label class="custom-toggle">
-                          <input type="checkbox" onchange="hideCategory(4)" checked>
-                          <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"
-                            data-label-on="ON"></span>
-                        </label>
-                      </td>
-                      <td class="table-actions">
-                        <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white"
-                          onclick="edit_cat(4,'public')" data-toggle="tooltip" data-original-title="Edit category">
-                          <i class="fas fa-user-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>4</th>
-                      <td>
-                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                          src="public/storage/images/categories/category_1611306219.png">
-                      </td>
-                      <td>Hairstyle</td>
-                      <td>2020-09-30 07:59:25</td>
-                      <td>2022-12-25 09:41:26</td>
-                      <td>
-                        <label class="custom-toggle">
-                          <input type="checkbox" onchange="hideCategory(3)" checked>
-                          <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"
-                            data-label-on="ON"></span>
-                        </label>
-                      </td>
-                      <td class="table-actions">
-                        <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white"
-                          onclick="edit_cat(3,'public')" data-toggle="tooltip" data-original-title="Edit category">
-                          <i class="fas fa-user-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>5</th>
-                      <td>
-                        <img alt="Image placeholder" class="tableimage_cat rounded"
-                          src="public/storage/images/categories/category_1611306290.png">
-                      </td>
-                      <td>Nails</td>
-                      <td>2020-09-30 07:59:12</td>
-                      <td>2022-12-25 09:41:27</td>
-                      <td>
-                        <label class="custom-toggle">
-                          <input type="checkbox" onchange="hideCategory(2)" checked>
-                          <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"
-                            data-label-on="ON"></span>
-                        </label>
-                      </td>
-                      <td class="table-actions">
-                        <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white"
-                          onclick="edit_cat(2,'public')" data-toggle="tooltip" data-original-title="Edit category">
-                          <i class="fas fa-user-edit"></i>
-                        </button>
-                      </td>
-                    </tr>
+
                   </tbody>
                 </table>
                 <div class="float-right  mr-4 mb-1">
