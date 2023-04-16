@@ -20,7 +20,7 @@
     </style>
 
     <!-- Title -->
-    <title>The Barber- single</title>
+    <title>HiFi Salon</title>
 
     <!-- Favicon -->
     <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
@@ -139,44 +139,106 @@
                     },
                     weekNumbers: true,
                     dayMaxEvents: true, // allow "more" link when too many events
-                    events: 'https://fullcalendar.io/api/demo-feeds/events.json'
+                    defaultDate: '2023-05-01',
+                    navLinks: true,
+                    eventLimit: true,
+                    selectable: true,
+                    editable: true,
+                    //events: 'https://fullcalendar.io/api/demo-feeds/events.json'
+                    events: [
+                        {
+                            title: 'Hairspa for Tim',
+                            start: '2023-05-14T14:00:00',
+                            end: '2023-05-14T15:30:00',
+                            textColor: '#0d7936cc',
+                            backgroundColor: '#99e4d6cc', //Completed
+                            borderColor: '#99e4d6cc'
+                        },
+                        {
+                            title: 'Haircut for Mike',
+                            start: '2023-05-16T10:00:00',
+                            end: '2023-05-16T11:00:00',
+                            textColor: '#0d7936cc',
+                            backgroundColor: '#99e4d6cc', //Completed
+                            borderColor: '#99e4d6cc'
+                        },
+                        {
+                            title: 'Pedicure for James',
+                            start: '2023-05-16T13:00:00',
+                            end: '2023-05-16T14:00:00',
+                            textColor: '#064756cc',
+                            backgroundColor: '#b2e4f0cc', //Approved
+                            borderColor: '#b2e4f0cc'
+                        },
+                        {
+                            title: 'Foot Spa for Alice',
+                            start: '2023-05-20T15:00:00',
+                            end: '2023-05-20T16:00:00',
+                            textColor: '#a81c33cc',
+                            backgroundColor: '#f8bec8cc', //Cancelled
+                            borderColor: '#f8bec8cc'
+                        },
+                        {
+                            title: 'Nail ext for Ashley',
+                            start: '2023-05-18T09:00:00',
+                            end: '2023-05-18T10:00:00',
+                            textColor: '#1417b9cc',
+                            backgroundColor: '#cccdf4cc', //Pending
+                            borderColor: '#cccdf4cc'
+                        },
+                        {
+                            title: 'Pre-Bridal Service for Rachel',
+                            start: '2023-05-15T10:00:00',
+                            end: '2023-05-15T12:00:00',
+                            textColor: '#064756cc',
+                            backgroundColor: '#b2e4f0cc', //Approved
+                            borderColor: '#b2e4f0cc'
+                        },
+                        {
+                            title: 'HairSetting for Carol',
+                            start: '2023-05-18T14:00:00',
+                            end: '2023-05-18T13:00:00',
+                            textColor: '#a81c33cc',
+                            backgroundColor: '#f8bec8cc', //Cancelled
+                            borderColor: '#f8bec8cc'
+                        },
+                        {
+                            title: 'Pedicure for James',
+                            start: '2023-05-20T14:00:00',
+                            end: '2023-05-20T15:00:00',
+                            textColor: '#0d7936cc',
+                            backgroundColor: '#99e4d6cc', //Completed
+                            borderColor: '#99e4d6cc'
+                        },
+                        {
+                            title: 'Manicure for Sam',
+                            start: '2023-05-19T11:00:00',
+                            end: '2023-05-19T12:00:00',
+                            textColor: '#0d7936cc',
+                            backgroundColor: '#99e4d6cc', //Completed
+                            borderColor: '#99e4d6cc'
+                        },
+                        {
+                            title: 'Hair Spa for Emily',
+                            start: '2023-05-19T17:00:00',
+                            end: '2023-05-19T18:00:00',
+                            textColor: '#1417b9cc',
+                            backgroundColor: '#cccdf4cc', //Pending
+                            borderColor: '#cccdf4cc'
+                        },
+                        {
+                            title: 'Skin Brightening for Nick',
+                            start: '2023-05-17T11:00:00',
+                            end: '2023-05-17T13:00:00',
+                            textColor: '#0d7936cc',
+                            backgroundColor: '#99e4d6cc', //Completed
+                            borderColor: '#99e4d6cc'
+                        },
+                    ]
                 });
 
                 calendar.render();
             });
-
-            // function demo() {
-
-            //     var user = prompt('Please enter name.');
-
-            //     var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-
-            //     var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-
-
-
-            //     if (!isNaN(date.valueOf())) { // valid?
-
-            //         calendar.addEvent({
-
-            //             title: 'Appointment Created for ' + user,
-
-            //             start: date,
-
-            //             allDay: false
-
-            //         });
-
-            //         alert('Appointment is created successfully');
-
-            //     } else {
-
-            //         alert('Invalid date.');
-
-            //     }
-
-            // }
 
         </script>
 
