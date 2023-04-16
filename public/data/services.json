@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "image": "public/storage/images/services/Service_1611384259.jpg",
+        "name": "Hair cut",
+        "category": "Haircut",
+        "time": 30,
+        "price": 150,
+        "status": "ON"
+    },
+    {
+        "id": 2,
+        "image": "public/storage/images/services/Service_1602138069.jpg",
+        "name": "Matte",
+        "category": "Makeup",
+        "time": 30,
+        "price": 300,
+        "status": "ON"
+    },
+    {
+        "id": 3,
+        "image": "public/storage/images/services/Service_1602138017.jpg",
+        "name": "Bridal",
+        "category": "Makeup",
+        "time": 120,
+        "price": 2000,
+        "status": "ON"
+    },
+    {
+        "id": 4,
+        "image": "public/storage/images/services/Service_1602137966.jpg",
+        "name": "Hair color",
+        "category": "Hairstyle",
+        "time": 40,
+        "price": 200,
+        "status": "ON"
+    },
+    {
+        "id": 5,
+        "image": "public/storage/images/services/Service_1602137942.jpg",
+        "name": "Pedicure",
+        "category": "Nails",
+        "time": 30,
+        "price": 150,
+        "status": "ON"
+    },
+    {
+        "id": 6,
+        "image": "public/storage/images/services/Service_1602137926.jpg",
+        "name": "Manicure",
+        "category": "Nails",
+        "time": 30,
+        "price": 150,
+        "status": "ON"
+    }
+]
