@@ -259,7 +259,6 @@
             });
 
             $('#create_appointment_form').submit(function (event) {
-                // Prevent the default form submission behavior
                 event.preventDefault();
 
                 // Get the form data as a serialized string
@@ -271,22 +270,17 @@
                     eventData[item.split("=")[0]] = decodeURIComponent(item.split("=")[1]);
                 });
 
-                // Create a new event object
                 var newEvent = {
                     title: $("#title option:selected").text(),
                     service: $("#service option:selected").text(),
                     start: eventData.start,
                 };
                 newEvent.title = newEvent.title + " - " + newEvent.service;
-
-                // Add the event to the calendar using addEvent method
                 calendar.addEvent(newEvent);
 
-                // Reset the form and hide sidebar
                 $('#create_appointment_form')[0].reset();
                 $("#add_appointment_sidebar").removeClass("sidebar_open");;
             });
-
 
             calendar.render();
         });
