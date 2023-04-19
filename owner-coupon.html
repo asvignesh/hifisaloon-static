@@ -56,29 +56,29 @@
                     console.log(coupons);
                     _coupons = coupons;
                     // Clear existing table rows
-                    $('#dataTableServices tbody').empty();
-
-                    // Loop through each user object in the response data
-                    $.each(coupon, function (index, coupons) {
+                    $('#dataTableCoupon tbody').empty();
+                    $.each(coupons, function (index, coupon) {
                         console.log(coupon);
+                        var status = `
+                            <td>
+                                <label class="custom-toggle">
+                                <input id="my-checkbox" type="checkbox" checked>
+                                <span class="custom-toggle-slider rounded-circle" data-label-off="OFF" data-label-on="ON"></span>
+                                </label>
+                            </td>
+                            `;
                         // Create a new row with the user data
                         var row = '<tr>' +
                             '<th>' + coupon.id + '</th>' +
-                            '<td> <img src="' + service.image + '" class="tableimage rounded"></td>' +
-                            '<td>' + service.name + '</td>' +
-                            '<td>' + service.category + '</td>' +
-                            '<td>' + service.time + '</td>' +
-                            '<td>' + service.price + '</td>' +
-                            '<td class="table-actions">' +
-                            '<a href="user-' + service.id + '.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
-                            '<i class="fas fa-eye"></i>' +
-                            '</a>' +
-                            '</td>' +
+                            '<td>' + coupon.code + '</td>' +
+                            '<td>' + coupon.description + '</td>' +
+                            '<td>' + coupon.discount + '</td>' +
+                            status+
                             '<td class="table-actions"> <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"        onclick="" data-toggle="tooltip" data-original-title="View Service"> <i            class="fas fa-eye"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick=""        data-toggle="tooltip" data-original-title="Edit Service"> <i class="fas fa-user-edit"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white"        onclick="deleteData" data-toggle="tooltip" data-original-title="Delete Service">        <i class="fas fa-trash"></i > </button ></td > '
                         '</tr>';
 
                         // Append the row to the table body
-                        $('#dataTableServices tbody').append(row);
+                        $('#dataTableCoupon tbody').append(row);
                     });
                 },
                 error: function (error) {
@@ -221,7 +221,8 @@
                             </div>
                             <!-- table -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush dataTableCoupon" id="dataTableCoupon">
+                                <table class="table align-items-center table-flush dataTableCoupon"
+                                    id="dataTableCoupon">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col" class="sort">#</th>

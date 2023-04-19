@@ -10,29 +10,29 @@
     },
     {
         "id": 2,
-        "code": "ABCDEHD",
+        "code": "ASDASDSD",
         "description": "Apply this coupon to get 10% off",
         "discount": "10%",
         "type" : "percentage",
-        "value" : 5,
+        "value" : 10,
         "status": "ON"
     },
     {
-        "id": 1,
-        "code": "ABCDEHD",
-        "description": "Apply this coupon to get 5% off",
-        "discount": "5%",
-        "type" : "flat",
-        "value" : 5,
+        "id": 3,
+        "code": "WQEQWEQWE",
+        "description": "Apply this coupon to get 20% off",
+        "discount": "20%",
+        "type" : "percentage",
+        "value" : 20,
         "status": "ON"
     },
     {
-        "id": 1,
-        "code": "ABCDEHD",
-        "description": "Apply this coupon to get 5% off",
-        "discount": "5%",
-        "type" : "flat",
-        "value" : 5,
+        "id": 4,
+        "code": "TYUTYUTYU",
+        "description": "Apply this coupon to get 25% off",
+        "discount": "25%",
+        "type" : "percentage",
+        "value" : 25,
         "status": "ON"
     }
 ]
