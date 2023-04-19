@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="8oyeuMvDGu0P1cwhrM2SzV0VvamLtDOkKwlG9aYH">
+    <meta name="base_url" content="public">
+</head>
+<body>
 <div class="container-fluid">
     <!-- Toggler -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -141,3 +152,19 @@
         </ul>
     </div>
 </div>
+<script>
+    var url = window.location.href;
+    var pageName = url.substring(url.lastIndexOf("/") + 1);
+    var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    for (var i = 0; i < navLinks.length; i++) {
+        var navLink = navLinks[i];
+        var linkHref = navLink.getAttribute("href");
+        var linkPageName = linkHref.substring(linkHref.lastIndexOf("/") + 1);
+        if (linkPageName === pageName) {
+            navLink.classList.add("active");
+        }
+    }
+</script>
+</body>
+</html>
