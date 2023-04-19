@@ -1,0 +1,13 @@
+[
+    {
+        "image": "",
+        "id": 4,
+        "name": "Wednesday Adams",
+        "salary": 15000,
+        "store": "T-Nagar",
+        "specialities": [
+            "A",
+            "B"
+        ]
+    }
+]
