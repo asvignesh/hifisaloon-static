@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "code": "ABCDEHD",
+        "description": "Apply this coupon to get 5% off",
+        "discount": "5%",
+        "type" : "flat",
+        "value" : 5,
+        "status": "ON"
+    },
+    {
+        "id": 2,
+        "code": "ABCDEHD",
+        "description": "Apply this coupon to get 10% off",
+        "discount": "10%",
+        "type" : "percentage",
+        "value" : 5,
+        "status": "ON"
+    },
+    {
+        "id": 1,
+        "code": "ABCDEHD",
+        "description": "Apply this coupon to get 5% off",
+        "discount": "5%",
+        "type" : "flat",
+        "value" : 5,
+        "status": "ON"
+    },
+    {
+        "id": 1,
+        "code": "ABCDEHD",
+        "description": "Apply this coupon to get 5% off",
+        "discount": "5%",
+        "type" : "flat",
+        "value" : 5,
+        "status": "ON"
+    }
+]
