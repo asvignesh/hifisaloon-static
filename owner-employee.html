@@ -47,16 +47,14 @@
   <script>
     var _employees;
 
+    $(document).on("change", '#store', function () {
+      var selectedOption = $(this).val();
+
+      // Log the selected option to the console
+      console.log(selectedOption);
+    });
+
     $(document).ready(function () {
-
-      $('#store').change(function () {
-        // Get the value of the selected option
-        var selectedOption = $(this).val();
-
-        // Log the selected option to the console
-        console.log(selectedOption);
-      });
-
       // Get the value of the selected option
       var selectedOption = $('#store').val();
 
