@@ -1,12 +1,3 @@
-function demo() {
-    setTimeout(() => {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: "You can't use this functionality in demo version",
-        })
-    }, 200);
-}
 // login start
 var csrf = $('meta[name="csrf-token"]').attr('content');
 var base_url = $('meta[name="base_url"]').attr('content');
@@ -280,6 +271,7 @@ function template_edit(id, base_url) {
             $('#template_form').get(0).setAttribute('action', base_url + '/admin/notification/template/update/' + result.data.id);
         },
         error: function (err) {
+            console.log('err ', err.responseJSON.errors)
             $(".invalid-div span").html('');
             for (let v1 of Object.keys(err.responseJSON.errors)) {
                 $(".invalid-div ." + v1).html(Object.values(err.responseJSON.errors[v1]));
@@ -338,148 +330,228 @@ $(document).ready(function () {
 
 
 var loadFile = function (event) {
-    var ext = $('input[name="image"]').val().split('.').pop().toLowerCase();
-    console.log(ext);
-    if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
-        alert('Only JPG and PNG file are allowed.');
-        $('input[type=file]').val('');
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src)
     }
-    else {
-        var output = document.getElementById('output');
-        console.log('output', output);
-        output.src = URL.createObjectURL(event.target.files[0]);
-        console.log('output.src', output.src);
-        output.onload = function () {
-            URL.revokeObjectURL(output.src)
-        }
-    }
-
 };
 
 
 var loadFile_edit = function (event) {
-    var ext = event.target.files[0].name.split('.').pop().toLowerCase();
-    console.log(ext);
-    if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
-        alert('Only JPG and PNG file are allowed.');
-        $('input[type=file]').val('');
+    var output = document.getElementById('output_edit');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src)
     }
-    else {
-        var output = document.getElementById('output_edit');
-        console.log('output', output);
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function () {
-            URL.revokeObjectURL(output.src)
-        }
-    }
-
 };
 
 var loadFile1 = function (event) {
-    var ext = event.target.files[0].name.split('.').pop().toLowerCase();
-    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-        $('input[type=file]').val('');
-        alert('Only JPG and PNG file are allowed.');
-    }
-    else {
-        var black_logo = document.getElementById('black_logo_output');
-        black_logo.src = URL.createObjectURL(event.target.files[0]);
-        black_logo.onload = function () {
-            URL.revokeObjectURL(black_logo.src)
-        }
+    var black_logo = document.getElementById('black_logo_output');
+    black_logo.src = URL.createObjectURL(event.target.files[0]);
+    black_logo.onload = function () {
+        URL.revokeObjectURL(black_logo.src)
     }
 };
 var loadFile2 = function (event) {
-    var ext = event.target.files[0].name.split('.').pop().toLowerCase();
-    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-        $('input[type=file]').val('');
-        alert('Only JPG and PNG file are allowed.');
-    }
-    else {
-        var white_logo = document.getElementById('white_logo_output');
-        white_logo.src = URL.createObjectURL(event.target.files[0]);
-        white_logo.onload = function () {
-            URL.revokeObjectURL(white_logo.src)
-        }
+    var white_logo = document.getElementById('white_logo_output');
+    white_logo.src = URL.createObjectURL(event.target.files[0]);
+    white_logo.onload = function () {
+        URL.revokeObjectURL(white_logo.src)
     }
 };
 
 var loadFile3 = function (event) {
-    var ext = event.target.files[0].name.split('.').pop().toLowerCase();
-    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-        $('input[type=file]').val('');
-        alert('Only JPG and PNG file are allowed.');
-    }
-    else {
-        var bg_img = document.getElementById('bg_img_output');
-        bg_img.src = URL.createObjectURL(event.target.files[0]);
-        bg_img.onload = function () {
-            URL.revokeObjectURL(bg_img.src)
-        }
+    var bg_img = document.getElementById('bg_img_output');
+    bg_img.src = URL.createObjectURL(event.target.files[0]);
+    bg_img.onload = function () {
+        URL.revokeObjectURL(bg_img.src)
     }
 };
 
 var loadFile4 = function (event) {
-    var ext = event.target.files[0].name.split('.').pop().toLowerCase();
-    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-        $('input[type=file]').val('');
-        alert('Only JPG and PNG file are allowed.');
-    }
-    else {
-        var shared_image = document.getElementById('shared_image_output');
-        shared_image.src = URL.createObjectURL(event.target.files[0]);
-        shared_image.onload = function () {
-            URL.revokeObjectURL(shared_image.src)
-        }
+    var shared_image = document.getElementById('shared_image_output');
+    shared_image.src = URL.createObjectURL(event.target.files[0]);
+    shared_image.onload = function () {
+        URL.revokeObjectURL(shared_image.src)
     }
 };
+// day off 
 
-// edit timeslot
+$(document).ready(function () {
+    $('.check_center .salonCheck').on('change', function (e) {
+        if ($(this).prop("checked") == true) {
+            $('.input-group  input[name="' + this.value + 'open"]').attr('disabled', true);
+            $('.input-group  input[name="' + this.value + 'close"]').attr('disabled', true);
 
-$('.timepicker').timepicker({
-    timeFormat: 'h:i A',
-    minTime: $('input[name=start_time]').val(),
-    maxTime: $('input[name=end_time]').val(),
-    startTime: $('input[name=start_time]').val(),
-    disableTextInput: true,
+            $('.input-group  input[name="' + this.value + 'open"]').val('');
+            $('.input-group  input[name="' + this.value + 'close"]').val('');
+        }
+        else {
+            $('.input-group  input[name="' + this.value + 'open"]').attr('disabled', false);
+            $('.input-group  input[name="' + this.value + 'close"]').attr('disabled', false);
+        }
+    });
+})
 
-});
-
-$(document).on('click', 'button.remove', function () {
-    $(this).closest('tr').remove();
-    return false;
-});
-
-
-function addDay(ev, day) {
-    let tds = $('#' + ev.target.id).parent().siblings('td');
-    let startTime = $(tds[2]).children('input').val();
-    let endTime = $(tds[3]).children('input').val();
-
-
-    $('#day' + day).append(`<tr><td></td><td></td>
-    <td class="row-index"><input type="text" value="08:00 AM" name="start_time_`+ day + `[]" class="timepicker w-75" ></td>
-    <td class="row-index"><input type="text" value="08:00 PM" name="end_time_`+ day + `[]" class="timepicker w-75"  ></td>
-    <td><button class="btn btn-danger remove" type="button"><i class="fas fa-trash"></i></button></td></tr>`);
-
-    $('.timepicker').timepicker({
+// Time slot start
+var arr = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+for (let i = 0; i < arr.length; i++) {
+    $('.day-section-' + arr[i] + 'open').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: $('input[name=start_time]').val(),
-        maxTime: $('input[name=end_time]').val(),
-        startTime: $('input[name=start_time]').val(),
-        disableTimeRanges: [
-            [startTime, endTime]
-        ],
+        minTime: '12:30 AM',
+        maxTime: '12:00 AM',
     });
-
-    console.log('length ', $(ev.target).parent().parent().siblings('tr'))
-
+    $('.day-section-' + arr[i] + 'open').on('changeTime', function () {
+        $end = $(this).val();
+        $('.day-section-' + arr[i] + 'close').timepicker({
+            timeFormat: 'h:i A',
+            disableTimeRanges: [
+                ['12:30 AM', $end]
+            ],
+            disableTextInput: true,
+            minTime: '12:30 AM',
+            maxTime: '12:00 AM',
+        });
+    });
+    $('.day-section-' + arr[i] + 'close').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: '12:30 AM',
+        maxTime: '12:00 AM',
+    });
 }
+// sun
+function salonTimeSunOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeSunClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// mon
+function salonTimeMonOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeMonClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// tue
+function salonTimeTueOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeTueClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+//  wed
+function salonTimeWedOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeWedClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// Thu
+function salonTimeThuOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeThuClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// Fri
+function salonTimeFriOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeFriClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// Sat
+function salonTimeSatOpen(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'open-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+function salonTimeSatClose(day, salonOpen, salonClose) {
+    $('.day-section-' + day + 'close-emp').timepicker({
+        timeFormat: 'h:i A',
+        disableTextInput: true,
+        minTime: salonOpen,
+        maxTime: salonClose,
+    });
+}
+// Time slot end
 
-
-
-
+function salonDayOff(day, base_url) {
+    $.ajax({
+        url: base_url + '/admin/salons/dayoff',
+        method: 'post',
+        data: { day: day, _token: csrf },
+        success: function (res) { },
+        error: function (error) { }
+    });
+}
 
 //Appointment
 $(".add_appointment").click(function () {
@@ -511,8 +583,6 @@ $(document.body).on("change", ".service_class", function () {
             url: 'booking/paymentcount',
             data: { ser_id: $(this).val(), _token: csrf },
             success: function (result) {
-                console.log('service', result);
-                $("#create_appointment_form input[name='payment']").val(0)
                 $(".invalid-div span").html('');
                 $("#create_appointment_form input[name='payment']").val(result.data.price);
             },
@@ -533,7 +603,6 @@ $(document.body).on("change", ".select_date", function () {
         success: function (result) {
             $('#start_time').html('<option value=""  disabled selected> -- Select Time -- </option>');
             if (result.success == true) {
-                console.log('salon', result);
                 result.data.forEach(element => {
                     $('#start_time').append('<option value="' + element.start_time + '">' + element.start_time + '</option>');
                 });
@@ -554,9 +623,7 @@ $(document.body).on("change", ".start_time", function () {
         url: 'booking/selectemployee',
         data: { start_time: $(this).val(), service: service, date: date, _token: csrf },
         success: function (result) {
-            console.log('emp', result);
             $('#emp_id').html('<option value=""  disabled selected> -- Select Employee -- </option>');
-
             if (result.success == true) {
                 result.data.forEach(element => {
                     $('#emp_id').append('<option value="' + element.emp_id + '">' + element.name + '</option>');
@@ -710,17 +777,15 @@ function all_create(formID, url) {
         cache: false,
         contentType: false,
         processData: false,
-
+        beforeSend: function () {
+            $(".preload").fadeIn(1000)
+            $(".for-loader").fadeOut(1000)
+        },
         success: function (result) {
-            console.log('result', result);
             document.getElementById("create_btn").disabled = true;
             window.location.reload();
         },
-
         error: function (err) {
-            if (err.responseJSON.success == false) {
-                alert('Only JPG and PNG file are allowed.');
-            }
             $(".preload").fadeOut(1000)
             $(".for-loader").fadeIn(1000)
             document.getElementById("create_btn").disabled = false;
@@ -736,7 +801,6 @@ function all_create(formID, url) {
 function all_edit(formID, url) {
     id = $("#" + formID + " input[name='id']").val();
     var formData = new FormData($('#' + formID)[0]);
-    console.log('formData', formData);
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': csrf
@@ -751,7 +815,6 @@ function all_edit(formID, url) {
             window.location.reload();
         },
         error: function (err) {
-            alert('Only JPG and PNG file are allowed.');
             console.log('err ', err.responseJSON.errors)
             $(".invalid-div span").html('');
             for (let v1 of Object.keys(err.responseJSON.errors)) {
@@ -774,6 +837,7 @@ function edit_cat(id, base_url) {
             $("#edit_cat_sidebar input[name='name']").val(result.data.name);
             $("#edit_cat_sidebar input[name='id']").val(result.data.cat_id);
             $('#edit_cat_form .cat_size').attr('src', base_url + '/storage/images/categories/' + result.data.image);
+
             $("#edit_cat_sidebar").slideDown(50), $("#edit_cat_sidebar").toggleClass("show_sidebar_edit");
         },
         error: function (err) { }
@@ -793,6 +857,7 @@ function edit_banner(id, base_url) {
             $("#edit_banner_sidebar input[name='title']").val(result.data.title);
             $("#edit_banner_sidebar input[name='id']").val(result.data.id);
             $('#edit_banner_form .banner_size').attr('src', base_url + '/storage/images/banner/' + result.data.image);
+
             $("#edit_banner_sidebar").slideDown(50), $("#edit_banner_sidebar").toggleClass("show_sidebar_edit");
         },
         error: function (err) { }
@@ -969,7 +1034,7 @@ function show_reported_review(id, base_url) {
 function approve_reported_review(url, id, base_url) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You want be able to revert this!",
+        text: "You won't be able to revert this!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -1041,10 +1106,10 @@ function show_review(id, base_url) {
         type: "GET",
         url: 'review/' + id,
         success: function (result) {
-            // console.log('result',result);
             $('#show_review_sidebar .user_img').attr('src', base_url + '/storage/images/users/' + result.data.review.user.image);
             document.getElementById('user_name').innerHTML = result.data.review.user.name;
             document.getElementById('salon_name').innerHTML = result.data.review.salon.name;
+
             document.getElementById('msg').innerHTML = result.data.review.message;
             $('#show_review_sidebar #rate').html('');
             for (i = 1; i <= 5; i++) {
@@ -1104,7 +1169,6 @@ function eventClicked(e) {
         url: 'modal/getdata/' + e.id,
         method: 'get',
         success: function (result) {
-
             document.getElementById('user_email').innerHTML = result.data.booking.user.email;
             document.getElementById('user_name').innerHTML = result.data.booking.user.name;
             document.getElementById('user_phone').innerHTML = result.data.booking.user.phone;
@@ -1143,7 +1207,7 @@ function eventClicked(e) {
 function deleteData(url, id, base_url) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You want to delete this record!",
+        text: "You won't to delete this record!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -1161,7 +1225,7 @@ function deleteData(url, id, base_url) {
                     Swal.fire({
                         type: 'success',
                         title: 'Deleted!',
-                        text: 'Record has deleted successfully.',
+                        text: 'Record is deleted successfully.',
                         showConfirmButton: false,
                     })
                 },
@@ -1169,14 +1233,14 @@ function deleteData(url, id, base_url) {
                     Swal.fire({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'This record is connect with another data!'
+                        text: 'This record is conntect with another data!'
                     })
                 }
             });
         }
-        // else{
-        //     window.location.reload();
-        // }
+        else {
+            window.location.reload();
+        }
     })
 }
 
@@ -1187,6 +1251,7 @@ $(document).ready(function () {
         url: 'public/data/adminusercharweekdata.json',
         method: 'get',
         success: function (data) {
+            console.log(data)
             updateChart(data);
         },
         error: function (err) { }
@@ -1284,15 +1349,17 @@ function updateChart(data) {
 
 // Admin Revenue chart
 $(document).ready(function () {
-    initChart1();
-    $.ajax({
-        url: 'public/data/adminrevenuecharweekdata.json',
-        method: 'get',
-        success: function (data) {
-            updateChart1(data);
-        },
-        error: function (err) { }
-    })
+    if (curr_url == base_url + '/admin/dashboard') {
+        initChart1();
+        $.ajax({
+            url: 'adminrevenuecharweekdata',
+            method: 'get',
+            success: function (data) {
+                updateChart1(data);
+            },
+            error: function (err) { }
+        })
+    }
 })
 
 $('#adminYearRevenue').click(function () {
@@ -1319,7 +1386,7 @@ $('#adminMonthRevenue').click(function () {
 
 $('#adminWeekRevenue').click(function () {
     $.ajax({
-        url: 'public/data/adminrevenuecharweekdata.json',
+        url: 'adminrevenuecharweekdata',
         method: 'get',
         success: function (data) {
             updateChart1(data);
@@ -1368,30 +1435,6 @@ function initChart1() {
     }
 };
 
-function updateChart1(data) {
-    // Variables
-    revenueChart.data = {
-        labels: data[1],
-        datasets: [{
-            label: '',
-            data: data[0]
-        }]
-    };
-    revenueChart.update();
-    revenueChart.render({
-        duration: 800,
-        lazy: false,
-    });
-}
-
-if (curr_url != base_url + '/admin/calendar') {
-    $(function () {
-        $(".preload").fadeOut(2000, function () {
-            $(".for-loader").fadeIn(1000);
-        });
-    });
-}
-
 function loadEmployee(selectedOption) {
     $.ajax({
         url: 'public/data/employee/' + selectedOption + ".json",
@@ -1424,3 +1467,29 @@ function loadEmployee(selectedOption) {
         }
     });
 }
+
+
+function updateChart1(data) {
+    // Variables
+    revenueChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    revenueChart.update();
+    revenueChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+if (curr_url != base_url + '/admin/calendar') {
+    $(function () {
+        $(".preload").fadeOut(2000, function () {
+            $(".for-loader").fadeIn(1000);
+        });
+    });
+}
+

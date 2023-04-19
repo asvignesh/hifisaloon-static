@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+    <meta name="csrf-token" content="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
     <meta name="base_url" content="public">
 
     <style>
@@ -16,7 +16,7 @@
     </style>
 
     <!-- Title -->
-    <title>HiFi Saloon</title>
+    <title>HiFi Salon</title>
 
     <!-- Favicon -->
     <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
@@ -33,54 +33,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet' />
     <!-- Argon CSS -->
     <link href="public/includes/css/argon.css" rel="stylesheet">
     <link href="public/includes/css/mystyle.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-
-    <script>
-
-        $(document).ready(function () {
-            // Set the initial content
-            $("#body-content").load("dashboard.html");
-            $("#navbar-left").load("inc/navbar.inc-admin.html");
-            $("#navbar-top").load("inc/navbar-top-inc.html");
-        });
-        $(document).on("click", function (e) {
-            console.log(e);
-        });
-
-    </script>
 </head>
 
 <body class="">
-    <div class="preload" id="preload">
+    <div class="preload">
         <img src="public/storage/images/app/loader.gif" class="loader" alt="">
     </div>
     <div class="for-loader">
         <form id="logout-form" action="public/logout" method="POST" style="display: none;">
-            <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+            <input type="hidden" name="_token" value="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
         </form>
-
         <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
             <div id="navbar-left"></div>
         </nav>
 
         <div class="main-content">
-
             <div id="navbar-top"></div>
-
-
-
 
 
             <div class="header pt-9"
@@ -95,8 +75,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Clients</h5>
-                                                <span class="h2 font-weight-bold mb-0">16</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
+                                                <span class="h2 font-weight-bold mb-0">913</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -116,7 +96,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-muted mb-0">Services</h5>
-                                                <span class="h2 font-weight-bold mb-0">11</span>
+                                                <span class="h2 font-weight-bold mb-0">6</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-green text-white rounded-circle shadow">
@@ -136,7 +116,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-muted mb-0">Income</h5>
-                                                <span class="h2 font-weight-bold mb-0">₹6852</span>
+                                                <span class="h2 font-weight-bold mb-0">$72205</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div
@@ -156,12 +136,12 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Employees</h5>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Category</h5>
                                                 <span class="h2 font-weight-bold mb-0">5</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                    <i class="fas fa-users"></i>
+                                                    <i class="fa fa-list"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -184,33 +164,33 @@
                             <div class="card-header bg-transparent">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="text-uppercase text-muted ls-1 mb-1">PERFORMANCE</h6>
-                                        <h2 class="text-default mb-0">Orders</h2>
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h2 class="text-default mb-0">User</h2>
                                     </div>
                                     <div class="col">
                                         <ul class="nav nav-pills justify-content-end">
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#orders_chart">
+                                                data-target="#users_chart">
                                                 <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
-                                                    id="ownerWeekOrder">
+                                                    id="adminWeekUser">
                                                     <span class="d-none d-md-block">Week</span>
                                                     <span class="d-md-none">W</span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#orders_chart">
+                                                data-target="#users_chart">
                                                 <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                                    id="ownerMonthOrder">
+                                                    id="adminMonthUser">
                                                     <span class="d-none d-md-block">Month</span>
                                                     <span class="d-md-none">M</span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#orders_chart">
+                                                data-target="#users_chart">
                                                 <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                                    id="ownerYearOrder">
+                                                    id="adminYearUser">
                                                     <span class="d-none d-md-block">Year</span>
                                                     <span class="d-md-none">Y</span>
                                                 </a>
@@ -223,7 +203,7 @@
                                 <!-- Chart -->
                                 <div class="chart">
                                     <!-- Chart wrapper -->
-                                    <canvas id="orders_chart" class="chart-canvas"></canvas>
+                                    <canvas id="users_chart" class="chart-canvas"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -239,33 +219,33 @@
                             <div class="card-header bg-transparent">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="text-uppercase text-muted ls-1 mb-1">INCOME</h6>
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">Income</h6>
                                         <h2 class="text-default mb-0">Revenue</h2>
                                     </div>
                                     <div class="col">
                                         <ul class="nav nav-pills justify-content-end">
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#revenue_owner_chart">
+                                                data-target="#revenue_chart">
                                                 <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab"
-                                                    id="ownerWeekRevenue">
+                                                    id="adminWeekRevenue">
                                                     <span class="d-none d-md-block">Week</span>
                                                     <span class="d-md-none">W</span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#revenue_owner_chart">
+                                                data-target="#revenue_chart">
                                                 <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                                    id="ownerMonthRevenue">
+                                                    id="adminMonthRevenue">
                                                     <span class="d-none d-md-block">Month</span>
                                                     <span class="d-md-none">M</span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
-                                                data-target="#revenue_owner_chart">
+                                                data-target="#revenue_chart" data-prefix="a">
                                                 <a href="#" class="nav-link py-2 px-3" data-toggle="tab"
-                                                    id="ownerYearRevenue">
+                                                    id="adminYearRevenue">
                                                     <span class="d-none d-md-block">Year</span>
                                                     <span class="d-md-none">Y</span>
                                                 </a>
@@ -278,7 +258,7 @@
                                 <!-- Chart -->
                                 <div class="chart">
                                     <!-- Chart wrapper -->
-                                    <canvas id="revenue_owner_chart" class="chart-canvas"></canvas>
+                                    <canvas id="revenue_chart" class="chart-canvas"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -287,6 +267,153 @@
             </div>
 
 
+            <div class="container-fluid mt-4 mb-4">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h3 class="mb-0">Categories</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="public/admin/categories" class="btn btn-sm btn-primary">See all</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">#</th>
+                                            <th scope="col" class="sort">Image</th>
+                                            <th scope="col" class="sort">Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <tr>
+                                            <th>1</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1612759191.png">
+                                            </td>
+                                            <td>Haircut</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306277.png">
+                                            </td>
+                                            <td>Shampoo</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306208.png">
+                                            </td>
+                                            <td>Makeup</td>
+                                        </tr>
+                                        <tr>
+                                            <th>4</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306219.png">
+                                            </td>
+                                            <td>Hairstyle</td>
+                                        </tr>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/categories/category_1611306290.png">
+                                            </td>
+                                            <td>Nails</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-7">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase text-muted ls-1 mb-1">New Registered</h6>
+                                        <h3 class="mb-0">Users</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="public/admin/users" class="btn btn-sm btn-primary">See all</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">#</th>
+                                            <th scope="col" class="sort">Image</th>
+                                            <th scope="col" class="sort">Name</th>
+                                            <th scope="col" class="sort">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <tr>
+                                            <th>1</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>randhika</td>
+                                            <td>randhikaramadian05@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>hehehehehw</td>
+                                            <td>testbro@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>727wbwhw</td>
+                                            <td>hdjsjejehhe@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>4</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>mustaga</td>
+                                            <td>meselw@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>
+                                                <img alt="Image placeholder" class="tableimage_cat rounded"
+                                                    src="public/storage/images/users/noimage.jpg">
+                                            </td>
+                                            <td>daniele</td>
+                                            <td>deliadanieleseo@gmail.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="container-fluid mt-4 mb-4">
 
@@ -300,7 +427,7 @@
                                         <h3 class="mb-0">Top Services</h3>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="public/owner/services" class="btn btn-sm btn-primary">See all</a>
+                                        <a href="public/admin/services" class="btn btn-sm btn-primary">See all</a>
                                     </div>
                                 </div>
                             </div>
@@ -318,47 +445,47 @@
                                         <tr>
                                             <th>1</th>
                                             <td>
-                                                <img src="public/storage/images/services/Service_1602245369.jpg"
-                                                    class="icon rounded-circle">
-                                            </td>
-                                            <td>Hair Cut</td>
-                                            <td>Hair</td>
-                                        </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>
                                                 <img src="public/storage/images/services/Service_1602137926.jpg"
                                                     class="icon rounded-circle">
                                             </td>
-                                            <td>Manicures</td>
+                                            <td>Manicure</td>
                                             <td>Nails</td>
                                         </tr>
                                         <tr>
-                                            <th>3</th>
+                                            <th>2</th>
                                             <td>
                                                 <img src="public/storage/images/services/Service_1602137942.jpg"
                                                     class="icon rounded-circle">
                                             </td>
                                             <td>Pedicure</td>
-                                            <td>Hair</td>
+                                            <td>Nails</td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>
+                                                <img src="public/storage/images/services/Service_1602137966.jpg"
+                                                    class="icon rounded-circle">
+                                            </td>
+                                            <td>Hair color</td>
+                                            <td>Hairstyle</td>
                                         </tr>
                                         <tr>
                                             <th>4</th>
                                             <td>
-                                                <img src="public/storage/images/services/Service_1666025594.png"
+                                                <img src="public/storage/images/services/Service_1602138017.jpg"
                                                     class="icon rounded-circle">
                                             </td>
-                                            <td>測試</td>
-                                            <td>Tanning</td>
+                                            <td>Bridal</td>
+                                            <td>Makeup</td>
                                         </tr>
                                         <tr>
                                             <th>5</th>
                                             <td>
-                                                <img src="public/storage/images/services/Service_1643792040.png"
+                                                <img src="public/storage/images/services/Service_1602138069.jpg"
                                                     class="icon rounded-circle">
                                             </td>
-                                            <td>تجربه خدمه</td>
-                                            <td>Nails</td>
+                                            <td>Matte</td>
+                                            <td>Makeup</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -383,7 +510,6 @@
                                             <th scope="col">Booking Id</th>
                                             <th scope="col">User Name</th>
                                             <th scope="col">Service</th>
-                                            <th scope="col">Booking At</th>
                                             <th scope="col">Date</th>
                                             <th scope="col">Time</th>
                                             <th scope="col">Payment</th>
@@ -418,8 +544,6 @@
         <script src="public/includes/js/jquery.scrollbar.min.js"></script>
         <script src="public/includes/js/jquery-scrollLock.min.js"></script>
         <script src="public/includes/js/sweetalert.all.js"></script>
-
-
         <script src="public/includes/js/jquery.timepicker.js"></script>
 
 
@@ -427,11 +551,10 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
 
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
@@ -442,9 +565,31 @@
             src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
         <script src="public/includes/js/myjavascript.js"></script>
 
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+        <script>
+            $(document).ready(function () {
+              $("#body-content").load("dashboard.html");
+              $("#navbar-left").load("inc/navbar.inc-admin.html");
+              $("#navbar-top").load("inc/navbar-top-inc.html", function () {
+                // Set the initial content
+                var selectedOption = $('#store').val();
+                console.log(selectedOption);
+                loadEmployee(selectedOption);
+              });
+      
+            });
+      
+            $(document).on("change", '#store', function () {
+              var selectedOption = $(this).val();
+              loadEmployee(selectedOption);
+              // Log the selected option to the console
+              console.log(selectedOption);
+            });
+          </script>
         <!-- Argon JS -->
     </div>
 </body>
