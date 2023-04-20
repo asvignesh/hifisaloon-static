@@ -76,7 +76,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
-                                                <span class="h2 font-weight-bold mb-0">913</span>
+                                                <span class="h2 font-weight-bold mb-0 users" id="users">0</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -85,7 +85,7 @@
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">Since app launch</span>
+                                            <span class="text-nowrap">Since store launch</span>
                                         </p>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h5 class="card-title text-uppercase text-muted mb-0">Services</h5>
-                                                <span class="h2 font-weight-bold mb-0">6</span>
+                                                <span class="h2 font-weight-bold mb-0 services" id="services">0</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-green text-white rounded-circle shadow">
@@ -105,7 +105,7 @@
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">Since app launch</span>
+                                            <span class="text-nowrap">Since store launch</span>
                                         </p>
                                     </div>
                                 </div>
@@ -115,8 +115,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Income</h5>
-                                                <span class="h2 font-weight-bold mb-0">$72205</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Income
+                                                </h5>
+                                                <span class="h2 font-weight-bold mb-0" id="revenue"></span>
                                             </div>
                                             <div class="col-auto">
                                                 <div
@@ -126,7 +127,7 @@
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">Since app launch</span>
+                                            <span class="text-nowrap">Current Fiscal year</span>
                                         </p>
                                     </div>
                                 </div>
@@ -136,8 +137,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Category</h5>
-                                                <span class="h2 font-weight-bold mb-0">5</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Employee</h5>
+                                                <span class="h2 font-weight-bold mb-0 " id="employee">0</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -146,7 +147,7 @@
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">Since app launch</span>
+                                            <span class="text-nowrap">Since store launch</span>
                                         </p>
                                     </div>
                                 </div>
@@ -572,24 +573,47 @@
 
         <script>
             $(document).ready(function () {
-              $("#body-content").load("dashboard.html");
-              $("#navbar-left").load("inc/navbar.inc-admin.html");
-              $("#navbar-top").load("inc/navbar-top-inc.html", function () {
-                // Set the initial content
-                var selectedOption = $('#store').val();
-                console.log(selectedOption);
-                loadEmployee(selectedOption);
-              });
-      
+                $("#body-content").load("dashboard.html");
+                $("#navbar-left").load("inc/navbar.inc-admin.html");
+                $("#navbar-top").load("inc/navbar-top-inc.html", function () {
+                    // Set the initial content
+                    var selectedOption = $('#store').val();
+                    console.log(selectedOption);
+                    initAndLoadUserChart(selectedOption)
+                    initAndLoadRevenueChart(selectedOption);
+                    $.ajax({
+                        url: 'public/data/dashboard/' + selectedOption + '.json',
+                        method: 'get',
+                        success: function (data) {
+                            document.getElementById("users").innerHTML = data.totalUsers;
+                            document.getElementById("services").innerHTML = data.services;
+                            document.getElementById("revenue").innerHTML = data.totalRevenue;
+                            document.getElementById("employee").innerHTML = data.employees;
+                        },
+                        error: function (err) { }
+                    });
+                });
+
             });
-      
+
             $(document).on("change", '#store', function () {
-              var selectedOption = $(this).val();
-              loadEmployee(selectedOption);
-              // Log the selected option to the console
-              console.log(selectedOption);
+                var selectedOption = $(this).val();
+                console.log(selectedOption);
+                initAndLoadUserChart(selectedOption)
+                initAndLoadRevenueChart(selectedOption);
+                $.ajax({
+                    url: 'public/data/dashboard/' + selectedOption + '.json',
+                    method: 'get',
+                    success: function (data) {
+                        document.getElementById("users").innerHTML = data.totalUsers;
+                        document.getElementById("services").innerHTML = data.services;
+                        document.getElementById("revenue").innerHTML = data.totalRevenue;
+                        document.getElementById("employee").innerHTML = data.employees;
+                    },
+                    error: function (err) { }
+                });
             });
-          </script>
+        </script>
         <!-- Argon JS -->
     </div>
 </body>
