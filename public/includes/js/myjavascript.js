@@ -1180,18 +1180,6 @@ function deleteData(url, id, base_url) {
     })
 }
 
-// Admin user chart
-$(document).ready(function () {
-    initChart();
-    $.ajax({
-        url: 'public/data/adminusercharweekdata.json',
-        method: 'get',
-        success: function (data) {
-            updateChart(data);
-        },
-        error: function (err) { }
-    })
-})
 
 $('#adminYearUser').click(function () {
     $.ajax({
@@ -1226,7 +1214,6 @@ $('#adminWeekUser').click(function () {
     })
 });
 
-var userChart;
 function initChart() {
     if (document.getElementById("users_chart")) {
         userChart = new Chart($('#users_chart'), {
@@ -1282,18 +1269,6 @@ function updateChart(data) {
 }
 
 
-// Admin Revenue chart
-$(document).ready(function () {
-    initChart1();
-    $.ajax({
-        url: 'public/data/adminrevenuecharweekdata.json',
-        method: 'get',
-        success: function (data) {
-            updateChart1(data);
-        },
-        error: function (err) { }
-    })
-})
 
 $('#adminYearRevenue').click(function () {
     $.ajax({
@@ -1328,7 +1303,6 @@ $('#adminWeekRevenue').click(function () {
     })
 });
 
-var revenueChart;
 function initChart1() {
     if (document.getElementById("revenue_chart")) {
         revenueChart = new Chart($('#revenue_chart'), {
@@ -1422,5 +1396,53 @@ function loadEmployee(selectedOption) {
         error: function (error) {
             console.log(error);
         }
+    });
+}
+
+var revenueChart;
+function loadChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/adminrevenuecharweekdata/' + storeId + '.json',
+        method: 'get',
+        success: function (data) {
+            updateChart1(data);
+        },
+        error: function (err) { }
+    });
+}
+
+function initAndLoadRevenueChart(storeId) {
+    initChart1();
+    loadChartFromApi(storeId);
+}
+
+var userChart;
+function loadUserChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/adminusercharweekdata/' + storeId + '.json',
+        method: 'get',
+        success: function (data) {
+            updateChart(data);
+        },
+        error: function (err) { }
+    });
+}
+
+function initAndLoadUserChart(storeId) {
+    initChart();
+    loadUserChartFromApi(storeId);
+}
+
+function loadWidgets(storeId) {
+    $.ajax({
+        url: 'public/data/dashboard/' + storeId + '.json',
+        method: 'get',
+        success: function (data) {
+            document.getElementById("users").innerHTML = data.users;
+            document.getElementsByClassName("services").innerHTML = data.services;
+            document.getElementsByClassName("revenue").innerHTML = data.totalRevenue;
+            document.getElementsByClassName("employee").innerHTML = data.employees;
+        },
+        error: function (err) { }
     });
 }
