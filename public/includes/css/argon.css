@@ -49,7 +49,7 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: Open Sans, sans-serif;
+    --font-family-sans-serif: Roboto, sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
@@ -62,7 +62,7 @@
 
 html
 {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.15;
 
     -webkit-text-size-adjust: 100%;
@@ -92,16 +92,13 @@ section
 
 body
 {
-    font-family: Open Sans, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-
     margin: 0;
-
     text-align: left;
-
-    color: #525f7f;
+    /* color: #525f7f; */
     background-color: #f8f9fe;
 }
 
@@ -7232,7 +7229,7 @@ button.close
 
 .tooltip
 {
-    font-family: Open Sans, sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     font-style: normal;
@@ -7379,7 +7376,7 @@ button.close
 
 .popover
 {
-    font-family: Open Sans, sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: .875rem;
     font-weight: 400;
     font-style: normal;
