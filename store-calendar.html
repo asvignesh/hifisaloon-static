@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="8oyeuMvDGu0P1cwhrM2SzV0VvamLtDOkKwlG9aYH">
+    <meta name="base_url" content="public">
+
+    <style>
+        .add_appointment,
+        .add_user {
+            --primary_color: #502f8fcc;
+            --primary_color_hover: #e1688dcc;
+        }
+
+        :root {
+            --primary_color: #378de8;
+            --primary_color_hover: #59a2e1cc;
+        }
+
+        label,
+        input {
+            font-size: 14px;
+        }
+
+        .modal-content {
+            width: 900px;
+            max-width: 100%;
+            height: 600px;
+            margin-bottom: 50px;
+            position: relative;
+
+        }
+    </style>
+
+    <!-- Title -->
+    <title>HiFi Salon</title>
+
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet' />
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script>
+
+        $(document).ready(function () {
+            // Set the initial content
+            $("#navbar-left").load("inc/navbar.inc.html");
+            $("#navbar-top").load("inc/navbar-top-inc.html");
+            $(document).on('click', '.nav-booking', function () {
+                $("#body-content").load("booking.html");
+            });
+        });
+
+
+    </script>
+</head>
+
+<body class="">
+    <form id="logout-form" action="public/logout" method="POST" style="display: none;">
+        <input type="hidden" name="_token" value="8oyeuMvDGu0P1cwhrM2SzV0VvamLtDOkKwlG9aYH">
+    </form>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div id="navbar-left"></div>
+    </nav>
+
+    <div class="main-content">
+        <div id="navbar-top"></div>
+
+        <div class="header pt-7"
+            style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4 pb-7">
+                        <div class="col-lg-6 col-7">
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                    <li class="breadcrumb-item text-white"><a href="public/admin/dashboard"><i
+                                                class="fas fa-home text-salon"></i></a></li>
+                                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Calendar
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mt--6 mb-5">
+            <div class="row">
+                <div class="col">
+                    <div class="card px-4 pb-4">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <span class="h3">Calendar</span>
+                            <div class="">
+                                <button class="btn btn-primary rtl-mr addbtn float-right p-2 add_user" id="add_user"><i
+                                        class="fas fa-plus mr-1"></i>Add New Client</button>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary addbtn float-right p-2 add_appointment mr-3"
+                                    id="add_appointment"><i class="fas fa-plus mr-1"></i>Add Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row statusRow text-center ml-1">
+                        <div class="col completedBox p-1 mr-3 rounded"><span>Completed</span></div>
+                        <div class="col pendingBox p-1 mr-3 rounded"><span>Pending</span></div>
+                        <div class="col approvedBox p-1 mr-3 rounded"><span>Approved</span></div>
+                        <div class="col cancelBox p-1 mr-3 rounded"><span>Cancelled</span></div>
+                    </div>
+                    <div class="mt-3">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                timeZone: 'UTC',
+                themeSystem: 'bootstrap',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                weekNumbers: true,
+                dayMaxEvents: true, // allow "more" link when too many events
+                defaultDate: '2023-05-01',
+                navLinks: true,
+                eventLimit: true,
+                selectable: true,
+                editable: true,
+                //events: 'https://fullcalendar.io/api/demo-feeds/events.json'
+                events: [
+                    {
+                        title: 'Hairspa for Tim',
+                        start: '2023-05-14T14:00:00',
+                        end: '2023-05-14T15:30:00',
+                        textColor: '#0d7936cc',
+                        backgroundColor: '#99e4d6cc', //Completed
+                        borderColor: '#99e4d6cc'
+                    },
+                    {
+                        title: 'Haircut for Mike',
+                        start: '2023-05-16T10:00:00',
+                        end: '2023-05-16T11:00:00',
+                        textColor: '#0d7936cc',
+                        backgroundColor: '#99e4d6cc', //Completed
+                        borderColor: '#99e4d6cc'
+                    },
+                    {
+                        title: 'Pedicure for James',
+                        start: '2023-05-16T13:00:00',
+                        end: '2023-05-16T14:00:00',
+                        textColor: '#064756cc',
+                        backgroundColor: '#b2e4f0cc', //Approved
+                        borderColor: '#b2e4f0cc'
+                    },
+                    {
+                        title: 'Foot Spa for Alice',
+                        start: '2023-05-20T15:00:00',
+                        end: '2023-05-20T16:00:00',
+                        textColor: '#a81c33cc',
+                        backgroundColor: '#f8bec8cc', //Cancelled
+                        borderColor: '#f8bec8cc'
+                    },
+                    {
+                        title: 'Nail ext for Ashley',
+                        start: '2023-05-18T09:00:00',
+                        end: '2023-05-18T10:00:00',
+                        textColor: '#1417b9cc',
+                        backgroundColor: '#cccdf4cc', //Pending
+                        borderColor: '#cccdf4cc'
+                    },
+                    {
+                        title: 'Pre-Bridal Service for Rachel',
+                        start: '2023-05-15T10:00:00',
+                        end: '2023-05-15T12:00:00',
+                        textColor: '#064756cc',
+                        backgroundColor: '#b2e4f0cc', //Approved
+                        borderColor: '#b2e4f0cc'
+                    },
+                    {
+                        title: 'HairSetting for Carol',
+                        start: '2023-05-18T14:00:00',
+                        end: '2023-05-18T13:00:00',
+                        textColor: '#a81c33cc',
+                        backgroundColor: '#f8bec8cc', //Cancelled
+                        borderColor: '#f8bec8cc'
+                    },
+                    {
+                        title: 'Pedicure for James',
+                        start: '2023-05-20T14:00:00',
+                        end: '2023-05-20T15:00:00',
+                        textColor: '#0d7936cc',
+                        backgroundColor: '#99e4d6cc', //Completed
+                        borderColor: '#99e4d6cc'
+                    },
+                    {
+                        title: 'Manicure for Sam',
+                        start: '2023-05-19T11:00:00',
+                        end: '2023-05-19T12:00:00',
+                        textColor: '#0d7936cc',
+                        backgroundColor: '#99e4d6cc', //Completed
+                        borderColor: '#99e4d6cc'
+                    },
+                    {
+                        title: 'Hair Spa for Emily',
+                        start: '2023-05-19T17:00:00',
+                        end: '2023-05-19T18:00:00',
+                        textColor: '#1417b9cc',
+                        backgroundColor: '#cccdf4cc', //Pending
+                        borderColor: '#cccdf4cc'
+                    },
+                    {
+                        title: 'Skin Brightening for Nick',
+                        start: '2023-05-17T11:00:00',
+                        end: '2023-05-17T13:00:00',
+                        textColor: '#0d7936cc',
+                        backgroundColor: '#99e4d6cc', //Completed
+                        borderColor: '#99e4d6cc'
+                    },
+                ]
+            });
+
+            $('#create_appointment_form').submit(function (event) {
+                event.preventDefault();
+
+                // Get the form data as a serialized string
+                var formData = $(this).serialize();
+
+                // Parse the serialized form data into an object
+                var eventData = {};
+                formData.split("&").forEach(function (item) {
+                    eventData[item.split("=")[0]] = decodeURIComponent(item.split("=")[1]);
+                });
+
+                var newEvent = {
+                    title: $("#title option:selected").text(),
+                    service: $("#service option:selected").text(),
+                    start: eventData.start,
+                };
+                newEvent.title = newEvent.title + " - " + newEvent.service;
+                calendar.addEvent(newEvent);
+
+                $('#create_appointment_form')[0].reset();
+                $("#add_appointment_sidebar").removeClass("sidebar_open");;
+            });
+
+            calendar.render();
+        });
+
+    </script>
+
+    <div class="container-fluid sidebar_open " id="add_appointment_sidebar">
+        <div class="row">
+            <div class="col">
+                <div class="card py-3 border-0">
+                    <!-- Card header -->
+                    <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                        <span class="h3">Add Appointment</span>
+                        <button type="button" class="add_appointment close">&times;</button>
+                    </div>
+                    <form class="form-horizontal" id="create_appointment_form" method="post"
+                        enctype="multipart/form-data" action="public/admin/booking/create">
+                        <input type="hidden" name="_token" value="8oyeuMvDGu0P1cwhrM2SzV0VvamLtDOkKwlG9aYH">
+                        <div class="my-0">
+
+                            <!-- <div class="form-group">
+                                    <label class="form-control-label" for="booking_id">Booking id</label>
+                                    <input type="text" name="booking_id" value="#61004" id="booking_id"
+                                        class="form-control" placeholder="Booking id" readonly>
+                                </div> -->
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="title">Client</label>
+                                <select class="form-control select2" name="title" id="title" dir="">
+                                    <option selected value> -- Select Client -- </option>
+                                    <option value=5>Saasmonks Demo</option>
+                                    <option value=11>Test</option>
+                                    <option value=13>Pranali Lakhalani</option>
+                                    <option value=14>Dev test</option>
+                                    <option value=15>Pranali Lakhalani</option>
+                                </select>
+                                <div class="invalid-div"><span class="user_id"></span></div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="form-control-label">Services</label>
+                                <select class="form-control select2 service_class" name="service" id="service">
+                                    <option selected value> -- Select service -- </option>
+                                    <option value=2>Manicure</option>
+                                    <option value=3>Pedicure</option>
+                                    <option value=4>Hair color</option>
+                                    <option value=6>Bridal</option>
+                                    <option value=7>Matte</option>
+                                    <option value=10>Hair cut</option>
+                                </select>
+                                <div class="invalid-div"><span class="service_id"></span></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="start">Start Date</label>
+                                <input type="datetime-local" class="form-control" id="start" name="start"
+                                    placeholder="-- Select Date --">
+                                <div class="invalid-div"><span class="date"></span></div>
+                            </div>
+                            <!-- <div class="form-group">
+                                    <label class="form-control-label" for="date">Date</label>
+                                    <input type="text" name="date" id="date" class="form-control select_date"
+                                        placeholder="-- Select Date --">
+                                    <div class="invalid-div"><span class="date"></span></div>
+                                </div> -->
+
+                            <!-- <div class="form-group">
+                                    <label class="form-control-label" for="start_time">Time</label>
+                                    <select class="form-control select2 start_time" name="start_time" id="start_time"
+                                        dir="">
+                                        <option disabled selected> -- Select Time -- </option>
+                                    </select>
+                                    <div class="invalid-div"><span class="start_time"></span></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" for="payment">Payment</label>
+                                    <input type="text" name="payment" id="payment" class="form-control"
+                                        placeholder="Payment">
+                                    <div class="invalid-div"><span class="payment"></span></div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="form-control-label">Employee</label>
+                                    <select class="form-control select2 emp_id" name="emp_id" id="emp_id" dir="">
+
+                                        <option disabled selected> -- Select Employee -- </option>
+
+                                    </select>
+                                    <div class="invalid-div"><span class="emp_id"></span></div>
+                                </div> -->
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary rtl-float-none mt-4 mb-5">Book
+                                    Appointment</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid  sidebar_open" id="show_booking_sidebar">
+        <div class="row">
+            <div class="col">
+                <div class="card py-3 border-0">
+
+                    <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                        <span class="h3">View Appointment</span>
+                        <button type="button" class="show_booking_close close">&times;</button>
+                    </div>
+                    <div class="card card-profile shadow mt-5">
+                        <div class="row justify-content-center">
+                            <div class="card-profile-image">
+                                <img src="" class="rounded-circle user_img owner_img_round">
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 pt-md-4 mt-8">
+                            <div class="text-center">
+                                <h3 id="user_name"></h3>
+
+                                <div class="h4 font-weight-400" id="user_email"></div>
+                                <div class="h4 font-weight-400" id="user_phone"></div>
+
+                                <hr class="my-4" />
+                                <div class="table1">
+                                    <div class="row mt-3 mb-2">
+                                        <div class="col h4 text-right">Booking Id :</div>
+                                        <div class="col text-left" id="booking_id_main"></div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col h4 text-right">Services :</div>
+                                        <div class="col text-left" id="services_all"></div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col h4 text-right">Date :</div>
+                                        <div class="col text-left" id="app_date"></div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col h4 text-right">Duration :</div>
+                                        <div class="col text-left" id="service_time"></div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col h4 text-right">Payment :</div>
+                                        <div class="col text-left" id="app_payment"></div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col h4 text-right">Employee Name :</div>
+                                        <div class="col text-left" id="emp_name"></div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4" />
+
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-primary mt-4 mb-5 rtl-float-none view_invoice">View
+                                        Invoice</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid sidebar_open " id="add_user_sidebar">
+        <div class="row">
+            <div class="col">
+                <div class="card py-3 border-0">
+                    <!-- Card header -->
+                    <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                        <span class="h3">Create Client</span>
+                        <button type="button" class="add_user close">&times;</button>
+                    </div>
+                    <form class="form-horizontal" id="create_user_form" method="post" enctype="multipart/form-data"
+                        action="public/admin/users">
+                        <input type="hidden" name="_token" value="8oyeuMvDGu0P1cwhrM2SzV0VvamLtDOkKwlG9aYH">
+                        <div class="my-0">
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="name">Name</label>
+                                <input type="text" name="name" value="" id="name" class="form-control"
+                                    placeholder="Client name" autofocus>
+                                <div class="invalid-div "><span class="name"></span></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="email">Email</label><br>
+                                <input type="text" name="email" value="" id="email" class="form-control"
+                                    placeholder="Email Address">
+                                <div class="invalid-div "><span class="email"></span></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="Password">
+                                <div class="invalid-div "><span class="password"></span></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="code">Country Code</label><br>
+                                <input type="number" min="1" name="code" value="" id="code" class="form-control"
+                                    placeholder="Country Code">
+                                <div class="invalid-div "><span class="code"></span></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label" for="phone">Phone no.</label><br>
+                                <input type="text" name="phone" value="" id="phone" class="form-control"
+                                    placeholder="Phone number">
+                                <div class="invalid-div "><span class="phone"></span></div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="button" id="create_btn" onclick="demo()"
+                                    class="btn btn-primary mt-4 mb-5 rtl-float-none">Create</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+
+    <script src="public/includes/js/Chart.min.js"></script>
+    <script src="public/includes/js/Chart.extension.js"></script>
+    <script src="public/includes/js/jquery.min.js"></script>
+    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+    <script src="public/includes/js/argon.js"></script>
+    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+    <script src="public/includes/js/sweetalert.all.js"></script>
+    <script src="public/includes/js/jquery.timepicker.js"></script>
+
+
+    <script src="public/includes/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="public/includes/js/myjavascript.js"></script>
+
+    <!-- Argon JS -->
+</body>
+
+</html>

@@ -1,0 +1,628 @@
+<div class="header pt-7"
+    style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
+    <span class="mask bg-gradient-dark opacity-7"></span>
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4 pb-7">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item text-white"><a href="public/admin/dashboard"><i
+                                        class="fas fa-home text-salon"></i></a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Booking </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--6">
+    <div class="row mb-5">
+        <div class="col">
+            <div class="card pb-4">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <span class="h3">Booking table</span>
+                    <div class="">
+                        <button class="btn btn-primary addbtn float-right p-2 add_appointment" id="add_appointment"><i
+                                class="fas fa-plus mr-1"></i>Add Appointment</button>
+                    </div>
+                </div>
+                <!-- table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush" id="booking_dt" class="display">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="sort">#</th>
+                                <th scope="col" class="sort">Booking id</th>
+                                <th scope="col" class="sort">User Name</th>
+                                <th scope="col" class="sort">Services</th>
+                                <th scope="col" class="sort">Date</th>
+                                <th scope="col" class="sort">Emp</th>
+                                <th scope="col" class="sort">Duration</th>
+                                <th scope="col" class="sort">Payment</th>
+                                <th scope="col" class="sort">Paid</th>
+                                <th scope="col" class="sort">Booking Status</th>
+                                <th scope="col" class="sort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+                                <th>1</th>
+                                <td>#62904</td>
+                                <td>james smith</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Manicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137926.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Pedicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137942.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-04-05</td>
+                                <td>Stefan Salvatore</td>
+                                <td>09:00 AM To 10:00 AM</td>
+                                <td>$300</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(626)" name="selector"
+                                        id="selector626">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(626,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/626" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>#80640</td>
+                                <td>bello</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Pedicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137942.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-04-06</td>
+                                <td>Stefan Salvatore</td>
+                                <td>10:00 AM To 10:30 AM</td>
+                                <td>$150</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(625)" name="selector"
+                                        id="selector625" disabled>
+                                        <option value="Pending" disabled>Pending</option>
+                                        <option value="Cancelled" selected>Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(625,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/625" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>#43039</td>
+                                <td>Den</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Manicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137926.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Bridal">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602138017.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Hair cut">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1611384259.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-04-04</td>
+                                <td>Caroline Forbes</td>
+                                <td>11:30 AM To 02:30 PM</td>
+                                <td>$2300</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(624)" name="selector"
+                                        id="selector624">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(624,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/624" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>4</th>
+                                <td>#66818</td>
+                                <td>lakhan</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Manicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137926.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Pedicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137942.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Hair color">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137966.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-03-30</td>
+                                <td>Caroline Forbes</td>
+                                <td>02:00 PM To 03:40 PM</td>
+                                <td>$500</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(623)" name="selector"
+                                        id="selector623">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(623,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/623" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>5</th>
+                                <td>#85740</td>
+                                <td>lakhan</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Manicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137926.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Pedicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137942.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-03-29</td>
+                                <td>Caroline Forbes</td>
+                                <td>04:00 PM To 05:00 PM</td>
+                                <td>$300</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(622)" name="selector"
+                                        id="selector622">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(622,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/622" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>6</th>
+                                <td>#83991</td>
+                                <td>Deepak K Soni</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Manicure">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602137926.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-03-29</td>
+                                <td>Stefan Salvatore</td>
+                                <td>09:00 AM To 09:30 AM</td>
+                                <td>$150</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-warning">Unpaid</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(621)" name="selector"
+                                        id="selector621">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(621,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/621" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>7</th>
+                                <td>#10065</td>
+                                <td>vanessa</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Bridal">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602138017.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Matte">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602138069.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-03-24</td>
+                                <td>Stefan Salvatore</td>
+                                <td>02:00 PM To 04:30 PM</td>
+                                <td>$2300</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-success">Stripe</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(620)" name="selector"
+                                        id="selector620">
+                                        <option value="Pending" selected disabled>Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(620,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/620" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>8</th>
+                                <td>#32311</td>
+                                <td>vanessa</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Bridal">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602138017.jpg">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                                            data-original-title="Matte">
+                                            <img alt="service" class="service_icon"
+                                                src="public/storage/images/services/Service_1602138069.jpg">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>2023-03-24</td>
+                                <td>Stefan Salvatore</td>
+                                <td>02:00 PM To 04:30 PM</td>
+                                <td>$2300</td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill badge-success">Stripe</span>
+                                </td>
+                                <td>
+                                    <select class="form-control" onchange="changeStatus(619)" name="selector"
+                                        id="selector619" disabled>
+                                        <option value="Pending" disabled>Pending</option>
+                                        <option value="Cancelled" selected>Cancelled</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </td>
+                                <td class="table-actions">
+                                    <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"
+                                        onclick="show_booking(619,'public','booking')" data-toggle="tooltip"
+                                        data-original-title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="public/admin/booking/invoice/619" class="text-blue cursor table-action"
+                                        data-toggle="tooltip" data-original-title="View Invoice">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="float-right mr-4 mt-3">
+                        <nav>
+                            <ul class="pagination">
+
+                                <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                                    <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                                </li>
+
+
+
+
+
+                                <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=2">2</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=3">3</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=4">4</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=5">5</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=6">6</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=7">7</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=8">8</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=9">9</a></li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=10">10</a>
+                                </li>
+
+                                <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span>
+                                </li>
+
+
+
+
+
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=77">77</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="public/admin/booking?page=78">78</a>
+                                </li>
+
+
+                                <li class="page-item">
+                                    <a class="page-link" href="public/admin/booking?page=2" rel="next"
+                                        aria-label="Next &raquo;">&rsaquo;</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid sidebar_open " id="add_appointment_sidebar">
+    <div class="row">
+        <div class="col">
+            <div class="card py-3 border-0">
+                <!-- Card header -->
+                <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                    <span class="h3">Add Appointment</span>
+                    <button type="button" class="add_appointment close">&times;</button>
+                </div>
+                <form class="form-horizontal" id="create_appointment_form" method="post" enctype="multipart/form-data"
+                    action="public/admin/booking/create">
+                    <input type="hidden" name="_token" value="5O57DdIfZRvjAFgpQy1mzNGXw26aW2G9AGIdnel7">
+                    <div class="my-0">
+
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="booking_id">Booking id</label>
+                            <input type="text" name="booking_id" value="#62866" id="booking_id" class="form-control"
+                                placeholder="Booking id" readonly>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="form-control-label">Client</label>
+                            <select class="form-control select2" name="user_id" id="services" dir="">
+                                <option disabled selected value> -- Select Client -- </option>
+                                <option value=5>Saasmonks Demo</option>
+                                <option value=11>Test</option>
+                                <option value=13>Pranali Lakhalani</option>
+                                <option value=14>Dev test</option>
+                                <option value=15>Pranali Lakhalani</option>
+                            </select>
+                            <div class="invalid-div"><span class="user_id"></span></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="form-control-label">Services</label>
+                            <select class="form-control select2 service_class" multiple="multiple" name="service_id[]"
+                                id="select2" data-placeholder='-- Select Service --' placeholder='-- Select Service --'
+                                dir="">
+                                <option value=2>Manicure</option>
+                                <option value=3>Pedicure</option>
+                                <option value=4>Hair color</option>
+                                <option value=6>Bridal</option>
+                                <option value=7>Matte</option>
+                                <option value=10>Hair cut</option>
+                            </select>
+                            <div class="invalid-div"><span class="service_id"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="date">Date</label>
+                            <input type="text" name="date" id="date" class="form-control select_date"
+                                placeholder="-- Select Date --">
+                            <div class="invalid-div"><span class="date"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="start_time">Time</label>
+                            <select class="form-control select2 start_time" name="start_time" id="start_time" dir="">
+                                <option disabled selected> -- Select Time -- </option>
+                            </select>
+                            <div class="invalid-div"><span class="start_time"></span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="payment">Payment</label>
+                            <input type="text" name="payment" id="payment" class="form-control" placeholder="Payment">
+                            <div class="invalid-div"><span class="payment"></span></div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="form-control-label">Employee</label>
+                            <select class="form-control select2 emp_id" name="emp_id" id="emp_id" dir="">
+
+                                <option disabled selected> -- Select Employee -- </option>
+
+                            </select>
+                            <div class="invalid-div"><span class="emp_id"></span></div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" onclick="demo()" id="create_btn"
+                                class="btn btn-primary rtl-float-none mt-4 mb-5">Book Appointment</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid  sidebar_open" id="show_booking_sidebar">
+    <div class="row">
+        <div class="col">
+            <div class="card py-3 border-0">
+                <!-- Card header -->
+                <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                    <span class="h3">View Appointment</span>
+                    <button type="button" class="show_booking_close close">&times;</button>
+                </div>
+                <div class="card card-profile shadow mt-5">
+                    <div class="row justify-content-center">
+                        <div class="card-profile-image">
+                            <img src="" class="rounded-circle user_img owner_img_round">
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pt-md-4 mt-8">
+                        <div class="text-center">
+                            <h3 id="user_name"></h3>
+
+                            <div class="h4 font-weight-400" id="user_email"></div>
+                            <div class="h4 font-weight-400" id="user_phone"></div>
+
+                            <hr class="my-4" />
+                            <div class="table1">
+                                <div class="row mt-3 mb-2">
+                                    <div class="col h4 text-right">Booking Id :</div>
+                                    <div class="col text-left" id="booking_id_main"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col h4 text-right">Services :</div>
+                                    <div class="col text-left" id="services_all"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col h4 text-right">Date :</div>
+                                    <div class="col text-left" id="app_date"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col h4 text-right">Duration :</div>
+                                    <div class="col text-left" id="service_time"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col h4 text-right">Payment :</div>
+                                    <div class="col text-left" id="app_payment"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col h4 text-right">Employee Name :</div>
+                                    <div class="col text-left" id="emp_name"></div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4" />
+
+                            <div class="text-center">
+                                <a href="#" class="btn btn-primary mt-4 mb-5 rtl-float-none view_invoice">View
+                                    Invoice</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

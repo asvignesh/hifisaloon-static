@@ -22,5 +22,53 @@
         "smiles": 10,
         "age": 30,
         "gender": "male"
+    },
+    {
+        "id": 3,
+        "name": "Lisa Smith",
+        "email": "lisa.smith@example.com",
+        "mobile": "1234567890",
+        "firstVisit": "2021-06-10 14:45:03",
+        "lastVisit": "2023-04-22 09:18:37",
+        "spendByYear": 4500,
+        "smiles": 15,
+        "age": 35,
+        "gender": "female"
+    },
+    {
+        "id": 4,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "mobile": "5551234567",
+        "firstVisit": "2021-08-01 19:27:58",
+        "lastVisit": "2023-04-21 16:54:02",
+        "spendByYear": 10000,
+        "smiles": 20,
+        "age": 45,
+        "gender": "male"
+    },
+    {
+        "id": 5,
+        "name": "Emily Davis",
+        "email": "emily.davis@example.com",
+        "mobile": "5559876543",
+        "firstVisit": "2021-09-12 11:09:26",
+        "lastVisit": "2023-04-20 21:02:17",
+        "spendByYear": 6000,
+        "smiles": 12,
+        "age": 28,
+        "gender": "female"
+    },
+    {
+        "id": 6,
+        "name": "Mike Johnson",
+        "email": "mike.johnson@example.com",
+        "mobile": "1235557890",
+        "firstVisit": "2021-10-21 16:38:09",
+        "lastVisit": "2023-04-19 12:44:30",
+        "spendByYear": 3500,
+        "smiles": 8,
+        "age": 32,
+        "gender": "male"
     }
 ]
