@@ -513,7 +513,7 @@ var Charts = (function() {
 	var $toggle = $('[data-toggle="chart"]');
 	var mode = 'light';//(themeMode) ? themeMode : 'light';
 	var fonts = {
-		base: 'Open Sans'
+		base: 'Roboto'
 	}
 
 	// Colors
