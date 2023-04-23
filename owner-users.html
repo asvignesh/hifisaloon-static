@@ -96,20 +96,21 @@
         });
 
 
-        $(document).ready(
+        // $(document).ready(
 
-            function () {
-                $('.search-mobile').on('keyup', function () {
-                    var filter = $(this).value; // Get the value of the text box
-                    var filteredData = _users.filter(function (item) {
-                        return item.mobile.indexOf(filter) !== -1; // Filter the data based on the name field
-                    });
-                    console.log(filteredData); // Output the filtered data to the console
-                });
-            },
-        );
+        //     function () {
+        //         $('.search-mobile').on('keyup', function () {
+        //             var filter = $(this).value; // Get the value of the text box
+        //             var filteredData = _users.filter(function (item) {
+        //                 return item.mobile.indexOf(filter) !== -1; // Filter the data based on the name field
+        //             });
+        //             console.log(filteredData); // Output the filtered data to the console
+        //         });
+        //     },
+        // );
 
         $(document).ready(function () {
+            var index = 3;
             $("#submit-btn").click(function (event) {
                 event.preventDefault();
 
@@ -150,7 +151,7 @@
 
 
                 var row = '<tr>' +
-                    '<td>0</td>' +
+                    '<td>' + index + '</td>' +
                     '<td>' + name + '</td>' +
                     '<td>' + email + '</td>' +
                     '<td>' + mobile + '</td>' +
@@ -167,6 +168,7 @@
                 // Append the row to the table body
                 $('#dataTableUser tbody').append(row);
 
+                index++;
                 // validate the inputs here
 
                 // if all inputs are valid, submit the form
@@ -223,10 +225,10 @@
                             <div class="card-header border-0">
                                 <span class="h3">Users table</span>
                                 <button class="btn btn-primary addbtn float-right p-2 add_user" id="add_user"><i
-                                        class="fas fa-plus mr-1"></i>Add New</button>
+                                        class="fas fa-plus mr-1"></i>Add User</button>
                             </div>
 
-                            <form action="public/owner/users/filter" method="post" class="ml-4" id="filter_revene_form">
+                            <!-- <form action="public/owner/users/filter" method="post" class="ml-4" id="filter_revene_form">
                                 <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
                                 <div class="row rtl-date-filter-row">
                                     <div class="form-group col-3">
@@ -239,7 +241,7 @@
                                             class="btn btn-primary  rtl-date-filter-btn">Apply</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
 
                             <!-- table -->
                             <div class="table-responsive">
@@ -254,6 +256,7 @@
                                             <th scope="col" class="sort">First Visit</th>
                                             <th scope="col" class="sort">Recent Visit</th>
                                             <th scope="col" class="sort">Total Spent (avg / year )</th>
+                                            <th scope="col" class="sort">Action</th>
 
                                             <th scope="col"></th>
                                         </tr>
