@@ -1446,3 +1446,43 @@ function loadWidgets(storeId) {
         error: function (err) { }
     });
 }
+
+function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageTo) {
+    $.ajax({
+        url: 'public/data/userreport/' + storeId + '.json',
+        method: 'get',
+        success: function (data) {
+            console.log(data);
+            // Clear existing table rows
+            $('#dataTableUserReports tbody').empty();
+
+            var totalSmiles = 0;
+            var totalSpendByYear = 0;
+            // Loop through each user object in the response data
+            $.each(data, function (index, users) {
+                console.log(users);
+                // Create a new row with the user data
+                var row = '<tr>' +
+                    '<th>' + users.id + '</th>' +
+                    '<td>' + users.name + '</td>' +
+                    '<td>' + users.email + '</td>' +
+                    '<td>' + users.mobile + '</td>' +
+                    '<td>' + users.smiles + '</td>' +
+                    '<td>' + users.spendByYear + '</td>' +
+                    '</tr>';
+
+                totalSmiles += users.smiles;
+                totalSpendByYear += users.spendByYear;
+                console.log(totalSmiles);
+                console.log(totalSpendByYear);
+
+                // Append the row to the table body
+                $('#dataTableUserReports tbody').append(row);
+            });
+            document.getElementById("users").innerHTML = data.length;
+            document.getElementById("smiles").innerHTML = totalSmiles;
+            document.getElementById("revenue").innerHTML = totalSpendByYear;
+        },
+        error: function (err) { }
+    });
+}
