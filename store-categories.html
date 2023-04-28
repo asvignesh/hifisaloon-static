@@ -2,251 +2,261 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="csrf-token" content="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
-  <meta name="base_url" content="public">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
+    <meta name="base_url" content="public">
 
-  <style>
-    :root {
-      --primary_color: #502f8f;
-      --primary_color_hover: #502f8fcc;
-    }
-  </style>
-
-  <!-- Title -->
-  <title>HiFi Salon</title>
-
-  <!-- Favicon -->
-  <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link href="public/includes/css/nucleo.css" rel="stylesheet">
-  <link href="public/includes/css/all.min.css" rel="stylesheet">
-  <link href="public/includes/css/sweetalert2.scss">
-  <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet' />
-  <!-- Argon CSS -->
-  <link href="public/includes/css/argon.css" rel="stylesheet">
-  <link href="public/includes/css/mystyle.css" rel="stylesheet">
-
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-  <script>
-
-    var _categories;
-    $(document).ready(function () {
-      // Set the initial content
-      $("#body-content").load("dashboard.html");
-      $("#navbar-left").load("inc/navbar.inc.html");
-      $("#navbar-top").load("inc/navbar-top-inc.html");
-
-      $.ajax({
-        url: 'public/data/categories.json',
-        dataType: 'json',
-        success: function (categories) {
-          console.log(categories);
-          _categories = categories;
-          // Clear existing table rows
-          $('#dataTableCategory tbody').empty();
-
-          // Loop through each user object in the response data
-          $.each(categories, function (index, category) {
-            console.log(category);
-            // Create a new row with the user data
-            var row = '<tr>' +
-              '<th>' + category.id + '</th>' +
-              '<td><img alt="Image placeholder" class="tableimage_cat rounded"  src="' + category.image + '"></td>' +
-              '<td>' + category.category + '</td>' +
-              '<td> <label class="custom-toggle">' +
-              ' <input type="checkbox" onchange="hideCategory(8)" checked>' +
-              ' <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"' +
-              '   data-label-on="ON"></span>' +
-              '  </label></td>' +
-              '<td class="table-actions"> ' +
-              '<button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick="edit_cat()" data-toggle="tooltip" data-original-title="Edit category">' +
-              '<i class="fas fa-user-edit"></i>' +
-              '</button></td>' +
-              '</tr>';
-
-            // Append the row to the table body
-            $('#dataTableCategory tbody').append(row);
-          });
-        },
-        error: function (error) {
-          console.log(error);
+    <style>
+        :root {
+            --primary_color: #502f8f;
+            --primary_color_hover: #502f8fcc;
         }
-      });
+    </style>
 
-    });
-    $(document).on("click", function (e) {
-      console.log(e);
-    });
+    <!-- Title -->
+    <title>HiFi Salon</title>
 
-  </script>
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script>
+
+        var _categories;
+        $(document).ready(function () {
+            // Set the initial content
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc.html");
+            $("#navbar-top").load("inc/navbar-top-inc.html");
+
+            $.ajax({
+                url: 'public/data/categories.json',
+                dataType: 'json',
+                success: function (categories) {
+                    console.log(categories);
+                    _categories = categories;
+                    // Clear existing table rows
+                    $('#dataTableCategory tbody').empty();
+
+                    // Loop through each user object in the response data
+                    $.each(categories, function (index, category) {
+                        console.log(category);
+                        // Create a new row with the user data
+                        var row = '<tr>' +
+                            '<th>' + category.id + '</th>' +
+                            '<td><img alt="Image placeholder" class="tableimage_cat rounded"  src="' + category.image + '"></td>' +
+                            '<td>' + category.category + '</td>' +
+                            '<td> <label class="custom-toggle">' +
+                            ' <input type="checkbox" onchange="hideCategory(8)" checked>' +
+                            ' <span class="custom-toggle-slider rounded-circle" data-label-off="OFF"' +
+                            '   data-label-on="ON"></span>' +
+                            '  </label></td>' +
+                            '<td class="table-actions"> ' +
+                            '<button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick="edit_cat()" data-toggle="tooltip" data-original-title="Edit category">' +
+                            '<i class="fas fa-user-edit"></i>' +
+                            '</button></td>' +
+                            '</tr>';
+
+                        // Append the row to the table body
+                        $('#dataTableCategory tbody').append(row);
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+        });
+        $(document).on("click", function (e) {
+            console.log(e);
+        });
+
+    </script>
 </head>
 
 <body class="">
-  <div class="preload">
+<div class="preload">
     <img src="public/storage/images/app/loader.gif" class="loader" alt="">
-  </div>
-  <div class="for-loader">
+</div>
+<div class="for-loader">
     <form id="logout-form" action="public/logout" method="POST" style="display: none;">
-      <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
+        <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
     </form>
 
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-      <div id="navbar-left"></div>
+        <div id="navbar-left"></div>
     </nav>
 
     <div class="main-content">
-      <div id="navbar-top"></div>
+        <div id="navbar-top"></div>
 
-      <div class="header pt-7"
-        style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
-        <span class="mask bg-gradient-dark opacity-7"></span>
-        <div class="container-fluid">
-          <div class="header-body">
-            <div class="row align-items-center py-4 pb-7">
-              <div class="col-lg-6 col-7">
-                <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-                  <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                    <li class="breadcrumb-item text-white"><a href="public/admin/dashboard"><i
-                          class="fas fa-home text-salon"></i></a></li>
-                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Category </li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid mt--6 mb-5">
-        <div class="row">
-          <div class="col">
-            <div class="card">
-              <!-- Card header -->
-              <div class="card-header border-0">
-                <span class="h3">Category table</span>
-                <button class="btn btn-primary addbtn float-right p-2 add_cat" id="add_cat"><i
-                    class="fas fa-plus mr-1"></i>Add New</button>
-              </div>
-              <!-- table -->
-              <div class="table-responsive">
-                <table class="table align-items-center table-flush" id="dataTableCategory"
-                class="dataTableCategory">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col" class="sort">#</th>
-                      <th scope="col" class="sort">Image</th>
-                      <th scope="col" class="sort">Category</th>
-                      <th scope="col" class="sort">Status</th>
-                      <th scope="col" class="sort">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="list">
-
-                  </tbody>
-                </table>
-                <div class="float-right  mr-4 mb-1">
-
+        <div class="header pt-7"
+             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4 pb-7">
+                        <div class="col-lg-6 col-7">
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                    <li class="breadcrumb-item text-white"><a href="public/admin/dashboard"><i
+                                            class="fas fa-home text-salon"></i></a></li>
+                                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Category
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="container-fluid sidebar_open " id="add_cat_sidebar">
-        <div class="row">
-          <div class="col">
-            <div class="card py-3 border-0">
-              <div class="border_bottom_pink pb-3 pt-2 mb-4">
-                <span class="h3">Create Category</span>
-                <button type="button" class="add_cat close">&times;</button>
-              </div>
-              <form class="form-horizontal" id="create_cat_form" action="public/admin/categories" method="post"
-                enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
-                <div>
-                  <div class="form-group">
-                    <label class="form-control-label" for="name">Name</label>
-                    <input type="text" value="" name="name" id="name" class="form-control" placeholder="Category Name"
-                      autofocus>
-                    <div class="invalid-div "><span class="name"></span></div>
-                  </div>
+        <div class="container-fluid mt--6 mb-5">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <span class="h3">Category table</span>
+                            <button class="btn btn-primary addbtn float-right p-2 add_cat" id="add_cat"><i
+                                    class="fas fa-plus mr-1"></i>Add New
+                            </button>
+                        </div>
+                        <!-- table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush" id="dataTableCategory"
+                                   class="dataTableCategory">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="sort">#</th>
+                                    <th scope="col" class="sort">Image</th>
+                                    <th scope="col" class="sort">Category</th>
+                                    <th scope="col" class="sort">Status</th>
+                                    <th scope="col" class="sort">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody class="list">
 
-                  <div class="form-group">
-                    <label class="form-control-label" for="image">Image</label><br>
-                    <input type="file" name="image" id="image" onchange="loadFile(event)"><br>
-                    <img id="output" class="cat_size mt-3  " />
-                    <div class="invalid-div "><span class="image"></span></div>
-                  </div>
+                                </tbody>
+                            </table>
+                            <div class="float-right  mr-4 mb-1">
 
-                  <div class="text-center">
-                    <button type="button" id="create_btn" onclick="demo()"
-                      class="btn btn-primary mt-4 mb-5 rtl-float-none">Create</button>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="container-fluid  sidebar_open " id="edit_cat_sidebar">
-        <div class="row">
-          <div class="col">
-            <div class="card py-3 border-0">
-              <div class="border_bottom_pink pb-3 pt-2 mb-4">
-                <span class="h3">Edit Category</span>
-                <button type="button" class="edit_cat_close close">&times;</button>
-              </div>
-              <form class="form-horizontal" id="edit_cat_form" action="#" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
-                <div class="my-0">
-                  <div class="form-group">
-                    <label class="form-control-label" for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Category Name" autofocus>
-                    <div class="invalid-div "><span class="name"></span></div>
-                  </div>
+        <div class="container-fluid sidebar_open " id="add_cat_sidebar">
+            <div class="row">
+                <div class="col">
+                    <div class="card py-3 border-0">
+                        <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                            <span class="h3">Create Category</span>
+                            <button type="button" class="add_cat close">&times;</button>
+                        </div>
+                        <form class="form-horizontal" id="create_cat_form" action="public/admin/categories"
+                              method="post"
+                              enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
+                            <div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="name">Name</label>
+                                    <input type="text" value="" name="name" id="name" class="form-control"
+                                           placeholder="Category Name"
+                                           autofocus>
+                                    <div class="invalid-div "><span class="name"></span></div>
+                                </div>
 
-                  <input type="hidden" name="id">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="image">Image</label><br>
+                                    <input type="file" name="image" id="image" onchange="loadFile(event)"><br>
+                                    <img id="output" class="cat_size mt-3  "/>
+                                    <div class="invalid-div "><span class="image"></span></div>
+                                </div>
 
-                  <div class="form-group">
-                    <label class="form-control-label" for="image">Image</label><br>
-                    <input type="file" name="image" id="image" onchange="loadFile_edit(event)"><br>
-                    <img id="output_edit" class="mt-3 cat_size">
-                    <div class="invalid-div "><span class="image"></span></div>
-                  </div>
-
-                  <div class="text-center">
-                    <button type="button" onclick="demo()" class="btn btn-primary mt-4 mb-5 rtl-float-none">Save
-                      Changes</button>
-                  </div>
-
+                                <div class="text-center">
+                                    <button type="button" id="create_btn" onclick="demo()"
+                                            class="btn btn-primary mt-4 mb-5 rtl-float-none">Create
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="container-fluid  sidebar_open " id="edit_cat_sidebar">
+            <div class="row">
+                <div class="col">
+                    <div class="card py-3 border-0">
+                        <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                            <span class="h3">Edit Category</span>
+                            <button type="button" class="edit_cat_close close">&times;</button>
+                        </div>
+                        <form class="form-horizontal" id="edit_cat_form" action="#" method="post"
+                              enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
+                            <div class="my-0">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="name">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control"
+                                           placeholder="Category Name" autofocus>
+                                    <div class="invalid-div "><span class="name"></span></div>
+                                </div>
+
+                                <input type="hidden" name="id">
+
+                                <div class="form-group">
+                                    <label class="form-control-label" for="image">Image</label><br>
+                                    <input type="file" name="image" id="image" onchange="loadFile_edit(event)"><br>
+                                    <img id="output_edit" class="mt-3 cat_size">
+                                    <div class="invalid-div "><span class="image"></span></div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" onclick="demo()"
+                                            class="btn btn-primary mt-4 mb-5 rtl-float-none">Save
+                                        Changes
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"></script>
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
 
 
     <script src="public/includes/js/Chart.min.js"></script>
@@ -273,7 +283,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
     <script type="text/javascript"
-      src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"> </script>
+            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -282,7 +292,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
     <!-- Argon JS -->
-  </div>
+</div>
 </body>
 
 </html>

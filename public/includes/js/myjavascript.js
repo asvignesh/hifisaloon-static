@@ -1,12 +1,3 @@
-function demo() {
-    setTimeout(() => {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: "You can't use this functionality in demo version",
-        })
-    }, 200);
-}
 // login start
 var csrf = $('meta[name="csrf-token"]').attr('content');
 var base_url = $('meta[name="base_url"]').attr('content');
@@ -50,6 +41,7 @@ function service_search() {
         }
     }
 }
+
 function emp_search() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("search_emp");
@@ -68,13 +60,16 @@ function emp_search() {
         }
     }
 }
+
 function hideCategory(categoryId) {
     $.ajax({
         url: 'categories/hideCategory',
         method: 'post',
-        data: { categoryId: categoryId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {categoryId: categoryId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
 
@@ -82,11 +77,12 @@ function changeDirection(languageId) {
     $.ajax({
         url: 'language/changeDirection',
         method: 'post',
-        data: { languageId: languageId, _token: csrf },
+        data: {languageId: languageId, _token: csrf},
         success: function (res) {
             window.location.reload();
         },
-        error: function (error) { }
+        error: function (error) {
+        }
     });
 }
 
@@ -94,83 +90,108 @@ function hideLanguage(languageId) {
     $.ajax({
         url: 'language/hideLanguage',
         method: 'post',
-        data: { languageId: languageId, _token: csrf },
+        data: {languageId: languageId, _token: csrf},
         success: function (res) {
             window.location.reload();
         },
-        error: function (error) { }
+        error: function (error) {
+        }
     });
 }
+
 function hideUser(userId) {
     $.ajax({
         url: 'users/hideUser',
         method: 'post',
-        data: { userId: userId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {userId: userId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideSalon(salonId) {
     $.ajax({
         url: 'salons/hideSalon',
         method: 'post',
-        data: { salonId: salonId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {salonId: salonId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideService(serviceId) {
     $.ajax({
         url: 'services/hideService',
         method: 'post',
-        data: { serviceId: serviceId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {serviceId: serviceId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideGallery(galleryId) {
     $.ajax({
         url: 'gallery/hideGallery',
         method: 'post',
-        data: { galleryId: galleryId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {galleryId: galleryId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideCoupon(couponId) {
     $.ajax({
         url: 'coupon/hideCoupon',
         method: 'post',
-        data: { couponId: couponId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {couponId: couponId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideEmp(empId) {
     $.ajax({
         url: 'employee/hideEmp',
         method: 'post',
-        data: { empId: empId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {empId: empId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideBanner(bannerId) {
     $.ajax({
         url: 'banner/hideBanner',
         method: 'post',
-        data: { bannerId: bannerId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {bannerId: bannerId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
+
 function hideOffer(offerId) {
     $.ajax({
         url: 'offer/hideOffer',
         method: 'post',
-        data: { offerId: offerId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {offerId: offerId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
 
@@ -180,13 +201,14 @@ function changeStatus(bookingId) {
     $.ajax({
         url: 'booking/changestatus',
         method: 'post',
-        data: { bookingId: bookingId, status: status, _token: csrf },
+        data: {bookingId: bookingId, status: status, _token: csrf},
         success: function (res) {
             if (status == 'Completed' || status == 'Cancel') {
                 $(con).prop("disabled", true);
             }
         },
-        error: function (error) { }
+        error: function (error) {
+        }
     });
 }
 
@@ -194,11 +216,12 @@ function changePaymentStatus(bookingId) {
     $.ajax({
         url: 'booking/changepaymentstatus',
         method: 'post',
-        data: { bookingId: bookingId, _token: csrf },
+        data: {bookingId: bookingId, _token: csrf},
         success: function (res) {
             window.location.reload();
         },
-        error: function (error) { }
+        error: function (error) {
+        }
     });
 }
 
@@ -206,9 +229,11 @@ function reportReview(reviewId) {
     $.ajax({
         url: 'review/reportreview',
         method: 'post',
-        data: { reviewId: reviewId, _token: csrf },
-        success: function (res) { },
-        error: function (error) { }
+        data: {reviewId: reviewId, _token: csrf},
+        success: function (res) {
+        },
+        error: function (error) {
+        }
     });
 }
 
@@ -287,6 +312,7 @@ function template_edit(id, base_url) {
         }
     });
 }
+
 function copy_function(id) {
     var value = document.getElementById(id).innerHTML;
     var input_temp = document.createElement("input");
@@ -310,18 +336,18 @@ $(document).ready(function () {
             extend: 'copyHtml5',
             title: new Date().toISOString()
         },
-        {
-            extend: 'excelHtml5',
-            title: new Date().toISOString()
-        },
-        {
-            extend: 'csvHtml5',
-            title: new Date().toISOString()
-        },
-        {
-            extend: 'pdfHtml5',
-            title: new Date().toISOString()
-        },
+            {
+                extend: 'excelHtml5',
+                title: new Date().toISOString()
+            },
+            {
+                extend: 'csvHtml5',
+                title: new Date().toISOString()
+            },
+            {
+                extend: 'pdfHtml5',
+                title: new Date().toISOString()
+            },
         ]
     });
     $('#dataTableUser').DataTable({
@@ -343,8 +369,7 @@ var loadFile = function (event) {
     if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
         alert('Only JPG and PNG file are allowed.');
         $('input[type=file]').val('');
-    }
-    else {
+    } else {
         var output = document.getElementById('output');
         console.log('output', output);
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -363,8 +388,7 @@ var loadFile_edit = function (event) {
     if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {
         alert('Only JPG and PNG file are allowed.');
         $('input[type=file]').val('');
-    }
-    else {
+    } else {
         var output = document.getElementById('output_edit');
         console.log('output', output);
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -380,8 +404,7 @@ var loadFile1 = function (event) {
     if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         $('input[type=file]').val('');
         alert('Only JPG and PNG file are allowed.');
-    }
-    else {
+    } else {
         var black_logo = document.getElementById('black_logo_output');
         black_logo.src = URL.createObjectURL(event.target.files[0]);
         black_logo.onload = function () {
@@ -394,8 +417,7 @@ var loadFile2 = function (event) {
     if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         $('input[type=file]').val('');
         alert('Only JPG and PNG file are allowed.');
-    }
-    else {
+    } else {
         var white_logo = document.getElementById('white_logo_output');
         white_logo.src = URL.createObjectURL(event.target.files[0]);
         white_logo.onload = function () {
@@ -409,8 +431,7 @@ var loadFile3 = function (event) {
     if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         $('input[type=file]').val('');
         alert('Only JPG and PNG file are allowed.');
-    }
-    else {
+    } else {
         var bg_img = document.getElementById('bg_img_output');
         bg_img.src = URL.createObjectURL(event.target.files[0]);
         bg_img.onload = function () {
@@ -424,8 +445,7 @@ var loadFile4 = function (event) {
     if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         $('input[type=file]').val('');
         alert('Only JPG and PNG file are allowed.');
-    }
-    else {
+    } else {
         var shared_image = document.getElementById('shared_image_output');
         shared_image.src = URL.createObjectURL(event.target.files[0]);
         shared_image.onload = function () {
@@ -458,8 +478,8 @@ function addDay(ev, day) {
 
 
     $('#day' + day).append(`<tr><td></td><td></td>
-    <td class="row-index"><input type="text" value="08:00 AM" name="start_time_`+ day + `[]" class="timepicker w-75" ></td>
-    <td class="row-index"><input type="text" value="08:00 PM" name="end_time_`+ day + `[]" class="timepicker w-75"  ></td>
+    <td class="row-index"><input type="text" value="08:00 AM" name="start_time_` + day + `[]" class="timepicker w-75" ></td>
+    <td class="row-index"><input type="text" value="08:00 PM" name="end_time_` + day + `[]" class="timepicker w-75"  ></td>
     <td><button class="btn btn-danger remove" type="button"><i class="fas fa-trash"></i></button></td></tr>`);
 
     $('.timepicker').timepicker({
@@ -476,9 +496,6 @@ function addDay(ev, day) {
     console.log('length ', $(ev.target).parent().parent().siblings('tr'))
 
 }
-
-
-
 
 
 //Appointment
@@ -501,22 +518,22 @@ $(document.body).on("change", ".service_class", function () {
     service = $(this).val();
     if ($(this).val().length == 0) {
         $("#create_appointment_form input[name='payment']").val(0);
-    }
-    else {
+    } else {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': csrf
             },
             type: "POST",
             url: 'booking/paymentcount',
-            data: { ser_id: $(this).val(), _token: csrf },
+            data: {ser_id: $(this).val(), _token: csrf},
             success: function (result) {
                 console.log('service', result);
                 $("#create_appointment_form input[name='payment']").val(0)
                 $(".invalid-div span").html('');
                 $("#create_appointment_form input[name='payment']").val(result.data.price);
             },
-            error: function (err) { }
+            error: function (err) {
+            }
         });
     }
 });
@@ -529,7 +546,7 @@ $(document.body).on("change", ".select_date", function () {
         },
         type: "POST",
         url: 'booking/timeslot',
-        data: { date: $(this).val(), _token: csrf },
+        data: {date: $(this).val(), _token: csrf},
         success: function (result) {
             $('#start_time').html('<option value=""  disabled selected> -- Select Time -- </option>');
             if (result.success == true) {
@@ -541,7 +558,8 @@ $(document.body).on("change", ".select_date", function () {
                 $('#start_time').html('<option value="" disabled selected> Closed </option>');
             }
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 });
 
@@ -552,7 +570,7 @@ $(document.body).on("change", ".start_time", function () {
         },
         type: "POST",
         url: 'booking/selectemployee',
-        data: { start_time: $(this).val(), service: service, date: date, _token: csrf },
+        data: {start_time: $(this).val(), service: service, date: date, _token: csrf},
         success: function (result) {
             console.log('emp', result);
             $('#emp_id').html('<option value=""  disabled selected> -- Select Employee -- </option>');
@@ -565,7 +583,8 @@ $(document.body).on("change", ".start_time", function () {
                 $('#emp_id').html('<option value="" disabled selected> -- No employee available at this time -- </option>');
             }
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 });
 
@@ -776,7 +795,8 @@ function edit_cat(id, base_url) {
             $('#edit_cat_form .cat_size').attr('src', base_url + '/storage/images/categories/' + result.data.image);
             $("#edit_cat_sidebar").slideDown(50), $("#edit_cat_sidebar").toggleClass("show_sidebar_edit");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -795,7 +815,8 @@ function edit_banner(id, base_url) {
             $('#edit_banner_form .banner_size').attr('src', base_url + '/storage/images/banner/' + result.data.image);
             $("#edit_banner_sidebar").slideDown(50), $("#edit_banner_sidebar").toggleClass("show_sidebar_edit");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -816,7 +837,8 @@ function edit_offer(id, base_url) {
 
             $("#edit_offer_sidebar").slideDown(50), $("#edit_offer_sidebar").toggleClass("show_sidebar_edit");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -841,7 +863,8 @@ function edit_coupon(id, base_url) {
 
             $("#edit_coupon_sidebar").slideDown(50), $("#edit_coupon_sidebar").toggleClass("show_sidebar_edit");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -870,7 +893,8 @@ function edit_service(id, base_url) {
 
             $("#edit_service_sidebar").slideDown(50), $("#edit_service_sidebar").toggleClass("show_sidebar_edit");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -888,7 +912,8 @@ function show_banner(id, base_url) {
             $("#show_banner_sidebar").slideDown(50), $("#show_banner_sidebar").toggleClass("show_sidebar");
             $('#show_banner_sidebar .edit_banner_btn').attr('onClick', 'edit_banner(' + result.data.banner.id + ',"' + base_url + '")');
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -914,7 +939,8 @@ function show_coupon(id, base_url) {
             }
             $("#show_coupon_sidebar").slideDown(50), $("#show_coupon_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -933,7 +959,8 @@ function show_offer(id, base_url) {
             $("#show_offer_sidebar").slideDown(50), $("#show_offer_sidebar").toggleClass("show_sidebar");
             $('#show_offer_sidebar .edit_offer_btn').attr('onClick', 'edit_offer(' + result.data.offer.id + ',"' + base_url + '")');
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -962,7 +989,8 @@ function show_reported_review(id, base_url) {
             }
             $("#show_reported_review_sidebar").slideDown(50), $("#show_reported_review_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1014,7 +1042,8 @@ function show_service(id, base_url) {
 
             $("#show_service_sidebar").slideDown(50), $("#show_service_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1029,7 +1058,8 @@ function show_gallery(id, base_url) {
             $('#show_gallery_sidebar .salon_size').attr('src', base_url + '/storage/images/gallery/' + result.data.gallery.image);
             $("#show_gallery_sidebar").slideDown(50), $("#show_gallery_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1050,15 +1080,15 @@ function show_review(id, base_url) {
             for (i = 1; i <= 5; i++) {
                 if (i <= result.data.review.rate) {
                     rate = 'activerate';
-                }
-                else {
+                } else {
                     rate = '';
                 }
                 $('#show_review_sidebar #rate').append('<i class="fas fa-star ' + rate + '"></i>');
             }
             $("#show_review_sidebar").slideDown(50), $("#show_review_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1094,7 +1124,8 @@ function show_booking(id, base_url, page) {
             $('#services_all').html(append)
             $("#show_booking_sidebar").slideDown(50), $("#show_booking_sidebar").toggleClass("show_sidebar");
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1128,7 +1159,8 @@ function eventClicked(e) {
             }
             $('#services_all').html(append)
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
     span.onclick = function () {
         modal.style.display = "none";
@@ -1188,7 +1220,8 @@ $('#adminYearUser').click(function () {
         success: function (data) {
             updateChart(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 })
 
@@ -1199,7 +1232,8 @@ $('#adminMonthUser').click(function () {
         success: function (data) {
             updateChart(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 });
 
@@ -1210,7 +1244,8 @@ $('#adminWeekUser').click(function () {
         success: function (data) {
             updateChart(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 });
 
@@ -1269,7 +1304,6 @@ function updateChart(data) {
 }
 
 
-
 $('#adminYearRevenue').click(function () {
     $.ajax({
         url: 'adminrevenuechartdata',
@@ -1277,7 +1311,8 @@ $('#adminYearRevenue').click(function () {
         success: function (data) {
             updateChart1(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 })
 
@@ -1288,7 +1323,8 @@ $('#adminMonthRevenue').click(function () {
         success: function (data) {
             updateChart1(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 });
 
@@ -1299,7 +1335,8 @@ $('#adminWeekRevenue').click(function () {
         success: function (data) {
             updateChart1(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     })
 });
 
@@ -1400,6 +1437,7 @@ function loadEmployee(selectedOption) {
 }
 
 var revenueChart;
+
 function loadChartFromApi(storeId) {
     $.ajax({
         url: 'public/data/adminrevenuecharweekdata/' + storeId + '.json',
@@ -1407,7 +1445,8 @@ function loadChartFromApi(storeId) {
         success: function (data) {
             updateChart1(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1417,6 +1456,7 @@ function initAndLoadRevenueChart(storeId) {
 }
 
 var userChart;
+
 function loadUserChartFromApi(storeId) {
     $.ajax({
         url: 'public/data/adminusercharweekdata/' + storeId + '.json',
@@ -1424,7 +1464,8 @@ function loadUserChartFromApi(storeId) {
         success: function (data) {
             updateChart(data);
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1443,7 +1484,8 @@ function loadWidgets(storeId) {
             document.getElementsByClassName("revenue").innerHTML = data.totalRevenue;
             document.getElementsByClassName("employee").innerHTML = data.employees;
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
 
@@ -1483,6 +1525,7 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
             document.getElementById("smiles").innerHTML = totalSmiles;
             document.getElementById("revenue").innerHTML = totalSpendByYear;
         },
-        error: function (err) { }
+        error: function (err) {
+        }
     });
 }
