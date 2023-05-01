@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "name": "Hair",
+      "sold": 900
+    },
+    {
+      "name": "Shampoo",
+      "sold": 300
+    },
+    {
+      "name": "Makeup",
+      "sold": 600
+    },
+    {
+      "name": "Nails",
+      "sold": 100
+    }
+  ]
+}
