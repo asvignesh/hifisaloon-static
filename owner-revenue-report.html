@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK" name="csrf-token">
+    <meta content="public" name="base_url">
+
+    <style>
+        :root {
+            --primary_color: #502f8f;
+            --primary_color_hover: #502f8fcc;
+        }
+    </style>
+
+    <!-- Title -->
+    <title>HiFi Salon</title>
+
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"
+          rel="stylesheet"
+          type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div class="preload">
+    <img alt="" class="loader" src="public/storage/images/app/loader.gif">
+</div>
+<div class="for-loader">
+    <form action="public/logout" id="logout-form" method="POST" style="display: none;">
+        <input name="_token" type="hidden" value="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
+    </form>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div id="navbar-left"></div>
+    </nav>
+
+    <div class="main-content">
+        <div id="navbar-top"></div>
+
+
+        <div class="header pt-9"
+             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;padding-bottom: 50px;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+            <div class="container-fluid">
+                <div class="header-body">
+                    <!-- Card stats -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-muted ls-1 mb-1">Income</h6>
+                                    <h2 class="text-default mb-0">Revenue</h2>
+                                </div>
+                                <div class="col">
+                                    <ul class="nav nav-pills justify-content-end">
+                                        <li class="nav-item mr-2 mr-md-0" data-target="#revenue_chart"
+                                            data-toggle="chart">
+                                            <a class="nav-link py-2 px-3 active" data-toggle="tab" href="#"
+                                               id="adminWeekRevenue">
+                                                <span class="d-none d-md-block">Week</span>
+                                                <span class="d-md-none">W</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item mr-2 mr-md-0" data-target="#revenue_chart"
+                                            data-toggle="chart">
+                                            <a class="nav-link py-2 px-3" data-toggle="tab" href="#"
+                                               id="adminMonthRevenue">
+                                                <span class="d-none d-md-block">Month</span>
+                                                <span class="d-md-none">M</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item mr-2 mr-md-0" data-prefix="a"
+                                            data-target="#revenue_chart" data-toggle="chart">
+                                            <a class="nav-link py-2 px-3" data-toggle="tab" href="#"
+                                               id="adminYearRevenue">
+                                                <span class="d-none d-md-block">Year</span>
+                                                <span class="d-md-none">Y</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Chart -->
+                            <div class="chart">
+                                <!-- Chart wrapper -->
+                                <canvas class="chart-canvas" id="revenue_report"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script crossorigin="anonymous"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+
+    <script src="public/includes/js/Chart.min.js"></script>
+    <script src="public/includes/js/Chart.extension.js"></script>
+    <script src="public/includes/js/jquery.min.js"></script>
+    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+    <script src="public/includes/js/argon.js"></script>
+    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+    <script src="public/includes/js/sweetalert.all.js"></script>
+    <script src="public/includes/js/jquery.timepicker.js"></script>
+
+
+    <script src="public/includes/js/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
+            type="text/javascript"></script>
+
+    <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="public/includes/js/myjavascript.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc-admin.html");
+            $("#navbar-top").load("inc/navbar-top-inc-admin.html");
+
+        });
+
+        // Define the data for each store
+        var storeData = [
+            {
+                label: "T-Nagar",
+                data: [1000, 1245, 3254, 4555, 2122, 2121, 2454],
+                borderColor: "red",
+                backgroundColor: "red",
+                fill: false
+            },
+            {
+                label: "Perumbakkam",
+                data: [3223, 1232, 1233, 1233, 4455, 1122, 7788],
+                borderColor: "blue",
+                backgroundColor: "blue",
+                fill: false
+            },
+            {
+                label: "Pondicherry",
+                data: [3232, 3322, 1245, 2233, 6756, 5544, 5566],
+                borderColor: "green",
+                backgroundColor: "green",
+                fill: false
+            }
+        ];
+
+        // Define the labels for the x-axis
+        var weekLabels = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7"];
+
+        // Create the line chart
+        var lineChart = new Chart(document.getElementById("revenue_report"), {
+            type: "line",
+            data: {
+                labels: weekLabels,
+                datasets: storeData
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Sales by Store"
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Weeks"
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Sales (₹)"
+                        }
+                    }]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        usePointStyle: true
+                    },
+                    onClick: function (event, legendItem) {
+                        var index = legendItem.datasetIndex;
+                        var chart = this.chart;
+                        var meta = chart.getDatasetMeta(index);
+                        meta.hidden = meta.hidden === null ? !chart.data.datasets[index].hidden : null;
+                        chart.update();
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- Argon JS -->
+</div>
+</body>
+
+</html>
