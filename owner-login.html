@@ -18,7 +18,7 @@
     <meta name="csrf-token" content="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
@@ -29,105 +29,105 @@
     <link href="public/includes/css/all.min.css" rel="stylesheet">
     <link href="public/includes/css/loginStyle.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
 
 </head>
 
 <body class=" login">
 
-    <div class="for-loader">
+<div class="for-loader">
 
 
+    <div class="main-content">
 
-        <div class="main-content">
+        <section class="main-area">
+            <div class="container-fluid">
+                <div class="row h100">
+                    <div class="col-md-6 p-0 m-none"
+                         style="background: url(public/storage/images/banner/banner1.png) center center;background-size: cover;background-repeat: no-repeat;">
+                        <span class="mask bg-gradient-dark opacity-6"></span>
+                    </div>
 
-            <section class="main-area">
-                <div class="container-fluid">
-                    <div class="row h100">
-                        <div class="col-md-6 p-0 m-none"
-                            style="background: url(public/storage/images/banner/banner1.png) center center;background-size: cover;background-repeat: no-repeat;">
-                            <span class="mask bg-gradient-dark opacity-6"></span>
-                        </div>
+                    <div class="col-md-6 p-0">
+                        <div class="login">
+                            <div class="center-box">
+                                <div class="logo">
+                                    <img src="public/storage/images/app/black_logo.png" class="logo-img">
+                                </div>
+                                <div class="title">
+                                    <h4 class="login_head">Owner Login</h4>
+                                    <p class="login-para">This is a secure system and you will need to provide your
+                                        <br>
+                                        login details to access the site.
+                                    </p>
+                                </div>
+                                <div class="form-wrap">
+                                    <form>
+                                        <input type="hidden" name="_token"
+                                               value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+                                        <div class="pui-form__element">
+                                            <label class="animated-label ">Email</label>
+                                            <input id="inputEmail" type="email" class="form-control   " name="email"
+                                                   value="" placeholder="" autocomplete="email">
 
-                        <div class="col-md-6 p-0">
-                            <div class="login">
-                                <div class="center-box">
-                                    <div class="logo">
-                                        <img src="public/storage/images/app/black_logo.png" class="logo-img">
-                                    </div>
-                                    <div class="title">
-                                        <h4 class="login_head">Owner Login</h4>
-                                        <p class="login-para">This is a secure system and you will need to provide your
-                                            <br>
-                                            login details to access the site.
-                                        </p>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <form>
-                                            <input type="hidden" name="_token"
-                                                value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
-                                            <div class="pui-form__element">
-                                                <label class="animated-label ">Email</label>
-                                                <input id="inputEmail" type="email" class="form-control   " name="email"
-                                                    value="" placeholder="" autocomplete="email">
+                                        </div>
+                                        <div class="pui-form__element">
+                                            <label class="animated-label">Password</label>
+                                            <input id="password" type="password" class="form-control "
+                                                   name="password" placeholder="" autocomplete="current-password">
 
-                                            </div>
-                                            <div class="pui-form__element">
-                                                <label class="animated-label">Password</label>
-                                                <input id="password" type="password" class="form-control "
-                                                    name="password" placeholder="" autocomplete="current-password">
+                                        </div>
 
-                                            </div>
+                                        <div class="form-check">
 
-                                            <div class="form-check">
-
-                                                <label class="form-check-label forget-password" for="exampleCheck1">
-                                                    <a href="#">Forgot password?</a>
-                                                </label>
-                                            </div>
-                                            <div class="pui-form__element">
-                                                <button class="btn btn-lg btn-primary btn-block btn-salon btn-owner-login"
-                                                    type="submit" onclick="window.location.href = 'owner-dashboard.html';">SIGN IN</button>
-                                            </div>
-                                        </form>
-                                        <span class="signup-label">Don&#039;t have an account?? <a href="#"> Create Now.
+                                            <label class="form-check-label forget-password" for="exampleCheck1">
+                                                <a href="#">Forgot password?</a>
+                                            </label>
+                                        </div>
+                                        <div class="pui-form__element">
+                                            <button class="btn btn-lg btn-primary btn-block btn-salon btn-owner-login"
+                                                    type="submit"
+                                                    onclick="window.location.href = 'owner-dashboard.html';">SIGN IN
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <span class="signup-label">Don&#039;t have an account?? <a href="#"> Create Now.
                                             </a></span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-        </div>
     </div>
+</div>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <script>
-        jQuery(".form-control")
-            .on("blur", function () {
-                if (jQuery(this).val().length <= 0) {
-                    jQuery(this)
-                        .siblings("label")
-                        .removeClass("moveUp");
-                    jQuery(this).removeClass("outline");
-                }
-            })
-            .on("focus", function () {
-                if (jQuery(this).val().length >= 0) {
-                    jQuery(this)
-                        .siblings("label")
-                        .addClass("moveUp");
-                    jQuery(this).addClass("outline");
-                }
-            });
+<script>
+    jQuery(".form-control")
+        .on("blur", function () {
+            if (jQuery(this).val().length <= 0) {
+                jQuery(this)
+                    .siblings("label")
+                    .removeClass("moveUp");
+                jQuery(this).removeClass("outline");
+            }
+        })
+        .on("focus", function () {
+            if (jQuery(this).val().length >= 0) {
+                jQuery(this)
+                    .siblings("label")
+                    .addClass("moveUp");
+                jQuery(this).addClass("outline");
+            }
+        });
 
-    </script>
+</script>
 </body>
 
 </html>

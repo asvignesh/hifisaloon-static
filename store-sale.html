@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="5O57DdIfZRvjAFgpQy1mzNGXw26aW2G9AGIdnel7">
+    <meta name="csrf-token" content="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
     <meta name="base_url" content="public">
 
     <style>
@@ -14,6 +14,7 @@
             --primary_color_hover: #502f8fcc;
         }
     </style>
+
     <!-- Title -->
     <title>HiFi Salon</title>
 
@@ -35,6 +36,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
     <script src="public/includes/js/jquery-3.5.1.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
@@ -44,85 +48,63 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script>
-        var _employees;
-
-        $(document).ready(
-            function () {
-                $('.search-mobile').on('keyup', function () {
-                    var filter = $(this).value; // Get the value of the text box
-                    var filteredData = _users.filter(function (item) {
-                        return item.mobile.indexOf(filter) !== -1; // Filter the data based on the name field
-                    });
-                    console.log(filteredData); // Output the filtered data to the console
-                });
-            },
-        );
-
         $(document).ready(function () {
-            $("#submit-btn").click(function (event) {
+            // Set the initial content
+            $("#navbar-left").load("inc/navbar.inc.html");
+            $("#navbar-top").load("inc/navbar-top-inc.html");
+
+            var cartItems = [];
+
+            // Add product to cart
+            $('#product-form').submit(function (event) {
                 event.preventDefault();
-
-                var referralCode = $("#referral_code").val();
-                var friendCode = $("#friend_code").val();
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var mobile = $("#phone").val();
-                var dob = $("#dob").val();
-                var doa = $("#doa").val();
-
-
-                var now = new Date();
-                var year = now.getFullYear();
-                var month = now.getMonth() + 1;
-                var day = now.getDate();
-                var hours = now.getHours();
-                var minutes = now.getMinutes();
-                var seconds = now.getSeconds();
-
-                if (month.toString().length === 1) {
-                    month = '0' + month;
-                }
-                if (day.toString().length === 1) {
-                    day = '0' + day;
-                }
-                if (hours.toString().length === 1) {
-                    hours = '0' + hours;
-                }
-                if (minutes.toString().length === 1) {
-                    minutes = '0' + minutes;
-                }
-                if (seconds.toString().length === 1) {
-                    seconds = '0' + seconds;
-                }
-
-                var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-
-
-                var row = '<tr>' +
-                    '<td>0</td>' +
-                    '<td>' + name + '</td>' +
-                    '<td>' + email + '</td>' +
-                    '<td>' + mobile + '</td>' +
-                    '<td>' + dateTime + '</td>' +
-                    '<td>' + dateTime + '</td>' +
-                    '<td>  0 </td>' +
-                    '<td class="table-actions">' +
-                    '<a href="user-1.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
-                    '<i class="fas fa-eye"></i>' +
-                    '</a>' +
-                    '</td>' +
-                    '</tr>';
-
-                // Append the row to the table body
-                $('#dataTableUser tbody').append(row);
-
-                // validate the inputs here
-
-                // if all inputs are valid, submit the form
-                //$("form").submit();
+                let productName = $('#product-name').val();
+                let productPrice = parseFloat($('#product-price').val()).toFixed(2);
+                let productQuantity = parseInt($('#product-quantity').val());
+                let productTotal = (productPrice * productQuantity).toFixed(2);
+                let cartItem = {
+                    name: productName,
+                    price: productPrice,
+                    quantity: productQuantity,
+                    total: productTotal
+                };
+                cartItems.push(cartItem);
+                updateCart();
+                $('#product-form')[0].reset();
             });
-        });
 
+            // Update cart
+            function updateCart() {
+                var cartTotal = 0;
+                $('#cart-items').empty();
+                $.each(cartItems, function (index, item) {
+                    var itemName = item.name;
+                    var itemPrice = item.price;
+                    var itemQuantity = item.quantity;
+                    var itemTotal = item.total;
+                    cartTotal += parseFloat(itemTotal);
+                    $('#cart-items').append('<tr><td>' + itemName + '</td><td>$' + itemPrice + '</td><td>' + itemQuantity + '</td><td>$' + itemTotal + '</td><td><button type="button" class="btn btn-remove" data-index="' + index + '"><i class="fas fa-trash"></i></button></td></tr>');
+                });
+                $('#cart-total').text('$' + cartTotal.toFixed(2));
+            }
+
+            // Remove item from cart
+            $('#cart-items').on('click', '.btn-remove', function () {
+                var itemIndex = $(this).data('index');
+                cartItems.splice(itemIndex, 1);
+                updateCart();
+            });
+
+            // Clear cart
+            $('#clear-cart').click(function () {
+                cartItems = [];
+                updateCart();
+            });
+
+        });
+        $(document).on("click", function (e) {
+            console.log(e);
+        });
 
     </script>
 </head>
@@ -133,11 +115,13 @@
 </div>
 <div class="for-loader">
     <form id="logout-form" action="public/logout" method="POST" style="display: none;">
-        <input type="hidden" name="_token" value="5O57DdIfZRvjAFgpQy1mzNGXw26aW2G9AGIdnel7">
+        <input type="hidden" name="_token" value="5I4D8ZSIfY6abw6eOySSNvcZubIWYtYCIcOxfqGe">
     </form>
+
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
         <div id="navbar-left"></div>
     </nav>
+
     <div class="main-content">
         <div id="navbar-top"></div>
 
@@ -152,7 +136,7 @@
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item text-white"><a href="public/admin/dashboard"><i
                                             class="fas fa-home text-salon"></i></a></li>
-                                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Employee
+                                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Sale
                                     </li>
                                 </ol>
                             </nav>
@@ -161,44 +145,52 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt--6 mb-5">
+        <div class="container">
+            <hr>
             <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <!-- Card header -->
-                        <div class="card-header border-0">
-                            <span class="h3">Employee table</span>
-                            <button class="btn btn-primary addbtn float-right p-2"><a class="color-white"
-                                                                                      href="public/admin/employee/create"><i
-                                    class="fas fa-plus mr-1"></i>Add New</a></button>
+                <div class="col-md-6">
+                    <form id="product-form">
+                        <div class="form-group">
+                            <label for="product-name">Product Name:</label>
+                            <input type="text" class="form-control" id="product-name" required>
                         </div>
-                        <!-- table -->
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush" id="dataTableEmployees"
-                                   class="dataTableEmployees">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" class="sort">#</th>
-                                    <th scope="col" class="sort">Image</th>
-                                    <th scope="col" class="sort">Name</th>
-                                    <th scope="col" class="sort">Salary</th>
-                                    <th scope="col" class="sort">Store</th>
-                                    <th scope="col" class="sort">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody class="list">
-                                </tbody>
-                            </table>
-                            <div class="float-right mr-4 mb-1">
-
-                            </div>
+                        <div class="form-group">
+                            <label for="product-price">Price:</label>
+                            <input type="number" class="form-control" id="product-price" min="0" step="0.01" required>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="product-quantity">Quantity:</label>
+                            <input type="number" class="form-control" id="product-quantity" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h3>Cart</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="3" class="text-right">Total:</th>
+                            <th id="cart-total">$0.00</th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <button id="clear-cart" class="btn btn-danger">Clear Cart</button>
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -238,26 +230,6 @@
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
-    <script>
-        $(document).ready(function () {
-            $("#body-content").load("dashboard.html");
-            $("#navbar-left").load("inc/navbar.inc-admin.html");
-            $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
-                // Set the initial content
-                var selectedOption = $('#store').val();
-                console.log(selectedOption);
-                loadEmployee(selectedOption);
-            });
-
-        });
-
-        $(document).on("change", '#store', function () {
-            var selectedOption = $(this).val();
-            loadEmployee(selectedOption);
-            // Log the selected option to the console
-            console.log(selectedOption);
-        });
-    </script>
     <!-- Argon JS -->
 </div>
 </body>
