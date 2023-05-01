@@ -171,82 +171,91 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
     <script>
+        $('#adminWeekRevenue').click(function () {
+            loadReport("week");
+        });
+        $('#adminMonthRevenue').click(function () {
+            loadReport("month");
+        });
+        $('#adminYearRevenue').click(function () {
+            loadReport("year");
+        });
+
         $(document).ready(function () {
             $("#body-content").load("dashboard.html");
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html");
-
         });
 
-        // Define the data for each store
-        var storeData = [
-            {
-                label: "T-Nagar",
-                data: [1000, 1245, 3254, 4555, 2122, 2121, 2454],
-                borderColor: "red",
-                backgroundColor: "red",
-                fill: false
-            },
-            {
-                label: "Perumbakkam",
-                data: [3223, 1232, 1233, 1233, 4455, 1122, 7788],
-                borderColor: "blue",
-                backgroundColor: "blue",
-                fill: false
-            },
-            {
-                label: "Pondicherry",
-                data: [3232, 3322, 1245, 2233, 6756, 5544, 5566],
-                borderColor: "green",
-                backgroundColor: "green",
-                fill: false
-            }
-        ];
+        loadReport("week");
 
-        // Define the labels for the x-axis
-        var weekLabels = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7"];
 
-        // Create the line chart
-        var lineChart = new Chart(document.getElementById("revenue_report"), {
-            type: "line",
-            data: {
-                labels: weekLabels,
-                datasets: storeData
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Sales by Store"
-                },
-                scales: {
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Weeks"
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Sales (₹)"
-                        }
-                    }]
-                },
-                legend: {
-                    display: true,
-                    labels: {
-                        usePointStyle: true
-                    },
-                    onClick: function (event, legendItem) {
-                        var index = legendItem.datasetIndex;
-                        var chart = this.chart;
-                        var meta = chart.getDatasetMeta(index);
-                        meta.hidden = meta.hidden === null ? !chart.data.datasets[index].hidden : null;
-                        chart.update();
+        function loadReport(type) {
+            $.ajax({
+                url: "public/data/revenuereport/" + type + ".json",
+                dataType: "json",
+                success: function (data) {
+                    // Extract the store data and week labels from the JSON response
+                    var storeData = [];
+                    var weekLabels = data.weeks;
+                    for (var i = 0; i < data.stores.length; i++) {
+                        var store = data.stores[i];
+                        storeData.push({
+                            label: store.name,
+                            data: store.sales,
+                            borderColor: store.color,
+                            backgroundColor: store.color,
+                            fill: false
+                        });
                     }
+
+                    // Create the line chart
+                    var lineChart = new Chart(document.getElementById("revenue_report"), {
+                        type: "line",
+                        data: {
+                            labels: weekLabels,
+                            datasets: storeData
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Sales by Store"
+                            },
+                            scales: {
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "Weeks"
+                                    }
+                                }],
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "Sales (₹)"
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: true,
+                                labels: {
+                                    usePointStyle: true
+                                },
+                                onClick: function (event, legendItem) {
+                                    var index = legendItem.datasetIndex;
+                                    var chart = this.chart;
+                                    var meta = chart.getDatasetMeta(index);
+                                    meta.hidden = meta.hidden === null ? !chart.data.datasets[index].hidden : null;
+                                    chart.update();
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("AJAX request failed: " + textStatus + ", " + errorThrown);
                 }
-            }
-        });
+            });
+        }
     </script>
     <!-- Argon JS -->
 </div>

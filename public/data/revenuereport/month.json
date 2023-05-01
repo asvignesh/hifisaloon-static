@@ -1,0 +1,52 @@
+{
+  "stores": [
+    {
+      "name": "T-Nagar",
+      "color": "blue",
+      "sales": [
+        32100,
+        51345,
+        53254,
+        54555,
+        42121,
+        32111,
+        22424
+      ]
+    },
+    {
+      "name": "Perumbakkam",
+      "color": "red",
+      "sales": [
+        12223,
+        22332,
+        32343,
+        42353,
+        34565,
+        21272,
+        17888
+      ]
+    },
+    {
+      "name": "Pondicherry",
+      "color": "green",
+      "sales": [
+        32332,
+        23232,
+        12435,
+        42323,
+        47516,
+        35414,
+        15686
+      ]
+    }
+  ],
+  "weeks": [
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September"
+  ]
+}
