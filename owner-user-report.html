@@ -132,250 +132,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Avg Service Billing</h5>
-                                                <span class="h3 font-weight-bold mb-0" >&#8377;</span>
-                                                <span class="h2 font-weight-bold mb-0" id="asb">0</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                    <i class="ni ni-money-coins"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">During Filtered Range</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Avg Bill Value</h5>
-                                                <span class="h3 font-weight-bold mb-0" >&#8377;</span>
-                                                <span class="h2 font-weight-bold mb-0" id="abv"></span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                    <i class="ni ni-money-coins"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-nowrap">During Filtered Range</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-
-            <div class="container-fluid mt--4">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <!-- Card header -->
-                            <div class="card-header border-0">
-                                <span class="h3">Users Report</span>
-                            </div>
-
-                            <form action="public/admin/report/user" method="post" class="ml-4" id="filter_revene_form">
-                                <input type="hidden" name="_token" value="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E">
-                                <div class="row rtl-date-filter-row">
-                                    <div class="form-group col-3">
-                                        <input type="text" id="filter_date" value="" name="filter_date"
-                                            class="form-control" placeholder="-- Select Date --">
-                                        <h4 class="text-center text-red mt-2"></h4>
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <select class="form-control select2 select2-hidden-accessible" name="age"
-                                        id="age" dir="" data-select2-id="age" tabindex="-1"
-                                        aria-hidden="true">
-                                        <option selected="" value="" data-select2-id="2"> -- Select Age -- </option>
-                                        <option value="0-9" data-select2-id="915">0-9</option>
-                                        <option value="10-19" data-select2-id="916">10-19</option>
-                                        <option value="20-29" data-select2-id="917">20-29</option>
-                                        <option value="30-39" data-select2-id="918">30-39</option>
-                                        <option value="40-49" data-select2-id="919">40-49</option>
-                                        <option value="50-59" data-select2-id="920">50-59</option>
-                                        <option value="60+" data-select2-id="921">60+</option>
-                                        </select>
-                                        <h4 class="text-center text-red mt-2"></h4>
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <select class="form-control select2 select2-hidden-accessible" name="services"
-                                            id="services" dir="" data-select2-id="services" tabindex="-1"
-                                            aria-hidden="true">
-                                            <option selected="" value="" data-select3-id="3"> -- Select Client -- </option>
-                                            <option value="954" data-select2-id="923">Male</option>
-                                            <option value="955" data-select2-id="924">Female</option>
-                                            <option value="956" data-select2-id="925">Kids</option>
-                                        </select>
-                                        <h4 class="text-center text-red mt-2"></h4>
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <button type="submit" id="filter_btn"
-                                            class="btn btn-primary rtl-date-filter-btn">Apply</button>
-                                    </div>
-                                </div>
-                        <form action="public/admin/report/user" class="ml-4" id="filter_revene_form" method="post">
-                            <input name="_token" type="hidden" value="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E">
-                            <div class="row rtl-date-filter-row">
-                                <div class="form-group col-3">
-                                    <input class="form-control" id="filter_date" name="filter_date" placeholder="-- Select Date --"
-                                           type="text" value="">
-                                    <h4 class="text-center text-red mt-2"></h4>
-                                </div>
-                                <div class="form-group col-3">
-                                    <select aria-hidden="true" class="form-control select2 select2-hidden-accessible"
-                                            data-select2-id="services" dir="" id="services" name="user_id"
-                                            tabindex="-1">
-                                        <option data-select2-id="2" disabled="" selected="" value=""> -- Select
-                                            Client --
-                                        </option>
-                                        <option data-select2-id="916" value="954">Male</option>
-                                        <option data-select2-id="917" value="955">Female</option>
-                                        <option data-select2-id="918" value="956">Kids</option>
-                                    </select>
-                                    <h4 class="text-center text-red mt-2"></h4>
-                                </div>
-                                <div class="form-group col-3">
-                                    <button class="btn btn-primary rtl-date-filter-btn" id="filter_btn"
-                                            type="submit">Apply
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            </form>
-                            <!-- table -->
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush" id="dataTableUserReports" class="dataTableUserReports">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th scope="col" class="sort">Name</th>
-                                            <th scope="col" class="sort">Email</th>
-                                            <th scope="col" class="sort">Phone</th>
-                                            <th scope="col" class="sort">Age</th>
-                                            <th scope="col" class="sort">Smiles</th>
-                                            <th scope="col" class="sort">Revenue</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="list">
-                        </form>
-                        <!-- table -->
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush" class="dataTableUserReports"
-                                   id="dataTableUserReports">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th>#</th>
-                                    <th class="sort" scope="col">Name</th>
-                                    <th class="sort" scope="col">Email</th>
-                                    <th class="sort" scope="col">Phone</th>
-                                    <th class="sort" scope="col">Smiles</th>
-                                    <th class="sort" scope="col">Revenue</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody class="list">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                crossorigin="anonymous"></script>
-
-
-            <script src="public/includes/js/Chart.min.js"></script>
-            <script src="public/includes/js/Chart.extension.js"></script>
-            <script src="public/includes/js/jquery.min.js"></script>
-            <script src="public/includes/js/bootstrap.bundle.min.js"></script>
-            <script src="public/includes/js/argon.js"></script>
-            <script src="public/includes/js/jquery.scrollbar.min.js"></script>
-            <script src="public/includes/js/jquery-scrollLock.min.js"></script>
-            <script src="public/includes/js/sweetalert.all.js"></script>
-            <script src="public/includes/js/jquery.timepicker.js"></script>
-
-
-            <script src="public/includes/js/map.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
-
-            <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-
-
-            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-            <script type="text/javascript"
-                src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-            <script type="text/javascript"
-                src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-
-            <script type="text/javascript"
-                src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"> </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-            <script src="public/includes/js/myjavascript.js"></script>
-
-            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-
-            <script>
-                $(document).ready(function () {
-                    $("#body-content").load("dashboard.html");
-                    $("#navbar-left").load("inc/navbar.inc-admin.html");
-                    $("#navbar-top").load("inc/navbar-top-inc.html", function () {
-                        // Set the initial content
-                        var selectedOption = $('#store').val();
-                        console.log(selectedOption);
-                        getUsersReportAndLoadWidgets(selectedOption,0,0,0);
-                    });
-        <script>
-            $(document).ready(function () {
-                $("#body-content").load("dashboard.html");
-                $("#navbar-left").load("inc/navbar.inc-admin.html");
-                $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
-                    // Set the initial content
-                    var selectedOption = $('#store').val();
-                    console.log(selectedOption);
-                    getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
-                });
-
-                });
-
-                $(document).on("change", '#store, #age', function () {
-                    var selectedOption = $(this).val();
-                    var selectedAge = $('#age').val();
-                    getUsersReportAndLoadWidgets(selectedOption,0,0, selectedAge);
-                    // Log the selected option to the console
-                    console.log(selectedOption, selectedAge);
-                });
-            </script>
-            <!-- Argon JS -->
-=======
->>>>>>> 261a8f9dafbeb62cbfe5a6c8be67d408b4f6e9c7
         </div>
 
         <div class="container-fluid mt--4">
@@ -395,16 +155,29 @@
                                            type="text" value="">
                                     <h4 class="text-center text-red mt-2"></h4>
                                 </div>
+								<div class="form-group col-3">
+                                    <select class="form-control select2 select2-hidden-accessible" name="age"
+                                    id="age" dir="" data-select2-id="age" tabindex="-1"
+                                    aria-hidden="true">
+                                    <option selected="" value="" data-select2-id="2"> -- Select Age -- </option>
+                                    <option value="0-9" data-select2-id="915">0-9</option>
+                                    <option value="10-19" data-select2-id="916">10-19</option>
+                                    <option value="20-29" data-select2-id="917">20-29</option>
+                                    <option value="30-39" data-select2-id="918">30-39</option>
+                                    <option value="40-49" data-select2-id="919">40-49</option>
+                                    <option value="50-59" data-select2-id="920">50-59</option>
+                                    <option value="60+" data-select2-id="921">60+</option>
+                                    </select>
+                                    <h4 class="text-center text-red mt-2"></h4>
+                                </div>
                                 <div class="form-group col-3">
-                                    <select aria-hidden="true" class="form-control select2 select2-hidden-accessible"
-                                            data-select2-id="services" dir="" id="services" name="user_id"
-                                            tabindex="-1">
-                                        <option data-select2-id="2" disabled="" selected="" value=""> -- Select
-                                            Client --
-                                        </option>
-                                        <option data-select2-id="916" value="954">Male</option>
-                                        <option data-select2-id="917" value="955">Female</option>
-                                        <option data-select2-id="918" value="956">Kids</option>
+                                    <select class="form-control select2 select2-hidden-accessible" name="services"
+                                        id="services" dir="" data-select2-id="services" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option selected="" value="" data-select3-id="3"> -- Select Client -- </option>
+                                        <option value="954" data-select2-id="923">Male</option>
+                                        <option value="955" data-select2-id="924">Female</option>
+                                        <option value="956" data-select2-id="925">Kids</option>
                                     </select>
                                     <h4 class="text-center text-red mt-2"></h4>
                                 </div>
@@ -427,6 +200,7 @@
                                     <th class="sort" scope="col">Name</th>
                                     <th class="sort" scope="col">Email</th>
                                     <th class="sort" scope="col">Phone</th>
+									<th scope="col" class="sort">Age</th>
                                     <th class="sort" scope="col">Smiles</th>
                                     <th class="sort" scope="col">Revenue</th>
                                     <th></th>
@@ -493,14 +267,15 @@
                     getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
                 });
 
-            });
+                });
 
-            $(document).on("change", '#store', function () {
-                var selectedOption = $(this).val();
-                getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
-                // Log the selected option to the console
-                console.log(selectedOption);
-            });
+                $(document).on("change", '#store, #age', function () {
+                    var selectedOption = $(this).val();
+                    var selectedAge = $('#age').val();
+                    getUsersReportAndLoadWidgets(selectedOption,0,0, selectedAge);
+                    // Log the selected option to the console
+                    console.log(selectedOption, selectedAge);
+                });
         </script>
         <!-- Argon JS -->
     </div>
