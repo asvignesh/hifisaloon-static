@@ -39,6 +39,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
     <link href="public/includes/css/argon.css" rel="stylesheet">
@@ -47,11 +48,8 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script>
-
-        var _categories;
         $(document).ready(function () {
             // Set the initial content
-            $("#body-content").load("dashboard.html");
             $("#navbar-left").load("inc/navbar.inc.html");
             $("#navbar-top").load("inc/navbar-top-inc.html");
 
@@ -60,11 +58,11 @@
             // Add product to cart
             $('#product-form').submit(function (event) {
                 event.preventDefault();
-                var productName = $('#product-name').val();
-                var productPrice = parseFloat($('#product-price').val()).toFixed(2);
-                var productQuantity = parseInt($('#product-quantity').val());
-                var productTotal = (productPrice * productQuantity).toFixed(2);
-                var cartItem = {
+                let productName = $('#product-name').val();
+                let productPrice = parseFloat($('#product-price').val()).toFixed(2);
+                let productQuantity = parseInt($('#product-quantity').val());
+                let productTotal = (productPrice * productQuantity).toFixed(2);
+                let cartItem = {
                     name: productName,
                     price: productPrice,
                     quantity: productQuantity,
