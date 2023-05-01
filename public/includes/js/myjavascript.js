@@ -1447,7 +1447,7 @@ function loadWidgets(storeId) {
     });
 }
 
-function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageTo) {
+function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
     $.ajax({
         url: 'public/data/userreport/' + storeId + '.json',
         method: 'get',
@@ -1458,8 +1458,18 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
 
             var totalSmiles = 0;
             var totalSpendByYear = 0;
+            var filteredData = [];
+            // Filter users based on the selected age group
+            if (ageGroup) {
+                filteredData = data.filter(function(user) {
+                    var ageRange = ageGroup.split('-');
+                    return user.age >= ageRange[0] && user.age <= ageRange[1];
+                });
+            } else {
+                filteredData = data;
+            }
             // Loop through each user object in the response data
-            $.each(data, function (index, users) {
+            $.each(filteredData, function (index, users) {
                 console.log(users);
                 // Create a new row with the user data
                 var row = '<tr>' +
@@ -1467,14 +1477,20 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
                     '<td>' + users.name + '</td>' +
                     '<td>' + users.email + '</td>' +
                     '<td>' + users.mobile + '</td>' +
+                    '<td>' + users.age + '</td>' +
                     '<td>' + users.smiles + '</td>' +
                     '<td>' + users.spendByYear + '</td>' +
                     '</tr>';
 
                 totalSmiles += users.smiles;
                 totalSpendByYear += users.spendByYear;
+                totalASB = (totalSmiles/data.length).toFixed(2);;
+                totalABV = (totalSpendByYear/totalSmiles).toFixed(2);
                 console.log(totalSmiles);
                 console.log(totalSpendByYear);
+                console.log(totalASB);
+                console.log(totalABV);
+
 
                 // Append the row to the table body
                 $('#dataTableUserReports tbody').append(row);
@@ -1482,6 +1498,9 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
             document.getElementById("users").innerHTML = data.length;
             document.getElementById("smiles").innerHTML = totalSmiles;
             document.getElementById("revenue").innerHTML = totalSpendByYear;
+            document.getElementById("asb").innerHTML = totalASB;
+            document.getElementById("abv").innerHTML = totalABV;
+
         },
         error: function (err) { }
     });

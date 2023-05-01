@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Emily Davis",
+        "email": "emily.davis@example.com",
+        "mobile": "5559876543",
+        "firstVisit": "2021-09-12 11:09:26",
+        "lastVisit": "2023-04-20 21:02:17",
+        "spendByYear": 6000,
+        "smiles": 12,
+        "age": 28,
+        "gender": "female"
+    }
+]
