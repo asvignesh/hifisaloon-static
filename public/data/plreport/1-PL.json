@@ -1,0 +1,26 @@
+[
+    {
+        "id": "3000",
+        "income": "Service sales",
+        "total": "1,000,000.00",
+        "percentage": "83%"
+    },
+    {
+        "id": "3010",
+        "income": "Retail sales",
+        "total": "2,00,000.0",
+        "percentage": "17%"
+    },
+    {
+        "id": "3020",
+        "income": "Rental Income",
+        "total": "0.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "",
+        "income": "Total Income",
+        "total": "1,200,000.0",
+        "percentage": ""
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "month": "January",
+        "totalclients": "110",
+        "returningclients": "50"
+    },
+    {
+        "id": 2,
+        "month": "February",
+        "totalclients": "80",
+        "returningclients": "40"
+    },
+    {
+        "id": 3,
+        "month": "March",
+        "totalclients": "100",
+        "returningclients": "60"
+    },
+    {
+        "id": 4,
+        "month": "April",
+        "totalclients": "120",
+        "returningclients": "80"
+    },
+    {
+        "id": 5,
+        "month": "May",
+        "totalclients": "90",
+        "returningclients": "50"
+    },
+    {
+        "id": 6,
+        "month": "June",
+        "totalclients": "130",
+        "returningclients": "90"
+    }
+]

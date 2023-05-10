@@ -1,0 +1,26 @@
+[
+    {
+        "id": "4005",
+        "income": "Retail Purchases",
+        "total": "1,00,000.00",
+        "percentage": "8%"
+    },
+    {
+        "id": "4010",
+        "income": "Backbar Purchases",
+        "total": "60,000.0",
+        "percentage": "5%"
+    },
+    {
+        "id": "4015",
+        "income": "Commission Paid",
+        "total": "5,00,000.0",
+        "percentage": "42%"
+    },
+    {
+        "id": "",
+        "income": "Total Goods sold ",
+        "total": "6,60,000.0",
+        "percentage": ""
+    }
+]
