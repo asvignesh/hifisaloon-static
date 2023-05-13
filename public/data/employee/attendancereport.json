@@ -1,0 +1,71 @@
+    {
+        "Kim":[
+        {
+            "clockin": "12/05/2023 10:30",
+            "clockout": "12/05/2023 5:30",
+            "hours": "6",
+            "modified": "Jonas",
+            "comments": "Modified: Paid 13/05/2023"
+        },
+        {
+            "clockin": "14/05/2023 10:30",
+            "clockout": "14/05/2023 5:30",
+            "hours": "6",
+            "modified": "Jonas",
+            "comments": "Modified: Paid 13/05/2023"
+        },
+        {
+            "clockin": "",
+            "clockout": "Total for Kim K",
+            "hours": "12",
+            "modified": "",
+            "comments": ""
+        }
+    ],
+        "John":[
+        {
+            "clockin": "13/05/2023 10:30",
+            "clockout": "13/05/2023 5:30",
+            "hours": "6",
+            "modified": "Jonas",
+            "comments": "Modified: Paid 13/05/2023"
+        },
+        {
+            "clockin": "14/05/2023 10:30",
+            "clockout": "14/05/2023 14:30",
+            "hours": "4",
+            "modified": "Jonas",
+            "comments": "Modified: Missed punch"
+        },
+        {
+            "clockin": "",
+            "clockout": "Total for John Smith",
+            "hours": "10",
+            "modified": "",
+            "comments": ""
+        }
+    ],
+        "Alen":[
+        {
+            "clockin": "15/05/2023 10:30",
+            "clockout": "15/05/2023 4:30",
+            "hours": "5",
+            "modified": "Jonas",
+            "comments": "Modified: Paid 13/05/2023"
+        },
+        {
+            "clockin": "15/05/2023 10:30",
+            "clockout": "15/05/2023 14:30",
+            "hours": "4",
+            "modified": "Jonas",
+            "comments": "Modified: Missed punch"
+        },
+        {
+            "clockin": "",
+            "clockout": "Total for Alex Walker",
+            "hours": "10",
+            "modified": "",
+            "comments": ""
+        }
+    ]
+    }
