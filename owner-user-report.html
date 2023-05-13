@@ -155,16 +155,29 @@
                                            type="text" value="">
                                     <h4 class="text-center text-red mt-2"></h4>
                                 </div>
+								<div class="form-group col-3">
+                                    <select class="form-control select2 select2-hidden-accessible" name="age"
+                                    id="age" dir="" data-select2-id="age" tabindex="-1"
+                                    aria-hidden="true">
+                                    <option selected="" value="" data-select2-id="2"> -- Select Age -- </option>
+                                    <option value="0-9" data-select2-id="915">0-9</option>
+                                    <option value="10-19" data-select2-id="916">10-19</option>
+                                    <option value="20-29" data-select2-id="917">20-29</option>
+                                    <option value="30-39" data-select2-id="918">30-39</option>
+                                    <option value="40-49" data-select2-id="919">40-49</option>
+                                    <option value="50-59" data-select2-id="920">50-59</option>
+                                    <option value="60+" data-select2-id="921">60+</option>
+                                    </select>
+                                    <h4 class="text-center text-red mt-2"></h4>
+                                </div>
                                 <div class="form-group col-3">
-                                    <select aria-hidden="true" class="form-control select2 select2-hidden-accessible"
-                                            data-select2-id="services" dir="" id="services" name="user_id"
-                                            tabindex="-1">
-                                        <option data-select2-id="2" disabled="" selected="" value=""> -- Select
-                                            Client --
-                                        </option>
-                                        <option data-select2-id="916" value="954">Male</option>
-                                        <option data-select2-id="917" value="955">Female</option>
-                                        <option data-select2-id="918" value="956">Kids</option>
+                                    <select class="form-control select2 select2-hidden-accessible" name="services"
+                                        id="services" dir="" data-select2-id="services" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option selected="" value="" data-select3-id="3"> -- Select Client -- </option>
+                                        <option value="954" data-select2-id="923">Male</option>
+                                        <option value="955" data-select2-id="924">Female</option>
+                                        <option value="956" data-select2-id="925">Kids</option>
                                     </select>
                                     <h4 class="text-center text-red mt-2"></h4>
                                 </div>
@@ -187,6 +200,7 @@
                                     <th class="sort" scope="col">Name</th>
                                     <th class="sort" scope="col">Email</th>
                                     <th class="sort" scope="col">Phone</th>
+									<th scope="col" class="sort">Age</th>
                                     <th class="sort" scope="col">Smiles</th>
                                     <th class="sort" scope="col">Revenue</th>
                                     <th></th>
@@ -253,14 +267,15 @@
                     getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
                 });
 
-            });
+                });
 
-            $(document).on("change", '#store', function () {
-                var selectedOption = $(this).val();
-                getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
-                // Log the selected option to the console
-                console.log(selectedOption);
-            });
+                $(document).on("change", '#store, #age', function () {
+                    var selectedOption = $(this).val();
+                    var selectedAge = $('#age').val();
+                    getUsersReportAndLoadWidgets(selectedOption,0,0, selectedAge);
+                    // Log the selected option to the console
+                    console.log(selectedOption, selectedAge);
+                });
         </script>
         <!-- Argon JS -->
     </div>

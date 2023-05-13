@@ -1,0 +1,74 @@
+[
+    {
+        "id": "5000",
+        "income": "Sales and Marketing",
+        "total": "0.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "5005",
+        "income": "Advertising and promotion",
+        "total": "3,000.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "5025",
+        "income": "Meetings/meals & Entertainment",
+        "total": "1800.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "5035",
+        "income": "Recruiting",
+        "total": "1,200.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "5045",
+        "income": "Travel",
+        "total": "1,500.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "5055",
+        "income": "Social Media",
+        "total": "3,600.0",
+        "percentage": "1%"
+    },
+    {
+        "id": "",
+        "income": "Total Sales and Marketing",
+        "total": "14,100.0",
+        "percentage": "1%"
+    },
+    {
+        "id": "6000",
+        "income": "Operating expenses",
+        "total": "1,500.0",
+        "percentage": "1%"
+    },
+    {
+        "id": "6005",
+        "income": "POS",
+        "total": "2,500.0",
+        "percentage": "0%"
+    },
+    {
+        "id": "6006",
+        "income": "Insurance - Liability",
+        "total": "12,500.0",
+        "percentage": "1%"
+    },
+    {
+        "id": "",
+        "income": "Total operating Expenses",
+        "total": "16,500.0",
+        "percentage": "2%"
+    },
+    {
+        "id": "",
+        "income": "Total Expenses",
+        "total": "30,100.0",
+        "percentage": "3%"
+    }
+]

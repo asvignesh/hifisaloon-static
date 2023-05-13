@@ -1489,7 +1489,7 @@ function loadWidgets(storeId) {
     });
 }
 
-function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageTo) {
+function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
     $.ajax({
         url: 'public/data/userreport/' + storeId + '.json',
         method: 'get',
@@ -1500,8 +1500,18 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
 
             var totalSmiles = 0;
             var totalSpendByYear = 0;
+            var filteredData = [];
+            // Filter users based on the selected age group
+            if (ageGroup) {
+                filteredData = data.filter(function(user) {
+                    var ageRange = ageGroup.split('-');
+                    return user.age >= ageRange[0] && user.age <= ageRange[1];
+                });
+            } else {
+                filteredData = data;
+            }
             // Loop through each user object in the response data
-            $.each(data, function (index, users) {
+            $.each(filteredData, function (index, users) {
                 console.log(users);
                 // Create a new row with the user data
                 var row = '<tr>' +
@@ -1509,14 +1519,20 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
                     '<td>' + users.name + '</td>' +
                     '<td>' + users.email + '</td>' +
                     '<td>' + users.mobile + '</td>' +
+                    '<td>' + users.age + '</td>' +
                     '<td>' + users.smiles + '</td>' +
                     '<td>' + users.spendByYear + '</td>' +
                     '</tr>';
 
                 totalSmiles += users.smiles;
                 totalSpendByYear += users.spendByYear;
+                totalASB = (totalSmiles/data.length).toFixed(2);;
+                totalABV = (totalSpendByYear/totalSmiles).toFixed(2);
                 console.log(totalSmiles);
                 console.log(totalSpendByYear);
+                console.log(totalASB);
+                console.log(totalABV);
+
 
                 // Append the row to the table body
                 $('#dataTableUserReports tbody').append(row);
@@ -1524,6 +1540,97 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageFrom, ageT
             document.getElementById("users").innerHTML = data.length;
             document.getElementById("smiles").innerHTML = totalSmiles;
             document.getElementById("revenue").innerHTML = totalSpendByYear;
+            document.getElementById("asb").innerHTML = totalASB;
+            document.getElementById("abv").innerHTML = totalABV;
+
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function getProfitLossIncomeReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
+    $.ajax({
+        url: 'public/data/plreport/' + storeId + '-PL.json',
+        method: 'get',
+        success: function (data) {
+            console.log(data);
+            // Clear existing table rows
+            $('#dataTablePLReports1 tbody').empty();
+ 
+            // Loop through each user object in the response data
+            $.each(data, function (index, sales) {
+                console.log(sales);
+                // Create a new row with the user data
+                var row = '<tr>' +
+                    '<td>' + sales.id + '</td>' +
+                    '<td>' + sales.income + '</td>' +
+                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td>' + sales.percentage + '</td>' +
+                    '</tr>';
+
+                // Append the row to the table body
+                $('#dataTablePLReports1 tbody').append(row);
+            });
+
+        },
+        error: function (err) {
+        }
+    });
+}
+function getProfitLossCGSReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
+    $.ajax({
+        url: 'public/data/plreport/' + storeId + '-PL1.json',
+        method: 'get',
+        success: function (data) {
+            console.log(data);
+            // Clear existing table rows
+            $('#dataTablePLReports2 tbody').empty();
+            
+            // Loop through each user object in the response data
+            $.each(data, function (index, sales) {
+                console.log(sales);
+                // Create a new row with the user data
+                var row = '<tr>' +
+                    '<td>' + sales.id + '</td>' +
+                    '<td>' + sales.income + '</td>' +
+                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td>' + sales.percentage + '</td>' +
+                    '</tr>';
+
+                // Append the row to the table body
+                $('#dataTablePLReports2 tbody').append(row);
+            });
+
+        },
+        error: function (err) {
+        }
+    });
+}
+function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
+    $.ajax({
+        url: 'public/data/plreport/' + storeId + '-PLExpenses.json',
+        method: 'get',
+        success: function (data) {
+            console.log(data);
+            // Clear existing table rows
+            $('#dataTablePLReports3 tbody').empty();
+            
+            // Loop through each user object in the response data
+            $.each(data, function (index, sales) {
+                console.log(sales);
+                // Create a new row with the user data
+                var row = '<tr>' +
+                    '<td>' + sales.id + '</td>' +
+                    '<td>' + sales.income + '</td>' +
+                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td>' + sales.percentage + '</td>' +
+                    '</tr>';
+
+                // Append the row to the table body
+                $('#dataTablePLReports3 tbody').append(row);
+            });
+
         },
         error: function (err) {
         }
