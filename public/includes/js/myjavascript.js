@@ -1636,3 +1636,195 @@ function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, age
         }
     });
 }
+
+// Sales Analysis Report chart
+var salesChart;
+function updateSalesChart(data) {
+    salesChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    salesChart.update();
+    salesChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+function loadSalesChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/storesales/' + storeId + '-SR.json',
+        method: 'get',
+        success: function (data) {
+            updateSalesChart(data);
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function initSalesChart() {
+    if (document.getElementById("sales_chart")) {
+        salesChart = new Chart($('#sales_chart'), {
+            type: 'bar',
+            options: {
+                title: {
+                    display: true,
+                    text: 'Service Sales Chart'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: Charts.colors.gray[900],
+                            zeroLineColor: Charts.colors.gray[900]
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                if (!(value % 10)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (item, data) {
+                            var label = data.datasets[item.datasetIndex].label || '';
+                            var yLabel = item.yLabel;
+                            var content = '';
+                            if (data.datasets.length > 1) {
+                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                            }
+                            content += '<span class="popover-body-value">' + yLabel + '</span>';
+                            return content;
+                        }
+                    }
+                }
+            },
+        });
+    }
+};
+
+function initAndLoadSalesChart(storeId) {
+    initSalesChart();
+    loadSalesChartFromApi(storeId);
+}
+
+var empTargetChart;
+function updateEmpTargetChart(data) {
+    empTargetChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    empTargetChart.update();
+    empTargetChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+function loadEmpTargetChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/storesales/' + storeId + '-ET.json',
+        method: 'get',
+        success: function (data) {
+            updateEmpTargetChart(data);
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function initEmpTargetChart() {
+    if (document.getElementById("empTarget_chart")) {
+        empTargetChart = new Chart($('#empTarget_chart'), {
+            type: 'bar',
+            options: {
+                title: {
+                    display: true,
+                    text: 'Target vs. Achieved'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: Charts.colors.gray[900],
+                            zeroLineColor: Charts.colors.gray[900]
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                if (!(value % 10)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (item, data) {
+                            var label = data.datasets[item.datasetIndex].label || '';
+                            var yLabel = item.yLabel;
+                            var content = '';
+                            if (data.datasets.length > 1) {
+                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                            }
+                            content += '<span class="popover-body-value">' + yLabel + '</span>';
+                            return content;
+                        }
+                    }
+                }
+            },
+        });
+    }
+};
+
+function initAndLoadEmpTargetChart(storeId) {
+    initEmpTargetChart();
+    loadEmpTargetChartFromApi(storeId);
+}
+
+function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
+    $.ajax({
+        url: 'public/data/storesales/salesreport.json',
+        method: 'get',
+        success: function (data) {
+            console.log(data);
+            // Clear existing table rows
+            $('#dataTableSalesReports tbody').empty();
+
+            var totalSmiles = 0;
+            var totalSpendByYear = 0;
+            
+            // Loop through each user object in the response data
+            $.each(data, function (index, sales) {
+                console.log(sales);
+                // Create a new row with the user data
+                var row = '<tr>' +
+                    '<td>' + sales.id + '</td>' +
+                    '<td>' + sales.name + '</td>' +
+                    '<td>' + sales.service + '</td>' +
+                    '<td>' + sales.services + '</td>' +
+                    '<td>' + sales.product + '</td>' +
+                    '<td>' + sales.clients + '</td>' +
+                    '<td>' + sales.bills + '</td>' +
+                    '<td>' + sales.abv + '</td>' +
+                    '<td>' + sales.asb + '</td>' +
+                    '</tr>';
+
+
+                // Append the row to the table body
+                $('#dataTableSalesReports tbody').append(row);
+            });
+
+        },
+        error: function (err) {
+        }
+    });
+}

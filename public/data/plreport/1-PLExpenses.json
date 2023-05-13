@@ -36,12 +36,6 @@
         "percentage": "1%"
     },
     {
-        "id": "",
-        "income": "Total Sales and Marketing",
-        "total": "14,100.0",
-        "percentage": "1%"
-    },
-    {
         "id": "6000",
         "income": "Operating expenses",
         "total": "1,500.0",
@@ -58,17 +52,5 @@
         "income": "Insurance - Liability",
         "total": "12,500.0",
         "percentage": "1%"
-    },
-    {
-        "id": "",
-        "income": "Total operating Expenses",
-        "total": "16,500.0",
-        "percentage": "2%"
-    },
-    {
-        "id": "",
-        "income": "Total Expenses",
-        "total": "30,100.0",
-        "percentage": "3%"
     }
 ]

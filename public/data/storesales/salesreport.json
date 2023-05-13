@@ -1,0 +1,24 @@
+[
+    {
+        "id": "1",
+        "name": "Gemma",
+        "service": "1000",
+        "services": "20",
+        "product": "300",
+        "clients": "10",
+        "bills": "10",
+        "abv": "50",
+        "asb": "2"
+    },
+    {
+        "id": "2",
+        "name": "Micheal",
+        "service": "2000",
+        "services": "20",
+        "product": "500",
+        "clients": "10",
+        "bills": "5",
+        "abv": "40",
+        "asb": "4"
+    }
+]

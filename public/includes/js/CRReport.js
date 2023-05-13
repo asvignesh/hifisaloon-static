@@ -1,11 +1,11 @@
 // Fetch data from backend
 const data = [
+    { month: "Dec", totalClients: 130, returningClients: 90 },
     { month: "Jan", totalClients: 110, returningClients: 50 },
     { month: "Feb", totalClients: 80, returningClients: 40 },
     { month: "Mar", totalClients: 100, returningClients: 60 },
     { month: "Apr", totalClients: 120, returningClients: 80 },
-    { month: "May", totalClients: 90, returningClients: 50 },
-    { month: "Jun", totalClients: 130, returningClients: 90 }
+    { month: "May", totalClients: 90, returningClients: 50 }
   ];
   
   // Process data into chart format
