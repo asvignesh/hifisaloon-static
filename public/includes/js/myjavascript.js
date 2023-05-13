@@ -1565,8 +1565,8 @@ function getProfitLossIncomeReportLoadWidgets(storeId, dateStart, dateEnd, ageGr
                 var row = '<tr>' +
                     '<td>' + sales.id + '</td>' +
                     '<td>' + sales.income + '</td>' +
-                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
-                    '<td>' + sales.percentage + '</td>' +
+                    '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.percentage + '</td>' +
                     '</tr>';
 
                 // Append the row to the table body
@@ -1594,8 +1594,8 @@ function getProfitLossCGSReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup
                 var row = '<tr>' +
                     '<td>' + sales.id + '</td>' +
                     '<td>' + sales.income + '</td>' +
-                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
-                    '<td>' + sales.percentage + '</td>' +
+                    '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.percentage + '</td>' +
                     '</tr>';
 
                 // Append the row to the table body
@@ -1623,8 +1623,8 @@ function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, age
                 var row = '<tr>' +
                     '<td>' + sales.id + '</td>' +
                     '<td>' + sales.income + '</td>' +
-                    '<td><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
-                    '<td>' + sales.percentage + '</td>' +
+                    '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377;</span>' + sales.total + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.percentage + '</td>' +
                     '</tr>';
 
                 // Append the row to the table body
