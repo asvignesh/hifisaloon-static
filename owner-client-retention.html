@@ -135,9 +135,9 @@
                                                     <tr>
                                                         <th scope="col" class="sort">#</th>
                                                         <th scope="col" class="sort">Month</th>
-                                                        <th scope="col" class="sort">Total Clients</th>
-                                                        <th scope="col" class="sort">Returning clients</th>
-                                                        <th scope="col" class="sort">Retention rate</th>
+                                                        <th scope="col" class="sort" style="text-align-last: right;">Total Clients</th>
+                                                        <th scope="col" class="sort" style="text-align-last: right;">Returning clients</th>
+                                                        <th scope="col" class="sort" style="text-align-last: right;">Retention rate</th>
                                                         
                                                     </tr>
                                                 </thead>
@@ -231,9 +231,9 @@
                         var row = '<tr>' +
                             '<th>' + crdata1.id + '</th>' +
                             '<td>' + crdata1.month + '</td>' +
-                            '<td>' + crdata1.totalclients + '</td>' +
-                            '<td>' + crdata1.returningclients + '</td>' +
-                            '<td>' + retentionRate + '%</td>' +
+                            '<td style="text-align-last: right;">' + crdata1.totalclients + '</td>' +
+                            '<td style="text-align-last: right;">' + crdata1.returningclients + '</td>' +
+                            '<td style="text-align-last: right;">' + retentionRate + '%</td>' +
                            '</tr>';
 
                         // Append the row to the table body

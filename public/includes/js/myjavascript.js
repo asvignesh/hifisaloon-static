@@ -1809,13 +1809,13 @@ function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
                 var row = '<tr>' +
                     '<td>' + sales.id + '</td>' +
                     '<td>' + sales.name + '</td>' +
-                    '<td>' + sales.service + '</td>' +
-                    '<td>' + sales.services + '</td>' +
-                    '<td>' + sales.product + '</td>' +
-                    '<td>' + sales.clients + '</td>' +
-                    '<td>' + sales.bills + '</td>' +
-                    '<td>' + sales.abv + '</td>' +
-                    '<td>' + sales.asb + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.service + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.services + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.product + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.clients + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.bills + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.abv + '</td>' +
+                    '<td style="text-align-last: right;">' + sales.asb + '</td>' +
                     '</tr>';
 
 

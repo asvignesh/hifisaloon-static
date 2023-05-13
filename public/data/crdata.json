@@ -1,37 +1,37 @@
 [
     {
         "id": 1,
-        "month": "December'22",
+        "month": "December '22",
         "totalclients": "130",
         "returningclients": "90"
     },
     {
         "id": 2,
-        "month": "January'23",
+        "month": "January '23",
         "totalclients": "110",
         "returningclients": "50"
     },
     {
         "id": 3,
-        "month": "February'23",
+        "month": "February '23",
         "totalclients": "80",
         "returningclients": "40"
     },
     {
         "id": 4,
-        "month": "March'23",
+        "month": "March '23",
         "totalclients": "100",
         "returningclients": "60"
     },
     {
         "id": 5,
-        "month": "April'23",
+        "month": "April '23",
         "totalclients": "120",
         "returningclients": "80"
     },
     {
-        "id": 5,
-        "month": "May'23",
+        "id": 6,
+        "month": "May '23",
         "totalclients": "90",
         "returningclients": "50"
     }

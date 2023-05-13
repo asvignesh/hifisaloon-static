@@ -134,7 +134,7 @@
                                     
                                     <th class="col1" scope="col">Clock-In Date/Time</th>
                                     <th class="col2" scope="col">Clock-Out Date/Time</th>
-                                    <th class="col3" scope="col">Hours</th>
+                                    <th class="col3" scope="col" style="text-align-last: right;">Hours</th>
                                     <th class="col3" scope="col">Modified By</th>
                                     <th class="col3" scope="col">Comments</th>
                                     <th></th>
@@ -155,7 +155,7 @@
                                     
                                     <th class="col1" scope="col">Clock-In Date/Time</th>
                                     <th class="col2" scope="col">Clock-Out Date/Time</th>
-                                    <th class="col3" scope="col">Hours</th>
+                                    <th class="col3" scope="col" style="text-align-last: right;">Hours</th>
                                     <th class="col3" scope="col">Modified By</th>
                                     <th class="col3" scope="col">Comments</th>
                                     <th></th>
@@ -174,7 +174,7 @@
                                 <tr>
                                     <th class="col1" scope="col">Clock-In Date/Time</th>
                                     <th class="col2" scope="col">Clock-Out Date/Time</th>
-                                    <th class="col3" scope="col">Hours</th>
+                                    <th class="col3" scope="col" style="text-align-last: right;">Hours</th>
                                     <th class="col3" scope="col">Modified By</th>
                                     <th class="col3" scope="col">Comments</th>
                                     <th></th>
@@ -236,93 +236,53 @@
                 $("#navbar-left").load("inc/navbar.inc-admin.html");
                 generateReport();
                 });
-            
-            //     var _empattendance;
-            // $(document).ready(function () {
-            //     $.ajax({
-            //         url: 'public/data/employee/attendancereport.json',
-            //         dataType: 'json',
-            //         success: function (empattendance) {
-            //             console.log(empattendance);
-            //             _empattendance = empattendance;
-            //             // Clear existing table rows
-            //             for (var i = 0; i < empattendance.length; i++) {
-            //                 console.log('#dataTableEmpAttendance' + i +' tbody');
-            //             $('#dataTableEmpAttendance' + i +'tbody').empty();
-    
-            //             // Loop through each user object in the response data
-            //            // $.each(empattendance, function (index, empattendance1) {
-            //                // console.log(empattendance1);
-            //                 // Create a new row with the user data
-            //                 var row = '<tr>' +
-            //                     '<th>' + empattendance[i].clockin + '</th>' +
-            //                     '<td>' + empattendance[i].clockout + '</td>' +
-            //                     '<td>' + empattendance[i].hours + '</td>' +
-            //                     '<td>' + empattendance[i].modified + '</td>' +
-            //                     '<td>' + empattendance[i].comments + '</td>' +
-            //                    '</tr>';
-    
-            //                 // Append the row to the table body
-            //                 $('#dataTableEmpAttendance' + i +' tbody').append(row);
-            //            // });
-            //         }
-            //         },
-            //         error: function (error) {
-            //             console.log(error);
-            //         }
-            //     });
-            //     // Set the initial content
-            //     $("#body-content").load("dashboard.html");
-            //     $("#navbar-left").load("inc/navbar.inc-admin.html");
-            //     $("#navbar-top").load("inc/navbar-top-inc-admin.html");
-            // });
 
             var _empattendance;
 
-$(document).ready(function() {
-  $.ajax({
-    url: 'public/data/employee/attendancereport.json',
-    dataType: 'json',
-    success: function(empattendance) {
-      console.log(empattendance);
-      _empattendance = empattendance;
+            $(document).ready(function() {
+            $.ajax({
+                url: 'public/data/employee/attendancereport.json',
+                dataType: 'json',
+                success: function(empattendance) {
+                console.log(empattendance);
+                _empattendance = empattendance;
 
-      // Loop through each employee in the response data
-      $.each(empattendance, function(employeeName, employeeData) {
-        console.log(employeeName);
-        console.log(employeeData);
-        
-        // Clear existing table rows
-        $('#dataTableEmpAttendance' + employeeName + ' tbody').empty();
+                // Loop through each employee in the response data
+                $.each(empattendance, function(employeeName, employeeData) {
+                    console.log(employeeName);
+                    console.log(employeeData);
+                    
+                    // Clear existing table rows
+                    $('#dataTableEmpAttendance' + employeeName + ' tbody').empty();
 
-        // Loop through each attendance record for the current employee
-        $.each(employeeData, function(index, attendanceRecord) {
-          console.log(attendanceRecord);
+                    // Loop through each attendance record for the current employee
+                    $.each(employeeData, function(index, attendanceRecord) {
+                    console.log(attendanceRecord);
 
-          // Create a new row with the attendance data
-          var row = '<tr>' +
-            '<td>' + attendanceRecord.clockin + '</td>' +
-            '<td>' + attendanceRecord.clockout + '</td>' +
-            '<td>' + attendanceRecord.hours + '</td>' +
-            '<td>' + attendanceRecord.modified + '</td>' +
-            '<td>' + attendanceRecord.comments + '</td>' +
-            '</tr>';
+                    // Create a new row with the attendance data
+                    var row = '<tr>' +
+                        '<td>' + attendanceRecord.clockin + '</td>' +
+                        '<td>' + attendanceRecord.clockout + '</td>' +
+                        '<td style="text-align-last: right;">' + attendanceRecord.hours + '</td>' +
+                        '<td>' + attendanceRecord.modified + '</td>' +
+                        '<td>' + attendanceRecord.comments + '</td>' +
+                        '</tr>';
 
-          // Append the row to the table body
-          $('#dataTableEmpAttendance' + employeeName + ' tbody').append(row);
-        });
-      });
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
+                    // Append the row to the table body
+                    $('#dataTableEmpAttendance' + employeeName + ' tbody').append(row);
+                    });
+                });
+                },
+                error: function(error) {
+                console.log(error);
+                }
+            });
 
-  // Set the initial content
-  $("#body-content").load("dashboard.html");
-  $("#navbar-left").load("inc/navbar.inc-admin.html");
-  $("#navbar-top").load("inc/navbar-top-inc-admin.html");
-});
+            // Set the initial content
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc-admin.html");
+            $("#navbar-top").load("inc/navbar-top-inc-admin.html");
+            });
 
 
            
