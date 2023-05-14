@@ -1828,3 +1828,244 @@ function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
         }
     });
 }
+
+var mrrChart;
+function updateMrrChart(data) {
+    mrrChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    mrrChart.update();
+    mrrChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+function loadMrrChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/membershipincome/mrr.json',
+        method: 'get',
+        success: function (data) {
+            updateMrrChart(data);
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function initMrrChart() {
+    if (document.getElementById("mrr_chart")) {
+        mrrChart = new Chart($('#mrr_chart'), {
+            type: 'line',
+            options: {
+                title: {
+                    display: true,
+                    text: 'MRR chart'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: Charts.colors.gray[900],
+                            zeroLineColor: Charts.colors.gray[900]
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                if (!(value % 10)) {
+                                    return value;
+                                }
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Rupees' // replace with your desired label
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (item, data) {
+                            var label = data.datasets[item.datasetIndex].label || '';
+                            var yLabel = item.yLabel;
+                            var content = '';
+                            if (data.datasets.length > 1) {
+                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                            }
+                            content += '<span class="popover-body-value">' + yLabel + '</span>';
+                            return content;
+                        }
+                    }
+                }
+            },
+        });
+    }
+};
+
+function initAndLoadMrrChart(storeId) {
+    initMrrChart();
+    loadMrrChartFromApi(storeId);
+}
+
+var mrrgrowthChart;
+function updateMrrGrowthChart(data) {
+    mrrgrowthChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    mrrgrowthChart.update();
+    mrrgrowthChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+function loadMrrGrowthChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/membershipincome/mrrgrowth.json',
+        method: 'get',
+        success: function (data) {
+            updateMrrGrowthChart(data);
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function initMrrGrowthChart() {
+    if (document.getElementById("mrrgrowth_chart")) {
+        mrrgrowthChart = new Chart($('#mrrgrowth_chart'), {
+            type: 'line',
+            options: {
+                title: {
+                    display: true,
+                    text: 'MRR Growth Chart'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: Charts.colors.gray[900],
+                            zeroLineColor: Charts.colors.gray[900]
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            suggestedMin: -10000,
+                            callback: function (value) {
+                                if (!(value % 10)) {
+                                    return value;
+                                }
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Rupees' // replace with your desired label
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (item, data) {
+                            var label = data.datasets[item.datasetIndex].label || '';
+                            var yLabel = item.yLabel;
+                            var content = '';
+                            if (data.datasets.length > 1) {
+                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                            }
+                            content += '<span class="popover-body-value">' + yLabel + '</span>';
+                            return content;
+                        }
+                    }
+                }
+            },
+        });
+    }
+};
+
+function initAndLoadMrrGrowthChart(storeId) {
+    initMrrGrowthChart();
+    loadMrrGrowthChartFromApi(storeId);
+}
+var avgmrrChart;
+function updateAvgMrrChart(data) {
+    avgmrrChart.data = {
+        labels: data[1],
+        datasets: [{
+            label: '',
+            data: data[0]
+        }]
+    };
+    avgmrrChart.update();
+    avgmrrChart.render({
+        duration: 800,
+        lazy: false,
+    });
+}
+
+function loadAvgMrrChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/membershipincome/avgmrr.json',
+        method: 'get',
+        success: function (data) {
+            updateAvgMrrChart(data);
+        },
+        error: function (err) {
+        }
+    });
+}
+
+function initAvgMrrChart() {
+    if (document.getElementById("avgmrr_chart")) {
+        avgmrrChart = new Chart($('#avgmrr_chart'), {
+            type: 'bar',
+            options: {
+                title: {
+                    display: true,
+                    text: 'Avg MRR Chart'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: Charts.colors.gray[900],
+                            zeroLineColor: Charts.colors.gray[900]
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                if (!(value % 10)) {
+                                    return value;
+                                }
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Rupees' // replace with your desired label
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (item, data) {
+                            var label = data.datasets[item.datasetIndex].label || '';
+                            var yLabel = item.yLabel;
+                            var content = '';
+                            if (data.datasets.length > 1) {
+                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                            }
+                            content += '<span class="popover-body-value">' + yLabel + '</span>';
+                            return content;
+                        }
+                    }
+                }
+            },
+        });
+    }
+};
+
+function initAndLoadAvgMrrChart(storeId) {
+    initAvgMrrChart();
+    loadAvgMrrChartFromApi(storeId);
+}
