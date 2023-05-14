@@ -1,0 +1,42 @@
+[
+    {
+        "store": "T-Nagar",
+        "totalsales": "2,00,000.00",
+        "nontaxablessales": "1,50,000.00",
+        "taxablesales": "50,000.00",
+        "cgst": "9",
+        "sgst": "9",
+        "taxcollected": "9000.00",
+        "salestaxpayable": "9000.00" 
+    },
+    {
+        "store": "Perumbakkam",
+        "totalsales": "2,50,000.00",
+        "nontaxablessales": "1,50,000.00",
+        "taxablesales": "1,00,000.00",
+        "cgst": "9",
+        "sgst": "9",
+        "taxcollected": "18000.00",
+        "salestaxpayable": "18000.00" 
+    },
+    {
+        "store": "Pondicherry",
+        "totalsales": "2,80,000.00",
+        "nontaxablessales": "1,65,000.00",
+        "taxablesales": "1,15,000.00",
+        "cgst": "9",
+        "sgst": "9",
+        "taxcollected": "20,700.00",
+        "salestaxpayable": "20,700.00" 
+    },
+    {
+        "store": "Alapakkam",
+        "totalsales": "1,80,000.00",
+        "nontaxablessales": "1,00,000.00",
+        "taxablesales": "80,000.00",
+        "cgst": "9",
+        "sgst": "9",
+        "taxcollected": "14,400.00",
+        "salestaxpayable": "14,400.00" 
+    }
+]
