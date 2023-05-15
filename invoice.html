@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Tax-Invoice</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-left">Date</div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-right" id="invoice-date"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-left">Customer</div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-right" id="invoice-customer">Vignesh</div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-left">Mobile</div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-right" id="invoice-mobile">9998885552</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Haircut</td>
+                    <td>1</td>
+                    <td>$50.00</td>
+                    <td>$50.00</td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>1</td>
+                    <td>$80.00</td>
+                    <td>$80.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left"><strong>Basic Sales:</strong></td>
+                    <td></td>
+                    <td id="invoice-saleamt">$130.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left">Offer:</td>
+                    <td>10% off</td>
+                    <td id="invoice-offeramt">$130.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left">Mem. Discount:</td>
+                    <td></td>
+                    <td id="invoice-discountamt">$130.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left">Sub-Total:</td>
+                    <td></td>
+                    <td id="invoice-subtotal">$130.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left">GST:</td>
+                    <td>18%</td>
+                    <td id="invoice-tax">$130.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left"><strong>Net Amount:</strong></td>
+                    <td></td>
+                    <td id="invoice-total"><strong>$130</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

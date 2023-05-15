@@ -37,9 +37,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
-    <script crossorigin="anonymous"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="public/includes/js/jquery-3.5.1.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
@@ -48,14 +45,27 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="public/includes/js/qrcode.js"></script>
+
     <script>
+        var _services;
+
+        function getServices(callback) {
+            $.ajax({
+                url: 'public/data/services.json',
+                dataType: 'json',
+                success: function (services) {
+                    console.log(services);
+                    callback(services);
+                    // Clear existing table rows
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
 
         $(document).on("change", '#category-select', function () {
-            var servicesList = [
-                "Cutting",
-                "Shaving"
-            ];
-
             var productsList = [
                 "Shampoo",
                 "Conditioner"
@@ -64,19 +74,23 @@
             var category = $(this).val();
             var itemList = [];
 
-            if (category === "services") {
-                itemList = servicesList;
-            } else if (category === "products") {
-                itemList = productsList;
-            }
-
-            // Populate the item select dropdown with the items from the selected category
             let $itemSelect = $("#item-select");
             $itemSelect.empty();
+            if (category === "services") {
+                getServices(function (services) {
+                    _services = services;
+                    $.each(services, function (index, service) {
+                        $itemSelect.append("<option value='" + service.id + "'>" + service.name + "</option>");
+                    });
+                })
 
-            $.each(itemList, function (index, item) {
-                $itemSelect.append("<option value='" + item + "'>" + item + "</option>");
-            });
+            } else if (category === "products") {
+                itemList = productsList;
+                $.each(itemList, function (index, item) {
+                    $itemSelect.append("<option value='" + item + "'>" + item + "</option>");
+                });
+            }
+
         });
 
         $(document).ready(function () {
@@ -84,23 +98,31 @@
             $("#navbar-left").load("inc/navbar.inc.html");
             $("#navbar-top").load("inc/navbar-top-inc.html");
 
-            // // Add search functionality to the item select dropdown
-            // $("#item-select").select2({
-            //     placeholder: "Select an item...",
-            //     allowClear: true
-            // });
+            var selectedOption = $('#store').val();
+            console.log(selectedOption);
+            getEmployees(1, function (employees) {
+                let $itemSelect = $("#employee-select");
+                $itemSelect.empty();
+                $.each(employees, function (index, employee) {
+                    $itemSelect.append("<option value='" + employee.id + "'>" + employee.name + "</option>");
+                });
+            })
+
 
             var cartItems = [];
 
 
             $('#product-form').submit(function (event) {
                 event.preventDefault();
-                let productName = $('#product-name').val();
-                let productPrice = parseFloat($('#product-price').val()).toFixed(2);
+
+                var productId = $('#item-select').val();
+                var service = _services.find(service => service.id == productId);
+                let productPrice = parseFloat(service.price).toFixed(2);
                 let productQuantity = parseInt($('#product-quantity').val());
+                let employee = parseInt($('#product-quantity').val());
                 let productTotal = (productPrice * productQuantity).toFixed(2);
                 let cartItem = {
-                    name: productName,
+                    name: service.name,
                     price: productPrice,
                     quantity: productQuantity,
                     total: productTotal
@@ -138,7 +160,36 @@
                 updateCart();
             });
 
+            function showInvoice() {
+                $.ajax({
+                    url: "invoice.html",
+                    success: function (data) {
+                        const qrCodeDiv = document.getElementById("workarea");
+                        qrCodeDiv.innerHTML = data;
+                    }
+                });
+                console.log("Hello from myFunction!");
+            }
+
+            $('#print-button').click(function () {
+                const qrCodeDiv = document.getElementById("qrcode");
+                const qrCode = new QRCode(qrCodeDiv, {
+                    text: "https://example.com",
+                    width: 128,
+                    height: 128,
+                });
+                qrCode.makeCode("hw");
+                qrCodeDiv.style.display = "block";
+
+                setTimeout(function () {
+                    // Call another function after 1 second
+                    showInvoice();
+                }, 5000);
+            });
+
+
         });
+
         $(document).on("click", function (e) {
             console.log(e);
         });
@@ -182,7 +233,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" id="workarea">
             <hr>
             <div class="row">
                 <div class="col-md-6">
@@ -201,14 +252,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="product-name">Product Name:</label>
-                            <input class="form-control" id="product-name" required type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="product-price">Price:</label>
-                            <input class="form-control" id="product-price" min="0" required step="0.01" type="number">
-                        </div>
-                        <div class="form-group">
                             <label for="product-quantity">Quantity:</label>
                             <input class="form-control" id="product-quantity" min="1" required type="number">
                         </div>
@@ -217,7 +260,6 @@
                             <select class="form-control" id="employee-select">
                                 <option value="1">Emp1</option>
                                 <option value="1">Emp2</option>
-
                             </select>
                         </div>
                         <button class="btn btn-primary" type="submit">Add to Cart</button>
@@ -246,17 +288,16 @@
                         </tfoot>
                     </table>
                     <button class="btn btn-danger" id="clear-cart">Clear Cart</button>
-                    <button class="btn btn-primary" id="print-button" type="button">Print</button>
+                    <button class="btn btn-primary" id="print-button" type="button">Pay</button>
+
+                    <div id="qrcode"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script crossorigin="anonymous"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
-
+    <script src="public/includes/js/popper.min.js"></script>
     <script src="public/includes/js/Chart.min.js"></script>
     <script src="public/includes/js/Chart.extension.js"></script>
     <script src="public/includes/js/jquery.min.js"></script>

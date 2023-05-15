@@ -1436,6 +1436,20 @@ function loadEmployee(selectedOption) {
     });
 }
 
+function getEmployees(selectedOption, callback) {
+    $.ajax({
+        url: 'public/data/employee/' + selectedOption + ".json",
+        dataType: 'json',
+        success: function (employees) {
+            console.log(employees);
+            callback(employees);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
 var revenueChart;
 
 function loadChartFromApi(storeId) {
@@ -1503,7 +1517,7 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
             var filteredData = [];
             // Filter users based on the selected age group
             if (ageGroup) {
-                filteredData = data.filter(function(user) {
+                filteredData = data.filter(function (user) {
                     var ageRange = ageGroup.split('-');
                     return user.age >= ageRange[0] && user.age <= ageRange[1];
                 });
@@ -1526,8 +1540,9 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
 
                 totalSmiles += users.smiles;
                 totalSpendByYear += users.spendByYear;
-                totalASB = (totalSmiles/data.length).toFixed(2);;
-                totalABV = (totalSpendByYear/totalSmiles).toFixed(2);
+                totalASB = (totalSmiles / data.length).toFixed(2);
+                ;
+                totalABV = (totalSpendByYear / totalSmiles).toFixed(2);
                 console.log(totalSmiles);
                 console.log(totalSpendByYear);
                 console.log(totalASB);
@@ -1557,7 +1572,7 @@ function getProfitLossIncomeReportLoadWidgets(storeId, dateStart, dateEnd, ageGr
             console.log(data);
             // Clear existing table rows
             $('#dataTablePLReports1 tbody').empty();
- 
+
             // Loop through each user object in the response data
             $.each(data, function (index, sales) {
                 console.log(sales);
@@ -1578,6 +1593,7 @@ function getProfitLossIncomeReportLoadWidgets(storeId, dateStart, dateEnd, ageGr
         }
     });
 }
+
 function getProfitLossCGSReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
     $.ajax({
         url: 'public/data/plreport/' + storeId + '-PL1.json',
@@ -1586,7 +1602,7 @@ function getProfitLossCGSReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup
             console.log(data);
             // Clear existing table rows
             $('#dataTablePLReports2 tbody').empty();
-            
+
             // Loop through each user object in the response data
             $.each(data, function (index, sales) {
                 console.log(sales);
@@ -1607,6 +1623,7 @@ function getProfitLossCGSReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup
         }
     });
 }
+
 function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
     $.ajax({
         url: 'public/data/plreport/' + storeId + '-PLExpenses.json',
@@ -1615,7 +1632,7 @@ function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, age
             console.log(data);
             // Clear existing table rows
             $('#dataTablePLReports3 tbody').empty();
-            
+
             // Loop through each user object in the response data
             $.each(data, function (index, sales) {
                 console.log(sales);
