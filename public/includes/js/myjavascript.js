@@ -1531,8 +1531,8 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
                 var row = '<tr>' +
                     '<th>' + users.id + '</th>' +
                     '<td>' + users.name + '</td>' +
-                    '<td>' + users.email + '</td>' +
-                    '<td>' + users.mobile + '</td>' +
+                    '<td>' + maskEmail(users.email) + '</td>' +
+                    '<td>' + users.mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
                     '<td>' + users.age + '</td>' +
                     '<td>' + users.smiles + '</td>' +
                     '<td>' + users.spendByYear + '</td>' +
@@ -1656,6 +1656,7 @@ function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, age
 
 // Sales Analysis Report chart
 var salesChart;
+
 function updateSalesChart(data) {
     salesChart.data = {
         labels: data[1],
@@ -1732,6 +1733,7 @@ function initAndLoadSalesChart(storeId) {
 }
 
 var empTargetChart;
+
 function updateEmpTargetChart(data) {
     empTargetChart.data = {
         labels: data[1],
@@ -1818,7 +1820,7 @@ function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
 
             var totalSmiles = 0;
             var totalSpendByYear = 0;
-            
+
             // Loop through each user object in the response data
             $.each(data, function (index, sales) {
                 console.log(sales);
@@ -1847,6 +1849,7 @@ function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
 }
 
 var mrrChart;
+
 function updateMrrChart(data) {
     mrrChart.data = {
         labels: data[1],
@@ -1927,6 +1930,7 @@ function initAndLoadMrrChart(storeId) {
 }
 
 var mrrgrowthChart;
+
 function updateMrrGrowthChart(data) {
     mrrgrowthChart.data = {
         labels: data[1],
@@ -2007,7 +2011,9 @@ function initAndLoadMrrGrowthChart(storeId) {
     initMrrGrowthChart();
     loadMrrGrowthChartFromApi(storeId);
 }
+
 var avgmrrChart;
+
 function updateAvgMrrChart(data) {
     avgmrrChart.data = {
         labels: data[1],
@@ -2085,4 +2091,20 @@ function initAvgMrrChart() {
 function initAndLoadAvgMrrChart(storeId) {
     initAvgMrrChart();
     loadAvgMrrChartFromApi(storeId);
+}
+
+function maskEmail(email) {
+    var parts = email.split('@');
+    var username = parts[0];
+    var domain = parts[1];
+
+    // Mask part of the username
+    var maskedUsername = username.substr(0, Math.ceil(username.length / 2)) + '*'.repeat(Math.floor(username.length / 2));
+
+    // Mask part of the domain
+    var domainParts = domain.split('.');
+    var maskedDomain = domainParts[0].substr(0, Math.ceil(domainParts[0].length / 2)) + '*'.repeat(Math.floor(domainParts[0].length / 2));
+    var maskedExtension = domainParts[1];
+
+    return maskedUsername + '@' + maskedDomain + '.' + maskedExtension;
 }

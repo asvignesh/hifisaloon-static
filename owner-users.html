@@ -68,8 +68,8 @@
                         var row = '<tr>' +
                             '<td>' + user.id + '</td>' +
                             '<td>' + user.name + '</td>' +
-                            '<td>' + user.email + '</td>' +
-                            '<td>' + user.mobile + '</td>' +
+                            '<td>' + maskEmail(user.email) + '</td>' +
+                            '<td>' + user.mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
                             '<td>' + user.firstVisit + '</td>' +
                             '<td>' + user.lastVisit + '</td>' +
                             '<td>' + user.spendByYear + '</td>' +
