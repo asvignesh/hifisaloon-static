@@ -1529,6 +1529,7 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
                 console.log(users);
                 // Create a new row with the user data
                 var row = '<tr>' +
+                    '<td><input type="checkbox"></td>'+
                     '<th>' + users.id + '</th>' +
                     '<td>' + users.name + '</td>' +
                     '<td>' + maskEmail(users.email) + '</td>' +

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E" name="csrf-token">
+    <meta content="public" name="base_url">
+
+    <style>
+        :root {
+            --primary_color: #502f8f;
+            --primary_color_hover: #502f8fcc;
+        }
+    </style>
+
+    <!-- Title -->
+    <title>HiFi Salon</title>
+
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div class="preload">
+    <img alt="" class="loader" src="public/storage/images/app/loader.gif">
+</div>
+<div class="for-loader">
+    <form action="public/logout" id="logout-form" method="POST" style="display: none;">
+        <input name="_token" type="hidden" value="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E">
+    </form>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div id="navbar-left"></div>
+    </nav>
+
+    <div class="main-content">
+        <div id="navbar-top"></div>
+
+
+        <div class="header pt-9"
+             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;padding-bottom: 50px;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+
+        </div>
+
+        <div class="container-fluid mt--4">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <span class="h3">Users Report</span>
+                        </div>
+
+                        <form action="public/admin/report/user" class="ml-4" id="filter_revene_form" method="post">
+                            <input name="_token" type="hidden" value="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E">
+                            <div class="row rtl-date-filter-row">
+
+								<div class="form-group col-3">
+                                    <select class="form-control select2 select2-hidden-accessible" name="retention"
+                                    id="retention" dir="" data-select2-id="age" tabindex="-1"
+                                    aria-hidden="true">
+                                    <option selected="" value="" data-select2-id="2"> -- Select filter -- </option>
+                                    <option value="0-9" data-select2-id="915">New Clients</option>
+                                    <option value="10-19" data-select2-id="916">Retained Clients</option>
+                                    <option value="20-29" data-select2-id="917">Clients not visited this month</option>
+                                    <option value="30-39" data-select2-id="918">Clients not visited last two months</option>
+                                    <option value="40-49" data-select2-id="919">Clients not visited last three months</option>
+                                    </select>
+                                    <h4 class="text-center text-red mt-2"></h4>
+                                </div>
+                                <div class="form-group col-3">
+                                    <select class="form-control select2 select2-hidden-accessible" name="services"
+                                        id="services" dir="" data-select2-id="services" tabindex="-1"
+                                        aria-hidden="true">
+                                        <option selected="" value="" data-select3-id="3"> -- Select Client -- </option>
+                                        <option value="954" data-select2-id="923">Male</option>
+                                        <option value="955" data-select2-id="924">Female</option>
+                                        <option value="956" data-select2-id="925">Kids</option>
+                                    </select>
+                                    <h4 class="text-center text-red mt-2"></h4>
+                                </div>
+                                <div class="form-group col-3">
+                                    <select class="form-control select2 select2-hidden-accessible" name="age"
+                                            id="age" dir="" data-select2-id="age" tabindex="-1"
+                                            aria-hidden="true">
+                                        <option selected="" value="" data-select2-id="2"> -- Select Age -- </option>
+                                        <option value="0-9" data-select2-id="915">0-9</option>
+                                        <option value="10-19" data-select2-id="916">10-19</option>
+                                        <option value="20-29" data-select2-id="917">20-29</option>
+                                        <option value="30-39" data-select2-id="918">30-39</option>
+                                        <option value="40-49" data-select2-id="919">40-49</option>
+                                        <option value="50-59" data-select2-id="920">50-59</option>
+                                        <option value="60+" data-select2-id="921">60+</option>
+                                    </select>
+                                    <h4 class="text-center text-red mt-2"></h4>
+                                </div>
+                                <div class="form-group col-3">
+                                    <button class="btn btn-primary rtl-date-filter-btn" id="filter_btn"
+                                            type="submit">Apply
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <!-- table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush" class="dataTableUserReports"
+                                   id="dataTableUserReports">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Select</th>
+                                    <th>#</th>
+                                    <th class="sort" scope="col">Name</th>
+                                    <th class="sort" scope="col">Email</th>
+                                    <th class="sort" scope="col">Phone</th>
+									<th scope="col" class="sort">Age</th>
+                                    <th class="sort" scope="col">Smiles</th>
+                                    <th class="sort" scope="col">Revenue</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody class="list">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row rtl-date-filter-row">
+
+                            <div class="form-group col-3">
+                                <select class="form-control select2 select2-hidden-accessible" name="retention"
+                                        id="campaigns" dir="" data-select2-id="age" tabindex="-1"
+                                        aria-hidden="true">
+                                    <option selected="" value="" data-select2-id="2"> -- Select Actions -- </option>
+                                    <option value="0-9" data-select2-id="915">Send WhatsApp campaigns</option>
+                                    <option value="10-19" data-select2-id="916">Send Email campaigns</option>
+                                    <option value="20-29" data-select2-id="917">Sent text campaigns</option>
+                                </select>
+                                <h4 class="text-center text-red mt-2"></h4>
+                            </div>
+                            <div class="form-group col-3">
+                                <button class="btn btn-primary rtl-date-filter-btn" id="campaigns_btn"
+                                        type="submit">Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="public/includes/js/popper.min.js"></script>
+        <script src="public/includes/js/Chart.min.js"></script>
+        <script src="public/includes/js/Chart.extension.js"></script>
+        <script src="public/includes/js/jquery.min.js"></script>
+        <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+        <script src="public/includes/js/argon.js"></script>
+        <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+        <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+        <script src="public/includes/js/sweetalert.all.js"></script>
+        <script src="public/includes/js/jquery.timepicker.js"></script>
+
+
+        <script src="public/includes/js/map.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
+                type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
+                type="text/javascript"></script>
+
+        <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"
+                type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <script src="public/includes/js/myjavascript.js"></script>
+
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#body-content").load("dashboard.html");
+                $("#navbar-left").load("inc/navbar.inc-admin.html");
+                $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
+                    // Set the initial content
+                    var selectedOption = $('#store').val();
+                    console.log(selectedOption);
+                    getUsersReportAndLoadWidgets(selectedOption, 0, 0, 0, 0);
+                });
+
+                });
+
+                $(document).on("change", '#store, #age', function () {
+                    var selectedOption = $(this).val();
+                    var selectedAge = $('#age').val();
+                    getUsersReportAndLoadWidgets(selectedOption,0,0, selectedAge);
+                    // Log the selected option to the console
+                    console.log(selectedOption, selectedAge);
+                });
+        </script>
+        <!-- Argon JS -->
+    </div>
+</body>
+
+</html>
