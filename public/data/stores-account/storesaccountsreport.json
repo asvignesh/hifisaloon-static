@@ -1,0 +1,38 @@
+[
+    {
+        "store": "T-Nagar",
+        "breakevenpoint": "2,50,000",
+        "costofsales": "1%",
+        "grossprofit": "99%",
+        "netprofit": "6%",
+        "operatingpoint": "6%",
+        "wagestoturnover": "72%"
+    },
+    {
+        "store": "Perumbakkam",
+        "breakevenpoint": "2,00,000",
+        "costofsales": "2%",
+        "grossprofit": "98%",
+        "netprofit": "5.5%",
+        "operatingpoint": "5.5%",
+        "wagestoturnover": "70%"
+    },
+    {
+        "store": "Pondicherry",
+        "breakevenpoint": "3,20,000",
+        "costofsales": "2.5%",
+        "grossprofit": "97.5%",
+        "netprofit": "7%",
+        "operatingpoint": "7%",
+        "wagestoturnover": "78%"
+    },
+    {
+        "store": "Alapakkam",
+        "breakevenpoint": "3,00,000",
+        "costofsales": "2.8%",
+        "grossprofit": "97.2%",
+        "netprofit": "7%",
+        "operatingpoint": "7%",
+        "wagestoturnover": "72%"
+    }
+]

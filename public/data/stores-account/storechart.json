@@ -1,0 +1,20 @@
+{
+    "accounts": [
+      {
+        "store": "T-Nagar",
+        "profit": "224000"
+      },
+      {
+        "store": "Perumbakkam",
+        "profit": "175000"
+      },
+      {
+        "store": "Pondicherry",
+        "profit": "150000"
+      },
+      {
+        "store": "Alapakkam",
+        "profit": "125000"
+      }
+    ]
+  }
