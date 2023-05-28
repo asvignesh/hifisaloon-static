@@ -2109,3 +2109,95 @@ function maskEmail(email) {
 
     return maskedUsername + '@' + maskedDomain + '.' + maskedExtension;
 }
+
+var incomeexpChart;
+
+function updateIncomeExpenseChart(data) {
+    incomeexpChart.data.labels = data.labels;
+    incomeexpChart.data.datasets = data.datasets;
+    incomeexpChart.update();
+}
+
+function loadIncomeExpenseChartFromApi(storeId) {
+    $.ajax({
+        url: 'public/data/incomeexpensereport/' + storeId + '.json',
+        method: 'get',
+        success: function (data) {
+            updateIncomeExpenseChart(data);
+        },
+        error: function (err) {
+            // Handle error
+        }
+    });
+}
+
+function initIncomeExpenseChart() {
+    if (document.getElementById("incomeexpense_chart")) {
+        incomeexpChart = new Chart($('#incomeexpense_chart'), {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+               
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0.1)",
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function (value) {
+                                return value.toLocaleString('en-IN', {
+                                    style: 'currency',
+                                    currency: 'INR'
+                                });
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Amount'
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var datasetLabel = data.datasets[tooltipItem.datasetIndex].label || '';
+                            var value = tooltipItem.yLabel;
+                            return datasetLabel + ': ' + value.toLocaleString('en-IN', {
+                                style: 'currency',
+                                currency: 'INR'
+                            });
+                        }
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        fontColor: '#333',
+                        usePointStyle: true // Use point style icons for legend markers
+                    }
+                }
+            }
+        });
+    }
+}
+
+function initAndLoadIncomeExpenseChart(storeId) {
+    initIncomeExpenseChart();
+    loadIncomeExpenseChartFromApi(storeId);
+}
