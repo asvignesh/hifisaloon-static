@@ -918,7 +918,7 @@ pre code
 
 .col-3
 {
-    max-width: 25%; 
+    max-width: 20%; 
 
     flex: 0 0 25%;
 }
@@ -2383,7 +2383,7 @@ pre code
 .form-control[readonly]
 {
     opacity: 1; 
-    background-color: #e9ecef;
+    background-color: #fff;
 }
 
 select.form-control:focus::-ms-value
@@ -2530,7 +2530,7 @@ textarea.form-control
 }
 .form-check-input:disabled ~ .form-check-label
 {
-    color: #8898aa;
+    color: #f8f9fb;
 }
 
 .form-check-label
@@ -17451,7 +17451,7 @@ a.btn-icon-only
 
 .card-stats .card-body
 {
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.5rem;
 }
 
 .card-stats .card-status-bullet

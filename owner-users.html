@@ -72,12 +72,7 @@
                             '<td>' + user.mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
                             '<td>' + user.firstVisit + '</td>' +
                             '<td>' + user.lastVisit + '</td>' +
-                            '<td>' + user.spendByYear + '</td>' +
-                            '<td class="table-actions">' +
-                            '<a href="user-' + user.id + '.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
-                            '<i class="fas fa-eye"></i>' +
-                            '</a>' +
-                            '</td>' +
+                            '<td style="text-align-last: right;">' + user.spendByYear + '</td>' +
                             '</tr>';
 
                         // Append the row to the table body
@@ -157,11 +152,6 @@
                     '<td>' + dateTime + '</td>' +
                     '<td>' + dateTime + '</td>' +
                     '<td>  0 </td>' +
-                    '<td class="table-actions">' +
-                    '<a href="user-1.html" class="table-action text-warning" data-toggle="tooltip" data-original-title="View client">' +
-                    '<i class="fas fa-eye"></i>' +
-                    '</a>' +
-                    '</td>' +
                     '</tr>';
 
                 // Append the row to the table body
@@ -205,9 +195,9 @@
                         <div class="col-lg-6 col-7">
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    <li class="breadcrumb-item text-white"><a href="public/owner/dashboard"><i
-                                            class="fas fa-home text-salon"></i></a></li>
-                                    <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Clients
+                                    <!-- <li class="breadcrumb-item text-white"><a href="public/owner/dashboard"><i
+                                            class="fas fa-home text-salon"></i></a></li> -->
+                                    <!-- <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Clients -->
                                     </li>
                                 </ol>
                             </nav>
@@ -222,9 +212,9 @@
                     <div class="card">
                         <!-- Card header -->
                         <div class="card-header border-0">
-                            <span class="h3">Users table</span>
+                            <span class="h3">Clients</span>
                             <button class="btn btn-primary addbtn float-right p-2 add_user" id="add_user"><i
-                                    class="fas fa-plus mr-1"></i>Add User
+                                    class="fas fa-plus mr-1"></i>Add Client
                             </button>
                         </div>
 
@@ -256,7 +246,7 @@
                                     <th scope="col" class="sort">First Visit</th>
                                     <th scope="col" class="sort">Recent Visit</th>
                                     <th scope="col" class="sort">Total Spent (avg / year )</th>
-                                    <th scope="col" class="sort">Action</th>
+                                    <!-- <th scope="col" class="sort">Action</th> -->
 
                                     <th scope="col"></th>
                                 </tr>

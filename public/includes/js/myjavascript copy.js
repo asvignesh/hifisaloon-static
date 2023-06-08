@@ -640,7 +640,7 @@ $(document.body).on("change", ".start_time", function () {
 $("#filter_date").flatpickr(
     {
         mode: "range",
-        dateFormat: "Y-m-d",
+        dateFormat: "d-M-Y",
         showMonths: 2,
     });
 

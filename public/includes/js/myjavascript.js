@@ -592,7 +592,7 @@ $(document.body).on("change", ".start_time", function () {
 $("#filter_date").flatpickr(
     {
         mode: "range",
-        dateFormat: "Y-m-d",
+        dateFormat: "d-M-Y",
         showMonths: 2,
     });
 
@@ -1534,9 +1534,11 @@ function getUsersReportAndLoadWidgets(storeId, dateStart, dateEnd, ageGroup) {
                     '<td>' + users.name + '</td>' +
                     '<td>' + maskEmail(users.email) + '</td>' +
                     '<td>' + users.mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
-                    '<td>' + users.age + '</td>' +
-                    '<td>' + users.smiles + '</td>' +
-                    '<td>' + users.spendByYear + '</td>' +
+                    '<td style="text-align-last: right;">' + users.age + '</td>' +
+                    '<td>' + users.gender + '</td>' +
+                    '<td style="text-align-last: right;">' + users.smiles + '</td>' +
+                    '<td style="text-align-last: right;">' + users.spendByYear + '</td>' +
+                    '<td>' + users.lastVisit + '</td>' +
                     '</tr>';
 
                 totalSmiles += users.smiles;
@@ -1884,8 +1886,7 @@ function initMrrChart() {
             type: 'line',
             options: {
                 title: {
-                    display: true,
-                    text: 'MRR chart'
+                    display: true
                 },
                 scales: {
                     yAxes: [{
@@ -1965,8 +1966,7 @@ function initMrrGrowthChart() {
             type: 'line',
             options: {
                 title: {
-                    display: true,
-                    text: 'MRR Growth Chart'
+                    display: true
                 },
                 scales: {
                     yAxes: [{
@@ -2048,8 +2048,7 @@ function initAvgMrrChart() {
             type: 'bar',
             options: {
                 title: {
-                    display: true,
-                    text: 'Avg MRR Chart'
+                    display: true
                 },
                 scales: {
                     yAxes: [{
