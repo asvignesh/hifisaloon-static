@@ -60,16 +60,24 @@
                     // Loop through each user object in the response data
                     $.each(offers, function (index, offer) {
                         console.log(offer);
+                        var status = `
+                            <td>
+                                <label class="custom-toggle">
+                                <input id="my-checkbox" type="checkbox" checked>
+                                <span class="custom-toggle-slider rounded-circle" data-label-off="Invalid" data-label-on="Valid"></span>
+                                </label>
+                            </td>
+                            `;
                         // Create a new row with the user data
                         var row = '<tr>' +
                             '<th>' + offer.id + '</th>' +
                             '<td>' + offer.title + '</td>' +
                             '<td>' + offer.discount + '</td>' +
                             '<td>' + offer.expiry + '</td>' +
-                            '<td>' + offer.status + '</td>' +
+                            status +
                             '</td>' +
-                            '<td class="table-actions"> <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"        onclick="" data-toggle="tooltip" data-original-title="View offer"> <i class="fas fa-eye"></i> </button> <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick=""        data-toggle="tooltip" data-original-title="Edit offer"> <i class="fas fa-user-edit"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white"        onclick="deleteData" data-toggle="tooltip" data-original-title="Delete offer"><i class="fas fa-trash"></i></button><button class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white" onclick="shareWhatsapp" data-toggle="tooltip" data-original-title="share whatsapp"><i class="fa-brands fa-whatsapp"> </i></button ><button class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white" onclick="shareSms" data-toggle="tooltip" data-original-title="share sms"> <i class="fas fa-comment-sms"> </i></button ></td > '
-                        '</tr>';
+                            '<td class="table-actions"> <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"        onclick="" data-toggle="tooltip" data-original-title="View offer"> <i class="fas fa-eye"></i> </button> <button class="btn-white btn shadow-none p-0 m-0 table-action text-info bg-white" onclick=""        data-toggle="tooltip" data-original-title="Edit offer"> <i class="fas fa-user-edit"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white"        onclick="deleteData" data-toggle="tooltip" data-original-title="Delete offer"><i class="fas fa-trash"></i></button><button class="btn-white btn shadow-none p-0 m-0 table-action text-success bg-white" onclick="shareWhatsapp" data-toggle="tooltip" data-original-title="share whatsapp"><i class="fa-brands fa-whatsapp"> </i></button ><button class="btn-white btn shadow-none p-0 m-0 table-action text-primary bg-white" onclick="shareSms" data-toggle="tooltip" data-original-title="share sms"> <i class="fas fa-comment-sms"> </i></button ></td> '
+                            '</tr>';
 
                         // Append the row to the table body
                         $('#dataTableOffers tbody').append(row);
