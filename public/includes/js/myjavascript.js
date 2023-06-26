@@ -323,44 +323,44 @@ function copy_function(id) {
     document.body.removeChild(input_temp);
 };
 
-$(document).ready(function () {
-    $('#dataTable').DataTable({
-        dom: 'Bfrtip',
-        language: {
-            paginate: {
-                previous: "<i class='fas fa-angle-left'>",
-                next: "<i class='fas fa-angle-right'>"
-            }
-        },
-        buttons: [{
-            extend: 'copyHtml5',
-            title: new Date().toISOString()
-        },
-            {
-                extend: 'excelHtml5',
-                title: new Date().toISOString()
-            },
-            {
-                extend: 'csvHtml5',
-                title: new Date().toISOString()
-            },
-            {
-                extend: 'pdfHtml5',
-                title: new Date().toISOString()
-            },
-        ]
-    });
-    $('#dataTableUser').DataTable({
-        dom: 'Bfrtip',
-        language: {
-            paginate: {
-                previous: "<i class='fas fa-angle-left'>",
-                next: "<i class='fas fa-angle-right'>"
-            }
-        },
-        buttons: []
-    });
-});
+// $(document).ready(function () {
+//     $('#dataTable').DataTable({
+//         dom: 'Bfrtip',
+//         language: {
+//             paginate: {
+//                 previous: "<i class='fas fa-angle-left'>",
+//                 next: "<i class='fas fa-angle-right'>"
+//             }
+//         },
+//         buttons: [{
+//             extend: 'copyHtml5',
+//             title: new Date().toISOString()
+//         },
+//             {
+//                 extend: 'excelHtml5',
+//                 title: new Date().toISOString()
+//             },
+//             {
+//                 extend: 'csvHtml5',
+//                 title: new Date().toISOString()
+//             },
+//             {
+//                 extend: 'pdfHtml5',
+//                 title: new Date().toISOString()
+//             },
+//         ]
+//     });
+//     $('#dataTableUser').DataTable({
+//         dom: 'Bfrtip',
+//         language: {
+//             paginate: {
+//                 previous: "<i class='fas fa-angle-left'>",
+//                 next: "<i class='fas fa-angle-right'>"
+//             }
+//         },
+//         buttons: []
+//     });
+// });
 
 
 var loadFile = function (event) {
