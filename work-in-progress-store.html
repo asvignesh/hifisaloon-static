@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
+    <meta name="base_url" content="public">
+
+    <style>
+        :root {
+            --primary_color: #502f8f;
+            --primary_color_hover: #502f8fcc;
+        }
+        .total{
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding-left: 1%;
+            white-space: nowrap; 
+            width:fit-content;
+        }
+    </style>
+
+    <!-- Title -->
+    <title>HiFi Salon</title>
+
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div class="preload">
+    <img src="public/storage/images/app/loader.gif" class="loader" alt="">
+</div>
+<div class="for-loader">
+    <form id="logout-form" action="public/logout" method="POST" style="display: none;">
+        <input type="hidden" name="_token" value="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
+    </form>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div id="navbar-left"></div>
+    </nav>
+
+    <div class="main-content">
+        <div id="navbar-top"></div>
+
+
+        <div class="header pt-9"
+             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;padding-bottom: 50px;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+            <div class="container-fluid">
+                <div class="header-body">
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mt--4">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <img src="public/storage/images/app/wip.jpg" alt="Work In Progress"  style="width: 900px; height: 600px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+
+    <script src="public/includes/js/Chart.min.js"></script>
+    <script src="public/includes/js/Chart.extension.js"></script>
+    <script src="public/includes/js/jquery.min.js"></script>
+    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+    <script src="public/includes/js/argon.js"></script>
+    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+    <script src="public/includes/js/sweetalert.all.js"></script>
+    <script src="public/includes/js/jquery.timepicker.js"></script>
+
+
+    <script src="public/includes/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="public/includes/js/myjavascript.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc.html");
+            generateReport();
+            });
+       
+    </script>
+    <!-- Argon JS -->
+</div>
+</body>
+
+</html>

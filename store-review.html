@@ -71,7 +71,7 @@
                             '<td>' + review.message + '</td>' +
                             '<td>' + stars + '</td>' +
                             '<td>' + review.createdat + '</td>' +
-                            '<td class="table-actions"> <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"        onclick="" data-toggle="tooltip" data-original-title="View review"> <i            class="fas fa-eye"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white"        onclick="deleteData" data-toggle="tooltip" data-original-title="Delete review">        <i class="fas fa-trash"></i > </button ><button class="btn-white btn shadow-none p-0 m-0 table-action text-primary bg-white" onclick="reviewOnGoogle" data-toggle="tooltip" data-original-title="Review us on Google"><i class="fab fa-google"></i></button></td > '
+                            '<td class="table-actions"> <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white"        onclick="" data-toggle="tooltip" data-original-title="View review"> <i            class="fas fa-eye"></i> </button> <button        class="btn-white btn shadow-none p-0 m-0 table-action text-danger bg-white"        onclick="deleteData" data-toggle="tooltip" data-original-title="Delete review">        <i class="fas fa-trash"></i > </button ><button class="btn-white btn shadow-none p-0 m-0 table-action text-primary bg-white" onclick="reviewOnGoogle()" data-toggle="tooltip" data-original-title="Review us on Google"><i class="fab fa-google"></i></button></td > '
                         '</tr>';
 
                         // Append the row to the table body
@@ -87,6 +87,10 @@
             $("#navbar-left").load("inc/navbar.inc.html");
             $("#navbar-top").load("inc/navbar-top-inc.html");
         });
+
+        function reviewOnGoogle() {
+            window.location.href = "https://maps.app.goo.gl/mEMaHniMqfeokJBX9?g_st=ic"; // Replace with your desired Google Maps URL
+        }
     </script>
 </head>
 
