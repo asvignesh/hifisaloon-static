@@ -94,8 +94,8 @@
                                     <select class="form-control select2 select2-hidden-accessible" name="services"
                                         id="services" dir="" data-select2-id="services" tabindex="-1"
                                         aria-hidden="true">
-                                        <option selected="" value="" data-select3-id="3"> -- Select Year -- </option>
-                                        <option value="954" data-select2-id="923">2023</option>
+                                        <option disabled value="" data-select3-id="3"> -- Select Year -- </option>
+                                        <option value="954" data-select2-id="923" selected>2023</option>
                                         <option value="955" data-select2-id="924">2022</option>
                                         <option value="956" data-select2-id="925">2021</option>
                                         <option value="957" data-select2-id="926">2020</option>
@@ -134,11 +134,11 @@
         
                                     </tbody>
                                 </table>
-                                <div class="total"><b>Total Revenue</b><b style="margin-left: 125px;"><span class="h5 mb-0">&#8377;</span>9,00,000.00</b>
-                                    <b  style="margin-left: 90px;"><span class="h5 mb-0">&#8377;</span>5,65,000.00</b>
-                                    <b  style="margin-left: 40px;"><span class="h5 mb-0">&#8377;</span>3,45,000.00</b>
-                                    <b  style="margin-left: 230px;"><span class="h5 mb-0">&#8377;</span>61,900.00</b>
-                                    <b  style="margin-left: 95px;"><span class="h5 mb-0">&#8377;</span>61,900.00</b></div>
+                                <div class="total"><b>Total Revenue</b><b style="margin-left: 123px;"><span class="h5 mb-0">&#8377;</span> 9,00,000.00</b>
+                                    <b  style="margin-left: 85px;"><span class="h5 mb-0">&#8377;</span> 5,65,000.00</b>
+                                    <b  style="margin-left: 35px;"><span class="h5 mb-0">&#8377;</span> 3,45,000.00</b>
+                                    <b  style="margin-left: 230px;"><span class="h5 mb-0">&#8377;</span> 61,900.00</b>
+                                    <b  style="margin-left: 90px;"><span class="h5 mb-0">&#8377;</span> 61,900.00</b></div>
                                 <br>
                             </div>
                         </div>
@@ -236,6 +236,22 @@
             $("#navbar-top").load("inc/navbar-top-inc-admin.html");
         });
        
+    </script>
+     <script>
+        $(document).ready(function () {
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc-admin.html");
+            $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
+                $('#store').val(0);
+                var selectedOption = $('#store').val();
+
+                $('#store option:not(:selected)').prop('disabled', true);
+                $('#store').change(function() {
+                    $('#store option:not(:selected)').prop('disabled', true);
+                    $('#store option:selected').prop('disabled', false);
+                });
+            });
+        });
     </script>
     <!-- Argon JS -->
 </div>

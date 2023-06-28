@@ -207,10 +207,10 @@
                             // Create a new row with the user data
                             var row = '<tr>' +
                                 '<th>' + incomeexpensedata1.costcenter + '</th>' +
-                                '<td style="text-align-last: right;">' + incomeexpensedata1.budget + '</td>' +
-                                '<td style="text-align-last: right;">' + incomeexpensedata1.actual + '</td>' +
-                                '<td style="text-align-last: right;">' + incomeexpensedata1.budget1 + '</td>' +
-                                '<td style="text-align-last: right;">' + incomeexpensedata1.actual1 + '</td>' +
+                                '<td style="text-align-last: right;"> <span class="h5 mb-0">&#8377; </span>' + incomeexpensedata1.budget + '</td>' +
+                                '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377; </span>' + incomeexpensedata1.actual + '</td>' +
+                                '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377; </span>' + incomeexpensedata1.budget1 + '</td>' +
+                                '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377; </span>' + incomeexpensedata1.actual1 + '</td>' +
                                '</tr>';
     
                             // Append the row to the table body
@@ -233,7 +233,14 @@
                 $("#body-content").load("dashboard.html");
                 $("#navbar-left").load("inc/navbar.inc-admin.html");
                 $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
+                    $('#store').val(0);
                     var selectedOption = $('#store').val();
+                    $('#store option:not(:selected)').prop('disabled', true);
+                    $('#store').change(function() {
+                        $('#store option:not(:selected)').prop('disabled', true);
+                        $('#store option:selected').prop('disabled', false);
+                    });
+                    
                     initAndLoadIncomeExpenseChart(selectedOption);
                 });
             });

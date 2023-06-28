@@ -159,7 +159,7 @@
                                 <div class="card-header bg-transparent">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h5 class="text-uppercase text-muted ls-1 mb-1">Accounts by Store</h5>
+                                            <h5 class="text-uppercase text-muted ls-1 mb-1">Turn-over by Store</h5>
                                         </div>
         
                                     </div>
@@ -241,7 +241,7 @@
                             // Create a new row with the user data
                             var row = '<tr>' +
                                 '<th>' + storeaccountsdata1.store + '</th>' +
-                                '<td style="text-align-last: right;">' + storeaccountsdata1.breakevenpoint + '</td>' +
+                                '<td style="text-align-last: right;"><span class="h5 mb-0">&#8377; </span>' + storeaccountsdata1.breakevenpoint + '</td>' +
                                 '<td style="text-align-last: right;">' + storeaccountsdata1.costofsales + '</td>' +
                                 '<td style="text-align-last: right;">' + storeaccountsdata1.grossprofit + '</td>' +
                                 '<td style="text-align-last: right;">' + storeaccountsdata1.netprofit + '</td>' +
@@ -269,7 +269,13 @@
                 $("#body-content").load("dashboard.html");
                 $("#navbar-left").load("inc/navbar.inc-admin.html");
                 $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
+                    $('#store').val(0);
                     var selectedOption = $('#store').val();
+                    $('#store option:not(:selected)').prop('disabled', true);
+                    $('#store').change(function() {
+                        $('#store option:not(:selected)').prop('disabled', true);
+                        $('#store option:selected').prop('disabled', false);
+                    });
                     loadaccounts(selectedOption);
                 });
             });
