@@ -1,11 +1,11 @@
 // Fetch data from backend
 const data = [
-    { month: "Dec", totalClients: 130, returningClients: 90 },
-    { month: "Jan", totalClients: 110, returningClients: 50 },
-    { month: "Feb", totalClients: 80, returningClients: 40 },
-    { month: "Mar", totalClients: 100, returningClients: 60 },
-    { month: "Apr", totalClients: 120, returningClients: 80 },
-    { month: "May", totalClients: 90, returningClients: 50 }
+    { month: "Dec", totalClients: 130, returningClients: 90, retentionRate: 69.23},
+    { month: "Jan", totalClients: 110, returningClients: 50, retentionRate: 45.45},
+    { month: "Feb", totalClients: 80, returningClients: 40, retentionRate: 50.00},
+    { month: "Mar", totalClients: 100, returningClients: 60, retentionRate: 60.00},
+    { month: "Apr", totalClients: 120, returningClients: 80, retentionRate: 66.67},
+    { month: "May", totalClients: 90, returningClients: 50, retentionRate: 55.56}
   ];
   
   // Process data into chart format
@@ -27,6 +27,14 @@ const data = [
         fill: false,
         pointStyle: "rect",
         pointBackgroundColor: "rgb(255, 99, 132)"
+      },
+      {
+        label: "Retention Rate",
+        data: data.map(d => d.retentionRate),
+        borderColor: "rgb(180, 90, 131)",
+        fill: false,
+        pointStyle: "rect",
+        pointBackgroundColor: "rgb(180, 90, 131)"
       }
     ]
   };
