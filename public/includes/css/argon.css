@@ -572,8 +572,8 @@ h6,
 
 hr
 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
 
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, .1);
@@ -5725,7 +5725,7 @@ input[type='button'].btn-block
 
 .card-body
 {
-    padding: 1.5rem; 
+    padding: 1rem; 
 
     flex: 1 1 auto;
 }
@@ -10061,7 +10061,7 @@ button.bg-darker:focus
 .mr-9,
 .mx-9
 {
-    margin-right: 10rem !important;
+    margin-right: 0rem !important;
 }
 
 .mb-9,
@@ -10073,7 +10073,7 @@ button.bg-darker:focus
 .ml-9,
 .mx-9
 {
-    margin-left: 10rem !important;
+    margin-left: 13rem !important;
 }
 
 .p-0
