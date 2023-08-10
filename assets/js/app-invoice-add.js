@@ -115,32 +115,14 @@ $(function () {
   }
 
   // Item details select onchange
-  $(document).on('change', '.item-details', function () {
-    var $this = $(this),
-      value = adminDetails[$this.val()];
-    if ($this.next('textarea').length) {
-      $this.next('textarea').val(value);
-    } else {
-      $this.after('<textarea class="form-control" rows="2">' + value + '</textarea>');
-    }
-  });
+  // $(document).on('change', '.item-details', function () {
+  //   var $this = $(this),
+  //     value = adminDetails[$this.val()];
+  //   if ($this.next('textarea').length) {
+  //     $this.next('textarea').val(value);
+  //   } else {
+  //     $this.after('<textarea class="form-control" rows="2">' + value + '</textarea>');
+  //   }
+  // });
 });
-
-function previewInvoice() {
-  console.log("Invoice preview");
-  var custName = $('#custName').val();
-  var custAddress = $('#custAddress').val();
-  var custEmailId = $('#custEmailId').val();
-  var contact = $('#contact').val();
-
-  const invoiceData = {
-      custName: custName,
-      custAddress: custAddress,
-      custEmailId: custEmailId,
-      contact: contact
-  };
-  
-  localStorage.setItem("invoiceData", JSON.stringify(invoiceData));
-  window.location.href = "./invoice-preview.html";
-}
 

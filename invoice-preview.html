@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="assets/vendor/fonts/materialdesignicons.css"/>
     <!-- CSS -->
     <link href="public/includes/css/nucleo.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/vendor/css/rtl/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="public/includes/css/core.css" class="template-customizer-core-css"/>
     <link rel="stylesheet" href="assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css"/>
     <link href="public/includes/css/all.min.css" rel="stylesheet">
     <link href="public/includes/css/sweetalert2.scss">
@@ -74,13 +74,14 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
     <link href="public/includes/css/argon.css" rel="stylesheet">
-    <link href="public/includes/css/mystyle.css" rel="stylesheet">
+    <!-- <link href="public/includes/css/mystyle.css" rel="stylesheet"> -->
+    <link href="public/includes/css/invoice/invoice-create.css" rel="stylesheet">
+    <link href="public/includes/css/invoice/invoice-preview.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script>
-
-    </script>
+    <!-- html2pdf CDN link -->
+    
 </head>
 
 <body class="">
@@ -120,226 +121,145 @@
                 <div class="row invoice-preview">
                     <!-- Invoice -->
                     <div class="col-xl-9 col-md-8 col-12 mb-md-0 mb-4">
-                        <div class="card invoice-preview-card">
-                            <div class="card-body">
-                                <div class="row mx-9">
-                                    <div class="col-md-7 mb-md-0 mb-4 ps-0">
-                                        <div class="d-flex svg-illustration align-items-center gap-2 mb-4">
-                                            <span class="app-brand-logo demo">
-                                            <span style="color: var(--bs-primary)">
-                                            </span>
-                                            </span>
-                                            <img alt="..." class="navbar-brand-img sidebar-logo" src="public/storage/images/app/naturals_logo.png">
-                                        </div>
-                                        <div id="address"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-0"/>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between flex-wrap">
-                                    <div class="my-3">
-                                        <!-- <p class="mb-1" id="name">Thomas shelby</p> -->
-                                        <div class="container">
-                                            <div class="labels">
-                                              <p class="mb-1">Customer:</p>
-                                              <p class="mb-1">Phone No:</p>
-                                              <p class="mb-1">Bill No:</p>
-                                              <p class="mb-1">Date:</p>
-                                            </div>
-                                            <div class="values">
-                                              <p class="mb-1"><span id="custName">John Doe</span></p>
-                                              <p class="mb-1"><span id="contact">123-456-7890</span></p>
-                                              <p class="mb-1"><span>1234</span></p>
-                                              <p class="mb-1"><span>23-07-23</span></p>
-                                            </div>
-                                          </div>                                          
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table m-0">
-                                    <thead class="table-light border-top">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Description</th>
-                                        <th>Cost</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="text-nowrap">Vuexy Admin Template</td>
-                                        <td class="text-nowrap">HTML Admin Template</td>
-                                        <td>$32</td>
-                                        <td>1</td>
-                                        <td>$32.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">Frest Admin Template</td>
-                                        <td class="text-nowrap">Angular Admin Template</td>
-                                        <td>$22</td>
-                                        <td>1</td>
-                                        <td>$22.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">Apex Admin Template</td>
-                                        <td class="text-nowrap">HTML Admin Template</td>
-                                        <td>$17</td>
-                                        <td>2</td>
-                                        <td>$34.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">Robust Admin Template</td>
-                                        <td class="text-nowrap">React Admin Template</td>
-                                        <td>$66</td>
-                                        <td>1</td>
-                                        <td>$66.00</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                             <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="invoice-calculations">
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Basic Sales:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">10% Special Offer:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Member discount:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Subtotal:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">GST:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <hr/>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">Net Amount:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="invoice-calculations">
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Net Total:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Round(off)</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">Bill Amount:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="invoice-calculations">
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Tender Amount:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Change Amount:</span>
-                                                            <span class="fw-semibold"><span class="h5 mb-0" style="color: #828393;">&#8377; </span>00.00</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">Paid through:</span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="tax-summary">
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">Tax Summary</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">CGST 9%:</span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">SGST 9%:</span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label for="note" class="form-label fw-bold">Note:</label>
-                                                        <textarea class="form-control" rows="2" id="note"
-                                                                  placeholder="Invoice note"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0"/>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="invoice-calculations">
-                                                        <div class="d-flex justify-content-between mb-2">
-                                                            <span class="w-px-100">GSTIN:</span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">Mail -</span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="w-px-100">Customer Care # - </span>
-                                                            <span class="fw-semibold"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="fw-bold">Note:</span>
-                                        <span
-                                        >It was a pleasure working with you and your team. We hope you will keep us in mind for
-                        future freelance projects. Thank You!</span
-                                        >
-                                    </div>
+                        <div class="align-center">
+                            <div id="receipt" class="card receipt">
+                                <div class="recept-body">
+                                    <img id="customLogo" class="center-image" alt="Logo" src="https://i.ibb.co/YRXpXDR/Whats-App-Image-2023-07-28-at-9-30-21-PM.jpg" style="width: 125px; height: auto;">
+                                    <div style="text-align: center;" id="storeName"></div>
+                                    <div style="text-align: center;" id="storeAddress"></div>
+                                    <table style="border-top: none;">
+                                        <tbody>
+                                            <tr>
+                                                <th colspan="4" class="description" style="text-align: center;">
+                                                    Tax Invoice
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2" class="title">Customer:</td>
+                                                <td colspan="2" class="title-value custName"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Phone No:</td>
+                                                <td colspan="2" class="description custMobile"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Bill No:</td>
+                                                <td colspan="2" class="description invoiceNumber"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Date: </td>
+                                                <td colspan="2" class="description invoiceDate"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="description">Services</th>
+                                                <th class="quantity">Qty</th>
+                                                <th class="rate">Rate</th>
+                                                <th class="price">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="preview-items">
+                                            
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody class="discountSummary">
+                                            <tr>
+                                                <td colspan="2" class="description">Basic Sales</td>
+                                                <td colspan="2" class="price basicSales"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="description discountCoupons">10% Special Discount</td>
+                                                <td colspan="1" class="price couponDiscount">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Mem. Discount</td>
+                                                <td colspan="2" class="price membershipDiscount">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Sub Total</td>
+                                                <td colspan="2" class="price subTotal">0.00</td>
+                                            </tr>
+                                            <tr class="previewGst">
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="description">Net Amount</th>
+                                                <th colspan="2" class="price netAmount">0.00</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody class="netTotal">
+                                            <tr>
+                                                <td colspan="2" class="description">Net Total</td>
+                                                <td colspan="2" class="price netAmount">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Round(Off)</td>
+                                                <td colspan="2" class="price roundOff">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="description">Bill Amount</th>
+                                                <th colspan="2" class="price billAmount">0.00</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2" class="description">Tender Amount</td>
+                                                <td colspan="2" class="price">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Change Amount</td>
+                                                <td colspan="2" class="price">0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Paid Through</td>
+                                                <td colspan="2" class="description price paymentMethod"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody class="taxSummary">
+                                            <tr>
+                                                <th colspan="4" class="description">Tax Summary</th>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="4" class="description" style="text-align: justify;">
+                                                    <span class="store-info">We are expanding our salon network. Intrested in owning a salon in an unrepresented area? 
+                                                    Please write to us for franchised buisiness oppertunities</span>
+                                                    <br> Mail: <span class="custCareEmail"></span>
+                                                    <br> Call: <span class="storeCareNo"></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="4" class="description">
+                                                    GSTIN: <span class="gstTin"></span>
+                                                    <br>In case of any suggestions/compliants
+                                                    <br> Mail: <span class="custCareEmail"></span>
+                                                    <br> Customer Care: <span class="custCareNo"></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -348,35 +268,31 @@
 
                     <!-- Invoice Actions -->
                     <div class="col-xl-3 col-md-4 col-12 invoice-actions">
-                        <div class="card">
+                        <div class="card" style="position: sticky; top: 20px; z-index: 1000;">
                             <div class="card-body">
                                 <button
-                                        class="btn btn-primary d-grid w-100 mb-3"
-                                        data-bs-toggle="offcanvas"
-                                        data-bs-target="#sendInvoiceOffcanvas">
-                    <span class="d-flex align-items-center justify-content-center text-nowrap"
-                    ><i class="mdi mdi-send-outline scaleX-n1-rtl me-1"></i>Send Invoice</span
-                    >
+                                    class="btn btn-primary d-grid w-100 mb-3"
+                                    data-bs-toggle="offcanvas"
+                                    data-bs-target="#sendInvoiceOffcanvas"
+                                >
+                                    <span class="d-flex align-items-center justify-content-center text-nowrap"
+                                    ><i class="mdi mdi-send-outline scaleX-n1-rtl me-1"></i>Send Invoice</span>
                                 </button>
-                                <button class="btn btn-outline-secondary d-grid w-100 mb-3">Download</button>
-                                <a
-                                        class="btn btn-outline-secondary d-grid w-100 mb-3"
-                                        target="_blank"
-                                        href="./app-invoice-print.html">
-                                    Print
-                                </a>
+                                <button id="btnDownloadInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Download</button>
+                                <button id="btnPrintInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Print</button>
                                 <a href="./app-invoice-edit.html"
                                    class="btn btn-outline-secondary d-grid w-100 mb-3">
                                     Edit Invoice
                                 </a>
-                                <button
-                                        class="btn btn-success d-grid w-100"
-                                        data-bs-toggle="offcanvas"
-                                        data-bs-target="#addPaymentOffcanvas">
-                    <span class="d-flex align-items-center justify-content-center text-nowrap"
-                    ><i class="mdi mdi-currency-usd me-1"></i>Add Payment</span
-                    >
-                                </button>
+                                <button id="btnCancelInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Cancel Invoice</button>
+                                <!-- <button
+                                    class="btn btn-success d-grid w-100"
+                                    data-bs-toggle="offcanvas"
+                                    data-bs-target="#addPaymentOffcanvas"
+                                >
+                                    <span class="d-flex align-items-center justify-content-center text-nowrap"
+                                    ><i class="mdi mdi-currency-usd me-1"></i>Add Payment</span>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -599,48 +515,240 @@
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
 
+<!-- Plugins for Print and Download Functionality -->
+<script src="assets/vendor/libs/jQuery.print/jQuery.print.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+
 <!-- Page JS -->
 <!-- <script src="assets/js/offcanvas-send-invoice.js"></script> -->
 <script src="assets/js/app-invoice-add.js"></script>
     
     <script type="module">
         $(document).ready(function () {
+            var invoiceNum;
+            var storeName;
+            const discountData = {
+                "STORE0": 0,
+                "STORE50": 5,
+                "STORE75": 7.5,
+                "STORE100": 10,
+                "STORE125": 12.5,
+                "STORE150": 15
+            }
+            
+            // var doc = new jsPDF(); 
+            
             $("#body-content").load("dashboard.html");
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
                 var selectedOption = $('#store').val();
-                var storeName = $(this).find(':selected').text();
+                storeName = $(this).find(':selected').text();
+                invoiceNum = JSON.parse(localStorage.getItem("invoiceData")).invoiceNumber;
+                getInvoiceDetails()
                 getStoreAddress(storeName);
                 $('#store').on('change', function () {
                     storeName = $(this).find(':selected').text();
                     getStoreAddress(storeName);
+                    getInvoiceDetails()
                 });
+
                 function getStoreAddress(storeName){
                     $.ajax({
-                            url: baseUrl + 'stores/' + storeName,
-                            method: 'GET',
-                            headers: {
-                                "Authorization": "Bearer " + bearerToken
-                            },
-                            success: function (response) {
-                                console.log("Success");
-                                $('#address').text(response.address);
-                            },
-                            error: function () {
-                                console.log('Failed to fetch available numbers');
-                            }
-                        });
-                }        
+                        url: baseUrl + 'stores/' + storeName,
+                        method: 'GET',
+                        headers: {
+                            "Authorization": "Bearer " + bearerToken
+                        },
+                        success: function (response) {
+                            console.log("Success");
+                        },
+                        error: function () {
+                            console.log('Failed to fetch available numbers');
+                        }
+                    });
+                }
+
+                function getInvoiceDetails() {
+                    $.ajax({
+                        url: baseUrl + 'stores/' + storeName + '/invoice/' + invoiceNum,
+                        method: 'GET',
+                        data: { 
+                            client: 'y', 
+                            store: 'y', 
+                            org: 'y'
+                        },
+                        headers: {
+                            "Authorization": "Bearer " + bearerToken
+                        },
+                        success: function (invoiceData) {
+                            const paymentMethod = JSON.parse(localStorage.getItem("paymentMethod"));
+                            console.log("InvoiceDetails", invoiceData);
+                            $('.custName').text(invoiceData.client.name);
+                            $('.custMobile').text(invoiceData.clientMobile);
+                            $('#storeName').text(invoiceData.storeName);
+                            $('#storeAddress').text(invoiceData.store.address + ", " + invoiceData.store.phone);
+                           // $('#customLogo').attr('src', invoiceData.store.org.logoUrl);
+                            $('.invoiceNumber').text(invoiceData.invoiceNumber);
+                            $('.invoiceDate').text(moment(invoiceData.createdAt).format('DD-MM-YYYY HH:mm'));
+                            $('.basicSales').text(invoiceData.basicSales.toFixed(2));
+                            $('.discountCoupons').text( invoiceData.coupons.join(", ") ? 'Discount ' + discountData[invoiceData.coupons.join(", ")] + '%' : 'Discount' );
+                            $('.couponDiscount').text(invoiceData.couponDiscount.toFixed(2));
+                            $('.membershipDiscount').text(invoiceData.membershipDiscount.toFixed(2));
+                            $('.subTotal').text(invoiceData.subTotal.toFixed(2));
+                            $('.netAmount').text(invoiceData.netAmount.toFixed(2));
+                            $('.billAmount').text(Math.round(invoiceData.netAmount).toFixed(2));
+                            $('.roundOff').text((Math.round(invoiceData.netAmount) - invoiceData.netAmount).toFixed(2));
+                            $('.gstTin').text(invoiceData.store.tin);
+                            $('.custCareEmail').text(invoiceData.store.org.email);
+                            $('.storeCareNo').text(invoiceData.store.org.mobile);
+                            $('.custCareNo').text(invoiceData.store.org.customerCareNumber);
+                            $('.store-info').text(invoiceData.store.org.message);
+                            $('.paymentMethod').text(paymentMethod.join(", "));
+
+                            // Items Summary
+                            const itemcontainer = $('.preview-items');
+                            var totalQty = 0;
+                            invoiceData.items.forEach(function(item) {
+                                totalQty += item.itemQty;
+                                var tr = $('<tr>');
+                                tr.append('<td class="description">' + item.itemName + '</td>');
+                                tr.append('<td class="quantity">' + item.itemQty + '</td>');
+                                tr.append('<td class="rate">' + item.itemPrice.toFixed(2) + '</td>');
+                                tr.append('<td class="price">' + (item.itemQty * item.itemPrice).toFixed(2) + '</td>');
+                                itemcontainer.append(tr);
+                                // if(item.serviceCharge) {
+                                //     totalQty += 1;
+                                //     var tr = $('<tr>');
+                                //     tr.append('<td class="description">' + 'Service charge by Stylist' + '</td>');
+                                //     tr.append('<td class="quantity">' + 1 + '</td>');
+                                //     tr.append('<td class="rate">' + item.serviceCharge.toFixed(2) + '</td>');
+                                //     tr.append('<td class="price">' + item.serviceCharge.toFixed(2) + '</td>');
+                                //     itemcontainer.append(tr);
+                                // }
+                            });
+                            var tr = $('<tr>');
+                            tr.append('<th class="description">' + 'Total' + '</th>');
+                            tr.append('<th class="quantity">' + totalQty + '</th>');
+                            tr.append('<th colspan="2" class="price">' + invoiceData.basicSales.toFixed(2) + '</th>');
+                            itemcontainer.append(tr);
+
+                            // Discount Summary discountSummary
+                            const discountcontainer = $('.discountSummary');
+
+                            // Tax Summary 
+                            var totalTax = 0;
+                            const taxcontainer = $('.taxSummary');
+                            invoiceData.taxSummary.forEach(function(tax) {
+                                totalTax += tax.percentage;
+                                var tr = $('<tr>');
+                                tr.append('<td colspan="2" class="description">' + tax.name + ": " + tax.percentage + '%' + '</td>');
+                                tr.append('<td colspan="2" class="price">' + tax.amount.toFixed(2) + '</td>');
+                                taxcontainer.append(tr)
+                            });
+                            const gstcontainer = $('.previewGst');
+                            gstcontainer.append('<td colspan="2" class="description">' + "GST" + '</td>');
+                            gstcontainer.append('<td class="rate">' + totalTax + "%" + '</td>');
+                            gstcontainer.append('<td class="price">' + invoiceData.tax.toFixed(2) + '</td>');
+                            
+
+                        },
+                        error: function () {
+                            console.log('Failed to fetch available numbers');
+                        }
+                    });
+                    
+                }
+                 
+                
+            });
+
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            const button = document.getElementById("btnDownloadInvoive");
+
+            function generatePDF() {
+                console.log('Download triggered')
+                // Choose the element that your content will be rendered to.
+                const element = document.getElementById("receipt");
+
+                var opt = {
+                    margin:       [0, 0],
+                    filename:     `invoice_${invoiceNum}.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  {
+                        scale: 2,
+                        y: 0,
+                        x: 0,
+                        scrollY: 0,
+                        scrollX: 0,
+                        windowWidth: 400,
+                        height: element.offsetHeight,
+                        width: element.offsetWidth,
+                        dpi: 192,
+                        letterRendering: true
+                    },
+                    jsPDF:        { unit: 'mm', format: [108, 210], orientation: 'portrait'}
+                };
+                
+                // Choose the element and save the PDF for your user.
+                html2pdf().set(opt).from(element).save();
+            }
+
+            button.addEventListener("click", generatePDF);
+
+            $('#btnPrintInvoive').on('click', function() { 
+                let data = {status: "printed"}
+
+                $.print(".receipt");
+                $.ajax({
+                    url: baseUrl + 'stores/' + storeName + '/invoice/' + 19 + '/status',
+                    method: 'PUT',
+                    headers: {
+                        "Authorization": "Bearer " + bearerToken
+                    },
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log("Success");
+                        // window.location.href = "./invoice-add.html";
+                    },
+                    error: function () {
+                        console.log('Failed to fetch available numbers');
+                    }
+                });
 
             });
 
-            const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
-            $('#custName').text(invoiceData.custName);
-            $('#contact').text(invoiceData.contact);
-            $('#custAddress').text(invoiceData.custAddress);
-            $('#custEmailId').text(invoiceData.custEmailId);
+            $('#btnCancelInvoive').on('click', function() { 
+                let data = {status: "cancel"}
 
+                $.ajax({
+                    url: baseUrl + 'stores/' + storeName + '/invoice/' + 19 + '/status',
+                    method: 'PUT',
+                    headers: {
+                        "Authorization": "Bearer " + bearerToken
+                    },
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log("Success");
+                        window.location.href = "./invoice-add.html";
+                    },
+                    error: function () {
+                        console.log('Failed to fetch available numbers');
+                    }
+                });
+            });
         });
     </script>
 

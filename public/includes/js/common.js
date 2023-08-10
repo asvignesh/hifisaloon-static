@@ -1,2 +1,3 @@
 const baseUrl = 'https://hifi-backend-dot-cogent-tangent-383610.el.r.appspot.com/';
-let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGE2YmNmMDA3NzYwMzZmNGVlNzIwMDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTA2NTI3NDV9.5mshqQPPMgA1XwvCdTcXgoaTKQwZ-hdm5ZDkocO7gHE";
+let bearerToken = localStorage.getItem("bearerToken") || "";
+let storeName = localStorage.getItem("selectedStore");

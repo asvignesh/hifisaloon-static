@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
 <nav class="navbar navbar-top navbar-expand navbar-dark">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -69,7 +72,7 @@
                                 <img class="small_round" src="public/storage/images/users/admin_1602138472.jpg">
                             </span>
                             <div class="media-body  ml-2  d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold"> Super Admin </span>
+                                <span class="mb-0 text-sm  font-weight-bold" id="username"> Super Admin </span>
                             </div>
                         </div>
                     </a>
@@ -86,13 +89,69 @@
                         <a href="work-in-progress-owner.html" class="dropdown-item">
                                             <i class="ni ni-scissors"></i>My Salon</a>
                         <div class="dropdown-divider"></div>
-                        <a href="work-in-progress-owner.html" class="dropdown-item">
+                        <a onclick="logout(event)" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Logout</span>
                         </a>
+                        <form action="logout" id="logout-form" method="POST"
+                          style="display: none;"></form>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+</body>
+<script>
+    $(document).ready(function () {
+        var storedUsername = localStorage.getItem("username");
+        var storedPassword = localStorage.getItem("password");
+        if (storedUsername && storedPassword) {
+            $("#username").text(storedUsername);
+        } else {
+            window.location.href = "index.html";
+        }
+    });
+
+    function logout(event) {
+                console.log("logout start")
+                event.preventDefault();
+                authHeader = null;
+                localStorage.removeItem("username"); // Clear stored credentials from localStorage
+                localStorage.removeItem("password");
+                localStorage.removeItem("bearerToken");
+                localStorage.removeItem("selectedStore");
+                document.getElementById('logout-form').submit();
+                window.location.href = "index.html";
+            }
+     // Get a reference to the select element
+     var storeSelect = document.getElementById("store");
+
+// Add an event listener to the select element
+storeSelect.addEventListener("change", function() {
+    // Get the selected option element
+    var selectedOption = storeSelect.options[storeSelect.selectedIndex];
+    
+    // Get the value and text of the selected option
+    var selectedValue = selectedOption.value;
+    var selectedText = selectedOption.text;
+    
+    // Create an object to store the selected option details
+    var selectedStore = {
+        value: selectedValue,
+        text: selectedText
+    };
+    
+    // Convert the object to JSON and store it in local storage
+    console.log(selectedStore.text);
+    localStorage.setItem("selectedStore", JSON.stringify(selectedStore));
+});
+
+// Check if there's a previously selected store and update the dropdown accordingly
+var storedStore = localStorage.getItem("selectedStore");
+if (storedStore) {
+    var parsedStore = JSON.parse(storedStore);
+    storeSelect.value = parsedStore.value;
+}
+</script>
+</html>

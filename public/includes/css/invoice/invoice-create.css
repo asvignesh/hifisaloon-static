@@ -539,64 +539,73 @@ div.dataTables_wrapper div.dataTables_filter {
   line-height: 24px;
 }
 
-.invoice-box table {
+.invoice-box table.main {
   width: 100%;
   line-height: inherit;
   text-align: left;
 }
 
-.invoice-box table td {
+.invoice-box table.main td {
   padding: 5px;
   vertical-align: middle;
 }
 
-.invoice-box table tr td:nth-child(n+2) {
+.invoice-box table.main tr td:last-child {
   text-align: right;
 }
 
-.invoice-box table tr.top table td {
+.invoice-box table.main tr td.add-button:last-child {
+  text-align: left;
+}
+
+.invoice-box table.main tr.top table td {
   padding-bottom: 20px;
 }
 
-.invoice-box table tr.top table td.title {
+.invoice-box table.main tr.top table td.title {
   font-size: 45px;
   line-height: 45px;
   color: #333;
+  text-align: left;
 }
 
-.invoice-box table tr.information table td {
+.invoice-box table.main tr.information table td {
   padding-bottom: 40px;
 }
 
-.invoice-box table tr.heading td {
+.invoice-box table.main tr.heading td {
   background: #eee;
   border-bottom: 1px solid #ddd;
   font-weight: bold;
 }
 
-.invoice-box table tr.details td {
+.invoice-box table.main tr.details td {
   padding-bottom: 20px;
 }
 
-.invoice-box table tr.item td,
-.invoice-box table tr.top td{
+.invoice-box table.main tr.item > td,
+.invoice-box table.main tr.top > td.header {
   border-bottom: 1px solid #eee;
 }
 
-.invoice-box table tr.item.last td {
+.invoice-box table.main tr.item td.item-qty,
+.invoice-box table.main tr.item td.item-total {
+  vertical-align: top;
+}
+.invoice-box table.main tr.item.last td {
   border-bottom: none;
 }
 
-.invoice-box table tr.item input {
+.invoice-box table.main tr.item input {
   padding-left: 5px;
 }
 
-.invoice-box table tr.item td:first-child input {
+.invoice-box table.main tr.item td:first-child input {
   margin-left: -5px;
   width: 100%;
 }
 
-.invoice-box table tr.total td:nth-child(2) {
+.invoice-box table.main tr.total td:nth-child(2) {
   border-top: 2px solid #eee;
   font-weight: bold;
 }
@@ -606,13 +615,13 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 @media only screen and (max-width: 600px) {
-  .invoice-box table tr.top table td {
+  .invoice-box table.main tr.top table td {
       width: 100%;
       display: block;
       text-align: center;
   }
   
-  .invoice-box table tr.information table td {
+  .invoice-box table.main tr.information table td {
       width: 100%;
       display: block;
       text-align: center;
@@ -625,10 +634,11 @@ div.dataTables_wrapper div.dataTables_filter {
   font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
 }
 
-.rtl table {
+.rtl table.main {
   text-align: right;
 }
 
-.rtl table tr td:nth-child(2) {
+.rtl table.main tr td:nth-child(2) {
   text-align: left;
 }
+

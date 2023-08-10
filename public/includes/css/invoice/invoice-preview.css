@@ -1,0 +1,109 @@
+.align-center {
+    display: flex;
+    justify-content: center;
+}
+
+.receipt {
+    padding: 2mm;
+    width: 108mm;
+    border: 1.5px solid #cad1d7;
+    border-radius: 5px;
+    /* margin: 0 auto; */
+}
+.recept-body {
+    border: 1px solid black;
+    padding: 1mm;
+}
+.receipt img {
+    max-width: 80mm;
+    width: 250px;
+}
+
+.receipt .center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.receipt table {
+    width: 100%;
+}
+
+.receipt table {
+    border-top: 1.5px solid black;
+    border-bottom: 1.5px solid black;
+    border-collapse: collapse;
+}
+
+.receipt table:first-child {
+    border-top: 3px solid black;
+}
+
+.receipt table:last-child {
+    border-bottom: none;
+}
+
+.receipt .title {
+    width: 30%;
+    max-width: 30%;
+}
+
+.receipt .title-value {
+    width: 70%;
+    max-width: 70%;
+}
+
+.receipt td.description,
+.receipt th.description {
+    width: 120px;
+    max-width: 120px;
+}
+
+.receipt td.quantity,
+.receipt th.quantity {
+    width: 40px;
+    max-width: 40px;
+    text-align: center;
+    word-break: break-all;
+}
+.receipt th.rate,
+.receipt td.rate {
+    text-align: center;
+}
+
+.receipt td.price,
+.receipt th.price {
+    text-align: right;
+}
+
+.receipt td.price,
+.receipt td.rate,
+.receipt th.rate,
+.receipt th.price {
+    width: 75px;
+    max-width: 75px;
+    word-break: break-all;
+}
+
+.receipt .centered {
+    text-align: center;
+    align-content: center;
+}
+
+
+
+@media print {
+    @page {
+        size: auto;
+        margin: 0;
+    }
+
+    @page :footer {
+        display: none
+    }
+  
+    @page :header {
+        display: none
+    }
+}

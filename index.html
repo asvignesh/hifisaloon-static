@@ -28,7 +28,7 @@
     <link href="public/includes/css/nucleo.css" rel="stylesheet">
     <link href="public/includes/css/all.min.css" rel="stylesheet">
     <link href="public/includes/css/loginStyle.css" rel="stylesheet">
-
+    <script src="public/includes/js/common.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -63,13 +63,13 @@
                                     </p>
                                 </div>
                                 <div class="form-wrap">
-                                    <form>
+                                    <form id="loginForm">
                                         <input type="hidden" name="_token"
                                                value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
                                         <div class="pui-form__element">
-                                            <label class="animated-label ">Email</label>
-                                            <input id="inputEmail" type="email" class="form-control   " name="email"
-                                                   value="" placeholder="" autocomplete="email">
+                                            <label class="animated-label ">User Name</label>
+                                            <input id="username" type="username" class="form-control   " name="username"
+                                                   value="" placeholder="" autocomplete="username">
 
                                         </div>
                                         <div class="pui-form__element">
@@ -87,8 +87,7 @@
                                         </div>
                                         <div class="pui-form__element">
                                             <button class="btn btn-lg btn-primary btn-block btn-salon btn-owner-login"
-                                                    type="submit"
-                                                    onclick="window.location.href = 'store-dashboard.html';">SIGN IN
+                                                    type="submit">SIGN IN
                                             </button>
                                         </div>
                                     </form>
@@ -126,6 +125,62 @@
                     .addClass("moveUp");
                 jQuery(this).addClass("outline");
             }
+        });
+
+        $(document).ready(function () {
+            $("#loginForm").submit(function (event) {
+                event.preventDefault();
+
+                var username = $("#username").val();
+                var password = $("#password").val();
+
+                // Save the username and password to localStorage
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+
+                $.ajax({
+                    type: "POST",
+                    url: baseUrl + "login",
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function (response) {
+                        var token = response.token;
+                        // Save the token to localStorage
+                        localStorage.setItem("username", username);
+                        localStorage.setItem("password", password);
+                        localStorage.setItem("bearerToken", token);
+                        bearerToken = token;
+
+                        $.ajax({
+                            type: "GET", // Change the HTTP method if needed
+                            url: baseUrl + "users/" + username, // Replace with your endpoint URL to get user details
+                            headers: {
+                                Authorization: "Bearer " + token
+                            },
+                            success: function (userResponse) {
+                                if(userResponse.role === "admin"){
+                                    window.location.href = 'owner-dashboard.html'
+                                }else{
+                                    window.location.href = 'store-dashboard.html'
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.log("Failed to get user details");
+                                var errorMessage = xhr.responseText || "Failed to get user details";
+                                $("#errorMessage").text(errorMessage).show();
+                            }
+                        });
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Authentication failed");
+                        var errorMessage = xhr.responseText || "Authentication failed";
+                        $("#errorMessage").text(errorMessage).show();
+                    }
+                });
+            });
         });
 
 </script>
