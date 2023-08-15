@@ -30,16 +30,17 @@
                 <li>
                     <select class="form-control select2 store" name="store" id="store" dir="">
                         <option disabled value> -- Select Store -- </option>
-                        <option value="0">All stores</option>
-                        <option value="1" selected>T-NAGAR</option>
-                        <option value="2">PERUMBAKKAM</option>
+                        <!-- <option value="0">All stores</option>
+                        <option value="1" selected>T-NAGAR</option> -->
+
+                        <!-- <option value="2">PERUMBAKKAM</option>
                         <option value="3">PONDICHERRY</option>
                         <option value="4">ALAPAKKAM</option>
                         <option value="5">IYYAPPANTHANGAL</option>
                         <option value="6">SALIGRAMAM</option>
                         <option value="7">PADUR</option>
                         <option value="8">ANNANAGAR 6th AVENUE</option>
-                        <option value="9">ecity</option>
+                        <option value="9">ecity</option> -->
                     </select>
                 </li>
                 <li class="nav-item dropdown rtl-flag">
@@ -102,56 +103,84 @@
     </div>
 </nav>
 </body>
+<script src="../public/includes/js/common.js"></script>
 <script>
     $(document).ready(function () {
         var storedUsername = localStorage.getItem("username");
         var storedPassword = localStorage.getItem("password");
+        var storeSelect = document.getElementById("store");
+        
         if (storedUsername && storedPassword) {
             $("#username").text(storedUsername);
         } else {
             window.location.href = "index.html";
         }
+    
+        $.ajax({
+            type: "GET",
+            url: baseUrl + "stores/",
+            headers: {
+                "Authorization": "Bearer " + bearerToken,
+            },
+            success: function (response) {
+                storeSelect.innerHTML = '<option disabled value> -- Select Store -- </option><option value="1" selected>T-NAGAR</option>'; // Clear existing options
+
+                response.forEach(store => {
+                    const option = document.createElement("option");
+                    option.value = store.name;
+                    option.text = store.displayName;
+                    storeSelect.appendChild(option);
+                });
+                setSelectedStore()
+            },
+            error: function (xhr, status, error) {
+                console.log("Failed to get store details");
+            },
+        });
+        // Get a reference to the select element
+        
+        // Add an event listener to the select element
+        storeSelect.addEventListener("change", function() {
+            // Get the selected option element
+            
+            var selectedOption = storeSelect.options[storeSelect.selectedIndex];
+            console.log("selected option: ",selectedOption)
+            // Get the value and text of the selected option
+            var selectedValue = selectedOption.value;
+            var selectedText = selectedOption.text;
+            
+            // Create an object to store the selected option details
+            var selectedStore = {
+                value: selectedValue,
+                text: selectedText
+            };
+            localStorage.setItem("selectedStore", JSON.stringify(selectedStore));
+            setSelectedStore()
+        });
+        console.log("Store select1: ", storeSelect.text);
+
+        function setSelectedStore() {
+            // Check if there's a previously selected store and update the dropdown accordingly
+            var storedStore = localStorage.getItem("selectedStore");
+            if (storedStore) {
+                var parsedStore = JSON.parse(storedStore);
+                console.log("Store select2: ", parsedStore.value);
+                $(storeSelect).val(parsedStore.value).change()
+                // storeSelect.value = parsedStore.value;
+            }
+        }
     });
 
     function logout(event) {
-                console.log("logout start")
-                event.preventDefault();
-                authHeader = null;
-                localStorage.removeItem("username"); // Clear stored credentials from localStorage
-                localStorage.removeItem("password");
-                localStorage.removeItem("bearerToken");
-                localStorage.removeItem("selectedStore");
-                document.getElementById('logout-form').submit();
-                window.location.href = "index.html";
-            }
-     // Get a reference to the select element
-     var storeSelect = document.getElementById("store");
-
-// Add an event listener to the select element
-storeSelect.addEventListener("change", function() {
-    // Get the selected option element
-    var selectedOption = storeSelect.options[storeSelect.selectedIndex];
-    
-    // Get the value and text of the selected option
-    var selectedValue = selectedOption.value;
-    var selectedText = selectedOption.text;
-    
-    // Create an object to store the selected option details
-    var selectedStore = {
-        value: selectedValue,
-        text: selectedText
-    };
-    
-    // Convert the object to JSON and store it in local storage
-    console.log(selectedStore.text);
-    localStorage.setItem("selectedStore", JSON.stringify(selectedStore));
-});
-
-// Check if there's a previously selected store and update the dropdown accordingly
-var storedStore = localStorage.getItem("selectedStore");
-if (storedStore) {
-    var parsedStore = JSON.parse(storedStore);
-    storeSelect.value = parsedStore.value;
-}
+            console.log("logout start")
+            event.preventDefault();
+            authHeader = null;
+            localStorage.removeItem("username"); // Clear stored credentials from localStorage
+            localStorage.removeItem("password");
+            localStorage.removeItem("bearerToken");
+            localStorage.removeItem("selectedStore");
+            document.getElementById('logout-form').submit();
+            window.location.href = "index.html";
+        }
 </script>
 </html>

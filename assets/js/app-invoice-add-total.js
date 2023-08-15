@@ -18,6 +18,14 @@ $(document).ready(function () {
         $newRow.find('input:first').focus();
     });
 
+    $('table.main').on('click', '.btn-delete-row', function () {
+        console.log('Delete Item')
+        if($('.item').length > 1) {
+            $(this).closest("tr.item").remove();
+            calculateTotals();
+        }
+    });
+
     function calculateTotals() {
         const subtotals = $('.item').map((idx, val) => calculateSubtotal(val)).get();
         const subTotal = subtotals.reduce((a, v) => a + Number(v), 0);
@@ -43,11 +51,11 @@ $(document).ready(function () {
             default:
                 disc = 0
         }
-        const discountedTotal = subTotal - (subTotal * (disc / 100));
+        // const discountedTotal = subTotal - (subTotal * (disc / 100));
         // const total = (discountedTotal * (gst / 100)) + discountedTotal
-        const total = discountedTotal
+        // const total = discountedTotal
         $('.subTotal td:eq(1)').text(formatAsCurrency(subTotal.toFixed(2)));
-        $('.total td:eq(1)').text(formatAsCurrency(total.toFixed(2)));
+        // $('.total td:eq(1)').text(formatAsCurrency(total.toFixed(2)));
     }
 
     function calculateSubtotal(row) {
@@ -68,16 +76,4 @@ $(document).ready(function () {
     function formatAsCurrency(amount) {
         return `${Number(amount).toFixed(2)}`;
     }
-
-    $(".item-wrapper").on("input", ".form-calc", function() {
-        var parent = $(this).closest(".item-wrapper");
-        parent.find(".invoice-item-amount").val(
-            (parent.find(".invoice-item-qty").val() * parent.find(".invoice-item-rate").val()).toFixed(2)
-        );
-        var total = 0;
-        $(".invoice-item-amount").each(function(){
-            total += parseFloat($(this).val()||0);
-        });
-        $("#total").text(total.toFixed(2));
-    });
 });

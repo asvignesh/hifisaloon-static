@@ -26,6 +26,23 @@
                 border: 0;
                 border-top: 1px solid rgba(0, 0, 0, .1);
             }
+
+            .circle-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #e77878;
+                color: white;
+                cursor: pointer;
+            }
+
+            .circle-icon i {
+                font-size: 12px;
+            }
+
     </style>
 
     <!-- Title -->
@@ -35,7 +52,7 @@
     <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
@@ -158,14 +175,17 @@
                                                                         <span class="fw-normal">Membership:</span>
                                                                     </dt>
                                                                     <dd class="col-sm-8" style="text-align: left;">
-                                                                        <label class="switch switch-primary me-0">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <input type="text" class="form-control membershipId" readonly placeholder="MembershipId" id="membershipId"/>
+                                                                        </div>
+                                                                        <!-- <label class="switch switch-primary me-0">
                                                                             <input type="checkbox" class="switch-input" id="membership"/>
                                                                             <span class="switch-toggle-slider">
                                                                                 <span class="switch-on"></span>
                                                                                 <span class="switch-off"></span>
                                                                             </span>
-                                                                            <span class="switch-label"></span>
-                                                                        </label>
+                                                                            <span class="switch-label membershipId"></span>
+                                                                        </label> -->
                                                                     </dd>
                                                                 </dl>
                                                             </div>
@@ -253,7 +273,11 @@
                                                                     />
                                                                 </td> -->
                                                                 <td class="subtotal2">
-                                                                    
+                                                                    <a class="btn-delete-row">
+                                                                        <div class="circle-icon">
+                                                                            <i class="fas fa-times"></i>
+                                                                        </div>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -277,10 +301,9 @@
                                                     <td colspan="3" style="text-align: right"><b>Discount(%)</b></td>
                                                     <td>
                                                         <select
-                                                            style="width:120px; float: right;"
+                                                            style="width:120px; float: right;text-align: center;"
                                                             class="form-select item-discount"
-                                                            id="discount"
-                                                        >
+                                                            id="discount">
                                                             <option selected value="STORE0" disabled>Discount</option>
                                                             <option value="STORE50">5%</option>
                                                             <option value="STORE75">7.5%</option>
@@ -290,20 +313,32 @@
                                                         </select>
                                                     </td>
                                                 </tr>
-                                                <!-- <tr class="gst">
-                                                    <td colspan="3" style="text-align: right"><b>GST(%)</b></td>
+                                                <tr class="gst">
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary btn-calculate-total">
+                                                            Calculate Total
+                                                        </button>
+                                                    </td>
+                                                    <td colspan="2" style="text-align: right"><b>GST(%)</b></td>
                                                     <td>
                                                         <input
                                                             style="width:120px; float: right; text-align: right;"
-                                                            type="number" 
+                                                            type="text" 
                                                             class="form-control" 
                                                             placeholder="0%" 
                                                             id="gst"
+                                                            readonly
                                                         />
                                                     </td>
-                                                </tr> -->
+                                                </tr>
                                                 <tr class="total">
                                                     <td colspan="3" style="text-align: right"><b>Total:</b></td>
+                                                    <td>
+                                                        0.00
+                                                    </td>
+                                                </tr>
+                                                <tr class="roundOff">
+                                                    <td colspan="3" style="text-align: right">(roundOff)</td>
                                                     <td>
                                                         0.00
                                                     </td>
@@ -351,29 +386,56 @@
                     <!-- Invoice Actions -->
                     <div class="col-lg-3 col-12 invoice-actions">
                         <div style="position: sticky; top: 20px; z-index: 1000;">
-                            <div>
-                                <div class="form-floating form-floating-outline mb-4">
-                                    <h3 class="offcanvas-title mb-2">Payment Method</h5>
-                                        <div style="margin-left: 2rem;">
-                                            <div>
-                                                <input type="checkbox" class="dt-checkboxes form-check-input cash" id="cash">
-                                                <label class="ml-2" style="margin-top: 2px;" for="cash">Cash</label>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" class="dt-checkboxes form-check-input upi" id="upi">
-                                                <label class="ml-2" style="margin-top: 2px;" for="upi">UPI Transfer</label>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" class="dt-checkboxes form-check-input cardPay" id="cardPay">
-                                                <label class="ml-2" style="margin-top: 2px;" for="cardPay">Debit/Credit Card</label>
-                                            </div>
-                                        </div>
-                                    <!-- <select class="form-select bg-body mb-4" id="select-payment-add">
-                                        <option value="Cash">Cash</option>
-                                        <option value="Card">Credit/Debit Card</option>
-                                        <option value="UPI Transfer">UPI Transfer</option>
-                                    </select> -->
-                                    <!-- <label for="select-payment-add" class="bg-body">Accept payments via</label> -->
+                            <div class="form-floating form-floating-outline mb-4">
+                                <h3 class="offcanvas-title mb-2">Payment Method</h5>
+                                <div style="margin-left: 2rem;">
+                                    <div>
+                                        <input type="checkbox" class="dt-checkboxes form-check-input cash" id="cash">
+                                        <label class="ml-2" style="margin-top: 2px;" for="cash">Cash</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="dt-checkboxes form-check-input upi" id="upi">
+                                        <label class="ml-2" style="margin-top: 2px;" for="upi">UPI Transfer</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="dt-checkboxes form-check-input cardPay" id="cardPay">
+                                        <label class="ml-2" style="margin-top: 2px;" for="cardPay">Debit/Credit Card</label>
+                                    </div>
+                                </div>
+                                <!-- <select class="form-select bg-body mb-4" id="select-payment-add">
+                                    <option value="Cash">Cash</option>
+                                    <option value="Card">Credit/Debit Card</option>
+                                    <option value="UPI Transfer">UPI Transfer</option>
+                                </select> -->
+                                <!-- <label for="select-payment-add" class="bg-body">Accept payments via</label> -->
+                            </div>
+                            <div class="form-floating form-floating-outline mb-4 paymentDetails">
+                                <h3 class="offcanvas-title mb-2">Payment Details</h5>
+                                <div class="border rounded position-relative cashDetails p-2 mb-1">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="cashAmount" placeholder="Cash Amount">
+                                        <label for="cashAmount">Amount</label>
+                                    </div>
+                                </div>
+                                <div class="border rounded position-relative UPIDetails p-2 mb-1">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="upiTxnID" placeholder="UPI Txn ID">
+                                        <label for="upiTxnID">UPI Txn ID</label>
+                                    </div>
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="upiAmount" placeholder="UPI Amount">
+                                        <label for="upiAmount">UPI Amount</label>
+                                    </div>
+                                </div>
+                                <div class="border rounded position-relative cardDetails p-2 mb-1">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="cardTxnID" placeholder="Card Txn ID">
+                                        <label for="cardTxnID">Card Txn ID</label>
+                                    </div>
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="cardAmount" placeholder="Card Amount">
+                                        <label for="cardAmount">Card Amount</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card mb-4">
@@ -386,7 +448,7 @@
                                         <span class="d-flex align-items-center justify-content-center text-nowrap">
                                             <i class="mdi mdi-send-outline scaleX-n1-rtl me-2"></i>Send Invoice</span>
                                     </button>
-                                    <button type="button" id="previewInvoice"
+                                    <button type="button" id="previewInvoice" disabled
                                     class="btn btn-outline-secondary d-grid w-100">Save & Preview</button>
                                     <!-- <button type="button" class="btn btn-outline-secondary d-grid w-100">Save</button> -->
                                 </div>
@@ -498,7 +560,7 @@
     <script src="public/includes/js/jquery-scrollLock.min.js"></script>
     <script src="public/includes/js/sweetalert.all.js"></script>
     <script src="public/includes/js/jquery.timepicker.js"></script>
-    <script src="public/includes/js/common.js"></script>
+    <!-- <script src="public/includes/js/common.js"></script> -->
     <script src="public/includes/js/jquery-repeater.js"></script>
 
     <!-- <script src="public/includes/js/invoice/invoice-add.js"></script> -->
@@ -547,9 +609,6 @@
     <script src="assets/vendor/libs/cleavejs/cleave-phone.js"></script>
     <script src="assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-
     <!-- Page JS -->
     <!-- <script src="assets/js/offcanvas-send-invoice.js"></script> -->
     <script src="assets/js/app-invoice-add.js"></script>
@@ -563,40 +622,22 @@
             var storeName; 
             var existingClient = false
 
+            showPaymentDetails();
+
             $("#body-content").load("dashboard.html");
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
-                var selectedOption = $('#store').val();
-                storeName = $(this).find(':selected').text();
-                getStoreAddress(storeName);
+                storeName = $(this).find(':selected').val();
+                console.log('selectedOption', storeName)
                 getServices(storeName);
                 getEmployees(storeName);
                 $('#store').on('change', function () {
-                    storeName = $(this).find(':selected').text();
-                    getStoreAddress(storeName);
+                    storeName = $(this).find(':selected').val();
                     getServices(storeName);
                     getEmployees(storeName);
                 });
 
-                function getStoreAddress(storeName){
-                    $.ajax({
-                            url: baseUrl + 'stores/' + storeName,
-                            method: 'GET',
-                            headers: {
-                                "Authorization": "Bearer " + bearerToken
-                            },
-                            success: function (response) {
-                                console.log("Success");
-                                $('#address').text(response.address);
-                               // $('#customLogo').attr('src', response.logo);
-                            },
-                            error: function () {
-                                console.log('Failed to fetch available numbers');
-                            }
-                        });
-                }
-                
                 function getServices(storeName) {
                     $.ajax({
                         url: baseUrl + 'stores/' + storeName + '/services',
@@ -638,17 +679,46 @@
                         }
                     });
                 }
+
+                // if($('.item').length <= 1) {
+                //     $($('.item')[0]).find(".btn-delete-row").remove();
+                // }
+
             });
+
+            $("#cash").on('change', showPaymentDetails)
+            $("#upi").on('change', showPaymentDetails)
+            $("#cardPay").on('change',showPaymentDetails)
+
+            function showPaymentDetails() {
+                if($("#cash").is(":checked")) {
+                    $(".cashDetails").show();
+                } else {
+                    $(".cashDetails").hide();
+                }
+
+                if($("#upi").is(":checked")) {
+                    $(".UPIDetails").show();
+                } else {
+                    $(".UPIDetails").hide();
+                }
+
+                if($("#cardPay").is(":checked")) {
+                    $(".cardDetails").show();
+                } else {
+                    $(".cardDetails").hide();
+                }
+            }
 
             $('table.main').on('change', 'select.item-details', function () {
                 var $row = $(this).closest("tr.item");
                 const parent = $("select.item-details").parent("tr.item");
                 const selectedService = $row.find('.item-details').val()
-                membership = $('#membership').is(":checked")
+                const membershipIdValue = $('#membershipId').val();
                 services.forEach((service, i) => {
                     if(service.name === selectedService) {
                         $row.find('input.invoice-item-rate').val(
-                            membership ? service.membershipPrice : service.regularPrice
+                            membershipIdValue ? service.membershipPrice : service.regularPrice
                         ).change();
                     }
                 })
@@ -669,6 +739,7 @@
                 var contactValue = $(this).val();
                 if (contactValue.length === 10) {
                     getClientDetails(contactValue);
+                    getMembershipDetails(contactValue);
                 }
             });
 
@@ -692,21 +763,115 @@
                 });
             }
 
+            function getMembershipDetails(contact) {
+                $.ajax({
+                    url: baseUrl + 'client/' + contact + '/membership/',
+                    method: 'GET',
+                    headers: {
+                    "Authorization": "Bearer " + bearerToken
+                    },
+                    success: function(response) {
+                        if(response.membershipId) {
+                            // $('#membership').prop('checked', 'checked');
+                            $('.membershipId').val(response.membershipId);
+                        } else {
+                            $('.membershipId').val('');
+                        }
+                    },
+                    error: function() {
+                        // $('#membership').prop('checked', '');
+                        $('.membershipId').val('');
+                        console.log('Failed to fetch membership details');
+                    }
+                });
+            }
+
+            $(".btn-calculate-total ").on('click', function() {
+                calculateInvoiceTotal();
+                $("#previewInvoice").prop("disabled", false);
+            });
+
+            function calculateInvoiceTotal() {
+                console.log("Invoice preview");
+                localStorage.removeItem("invoiceData");
+
+                const discount = $('select.item-discount').val()
+                var items = $('.item').map((idx, val) => {
+                    const $row = $(val)
+                    const service = $row.find('.item-details').val()
+                    const stylist = $row.find('.item-stylist').val()
+                    const itemQty = $row.find('input.invoice-item-qty').val();
+                    const itemRate = $row.find('input.invoice-item-rate').val();
+                    // const stylistCharge = $row.find('input.stylist-service-charge').val();
+                    
+                    return {
+                        itemType: "service",
+                        itemName: service,
+                        itemQty: itemQty,
+                        itemPrice: itemRate,
+                        serviceProviderId: stylist,
+                        serviceCharge: 0
+                    }
+                }).toArray()
+
+                const invoiceDataForTotal = {
+                    coupons: [
+                        discount
+                    ],
+                    items: items
+                };
+                var totalTax = 0;
+                $.ajax({
+                    url: baseUrl + 'stores/' + storeName + '/invoice/calculateOrderTotal',
+                    method: 'post',
+                    headers: {
+                    "Authorization": "Bearer " + bearerToken
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(invoiceDataForTotal),
+                    success: function (res) {
+                        const billAmount = res.billAmount
+                        billAmount.taxSummary.forEach(function(tax) {
+                            totalTax += tax.percentage;
+                        });                       
+                        $('#gst').val(totalTax + "%")
+                        $('.total td:eq(1)').text(Number(billAmount.total).toFixed(2));
+                        $('.roundOff td:eq(1)').text(Number(billAmount.roundOff).toFixed(2));
+                    },
+                    error: function (error) { }
+                });
+            }
+
             $("#previewInvoice").on('click', function() {
                 previewInvoice();
             });
-
+            
             function previewInvoice() {
-                console.log("Invoice preview");
+                console.log("Invoice save & preview");
                 localStorage.removeItem("invoiceData");
-                localStorage.removeItem("paymentMethod");
+                localStorage.removeItem("tenderedAmount");
 
                 const paymentMethod = []
-                var cashPay = $("#cash").is(":checked") ? paymentMethod.push('CASH') : '';
-                var upiPay = $("#upi").is(":checked") ? paymentMethod.push('UPI') : '';
-                var cardPay = $('#cardPay').is(":checked") ? paymentMethod.push('CARD') : '';
+                const cashCollected = +parseFloat(Number($('#cashAmount').val())).toFixed(2);
+                const cashChecked = $("#cash").is(":checked");
+                const invoiceTotal = +parseFloat(Number($('.total td:eq(1)').text())).toFixed(2);
 
-                console.log('paymentMethod', cashPay, upiPay, cardPay)
+                var cashPay = $("#cash").is(":checked") ? paymentMethod.push({
+                    paymentMode: 'CASH',
+                    paymentTransactionId: 'NA',
+                    amount: (cashCollected > invoiceTotal) ? invoiceTotal : cashCollected
+                }) : '';
+                var upiPay = $("#upi").is(":checked") ? paymentMethod.push({
+                    paymentMode: 'UPI',
+                    paymentTransactionId: $('#upiTxnID').val(),
+                    amount: $('#upiAmount').val()
+                }) : '';
+                var cardPay = $('#cardPay').is(":checked") ? paymentMethod.push({
+                    paymentMode: 'CARD',
+                    paymentTransactionId: $('#cardTxnID').val(),
+                    amount: $('#cardAmount').val()
+                }) : '';
+
                 var custName = $('#custName').val();
                 var custAddress = $('#custAddress').val();
                 var custEmailId = $('#custEmailId').val();
@@ -739,8 +904,8 @@
                     coupons: [
                         discount
                     ],
+                    paymentDetails: paymentMethod,
                     items: items,
-                    // createdBy: '64a6bcf00776036f4ee72002',
                     notes: invoiceNote
                 };
                 console.log('invoiceData', invoiceData)
@@ -773,21 +938,21 @@
                     url: baseUrl + 'stores/' + storeName + '/invoice/',
                     method: 'post',
                     headers: {
-                    "Authorization": "Bearer " + bearerToken
+                        "Authorization": "Bearer " + bearerToken
                     },
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(invoiceData),
                     success: function (res) {
-                        localStorage.setItem("paymentMethod", JSON.stringify(paymentMethod));
                         localStorage.setItem("invoiceData", JSON.stringify(res));
+                        if(cashChecked && (cashCollected > invoiceTotal)){
+                            localStorage.setItem("tenderedAmount", cashCollected);
+                        }
                         window.location.href = "./invoice-preview.html";
                     },
                     error: function (error) { }
                 });
             }
-        });
-        
-        
+        });    
     </script>
 
     <!-- Argon JS -->

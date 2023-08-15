@@ -216,11 +216,11 @@
                                         <tbody>
                                             <tr>
                                                 <td colspan="2" class="description">Tender Amount</td>
-                                                <td colspan="2" class="price">0.00</td>
+                                                <td colspan="2" class="price tenderedAmount">0.00</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="description">Change Amount</td>
-                                                <td colspan="2" class="price">0.00</td>
+                                                <td colspan="2" class="price changeAmount">0.00</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="description">Paid Through</td>
@@ -280,7 +280,7 @@
                                 </button>
                                 <button id="btnDownloadInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Download</button>
                                 <button id="btnPrintInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Print</button>
-                                <a href="./app-invoice-edit.html"
+                                <a href="./invoice-edit.html"
                                    class="btn btn-outline-secondary d-grid w-100 mb-3">
                                     Edit Invoice
                                 </a>
@@ -531,7 +531,7 @@
     <script type="module">
         $(document).ready(function () {
             var invoiceNum;
-            var storeName;
+            // var storeName;
             const discountData = {
                 "STORE0": 0,
                 "STORE50": 5,
@@ -547,32 +547,32 @@
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
-                var selectedOption = $('#store').val();
-                storeName = $(this).find(':selected').text();
+                //var selectedOption = $('#store').text();
+                storeName = $(this).find(':selected').val();
                 invoiceNum = JSON.parse(localStorage.getItem("invoiceData")).invoiceNumber;
                 getInvoiceDetails()
                 getStoreAddress(storeName);
                 $('#store').on('change', function () {
-                    storeName = $(this).find(':selected').text();
-                    getStoreAddress(storeName);
+                    storeName = $(this).find(':selected').val();
+                   // getStoreAddress(storeName);
                     getInvoiceDetails()
                 });
 
-                function getStoreAddress(storeName){
-                    $.ajax({
-                        url: baseUrl + 'stores/' + storeName,
-                        method: 'GET',
-                        headers: {
-                            "Authorization": "Bearer " + bearerToken
-                        },
-                        success: function (response) {
-                            console.log("Success");
-                        },
-                        error: function () {
-                            console.log('Failed to fetch available numbers');
-                        }
-                    });
-                }
+                // function getStoreAddress(storeName){
+                //     $.ajax({
+                //         url: baseUrl + 'stores/' + storeName,
+                //         method: 'GET',
+                //         headers: {
+                //             "Authorization": "Bearer " + bearerToken
+                //         },
+                //         success: function (response) {
+                //             console.log("Success");
+                //         },
+                //         error: function () {
+                //             console.log('Failed to fetch available numbers');
+                //         }
+                //     });
+                // }
 
                 function getInvoiceDetails() {
                     $.ajax({
@@ -587,7 +587,6 @@
                             "Authorization": "Bearer " + bearerToken
                         },
                         success: function (invoiceData) {
-                            const paymentMethod = JSON.parse(localStorage.getItem("paymentMethod"));
                             console.log("InvoiceDetails", invoiceData);
                             $('.custName').text(invoiceData.client.name);
                             $('.custMobile').text(invoiceData.clientMobile);
@@ -609,8 +608,7 @@
                             $('.storeCareNo').text(invoiceData.store.org.mobile);
                             $('.custCareNo').text(invoiceData.store.org.customerCareNumber);
                             $('.store-info').text(invoiceData.store.org.message);
-                            $('.paymentMethod').text(paymentMethod.join(", "));
-
+                            
                             // Items Summary
                             const itemcontainer = $('.preview-items');
                             var totalQty = 0;
@@ -655,8 +653,24 @@
                             gstcontainer.append('<td colspan="2" class="description">' + "GST" + '</td>');
                             gstcontainer.append('<td class="rate">' + totalTax + "%" + '</td>');
                             gstcontainer.append('<td class="price">' + invoiceData.tax.toFixed(2) + '</td>');
-                            
 
+                            // Payment Details
+                            var paymentMode = []
+                            invoiceData.paymentDetails.forEach(function(payment) { 
+                                paymentMode.push(payment.paymentMode)
+                            })
+
+                            $('.paymentMethod').text(paymentMode.join(', '));
+
+                            const tenderedAmount = JSON.parse(localStorage.getItem("tenderedAmount"));
+                            if(tenderedAmount) {
+                                $('.tenderedAmount').text(tenderedAmount.toFixed(2))
+                                $('.changeAmount').text((tenderedAmount - Math.round(invoiceData.netAmount).toFixed(2)).toFixed(2))
+                            } else {
+                                $('.tenderedAmount').text(Math.round(invoiceData.netAmount).toFixed(2));
+                                $('.changeAmount').text(0.00);
+                            }
+                            
                         },
                         error: function () {
                             console.log('Failed to fetch available numbers');
@@ -686,18 +700,19 @@
                     filename:     `invoice_${invoiceNum}.pdf`,
                     image:        { type: 'jpeg', quality: 0.98 },
                     html2canvas:  {
-                        scale: 2,
+                        useCORS: true,
+                        scale: 4,
                         y: 0,
                         x: 0,
                         scrollY: 0,
                         scrollX: 0,
-                        windowWidth: 400,
+                        windowWidth: 120,
                         height: element.offsetHeight,
                         width: element.offsetWidth,
                         dpi: 192,
                         letterRendering: true
                     },
-                    jsPDF:        { unit: 'mm', format: [108, 210], orientation: 'portrait'}
+                    jsPDF:        { unit: 'mm', format: [72.1, 210], orientation: 'portrait'}
                 };
                 
                 // Choose the element and save the PDF for your user.
@@ -711,7 +726,7 @@
 
                 $.print(".receipt");
                 $.ajax({
-                    url: baseUrl + 'stores/' + storeName + '/invoice/' + 19 + '/status',
+                    url: baseUrl + 'stores/' + storeName + '/invoice/' + invoiceNum + '/status',
                     method: 'PUT',
                     headers: {
                         "Authorization": "Bearer " + bearerToken
@@ -720,7 +735,6 @@
                     data: JSON.stringify(data),
                     success: function (response) {
                         console.log("Success");
-                        // window.location.href = "./invoice-add.html";
                     },
                     error: function () {
                         console.log('Failed to fetch available numbers');
