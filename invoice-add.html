@@ -632,10 +632,12 @@
                 console.log('selectedOption', storeName)
                 getServices(storeName);
                 getEmployees(storeName);
+                getOrglogo(storeName);
                 $('#store').on('change', function () {
                     storeName = $(this).find(':selected').val();
                     getServices(storeName);
                     getEmployees(storeName);
+                    getOrglogo(storeName);
                 });
 
                 function getServices(storeName) {
@@ -951,6 +953,34 @@
                     },
                     error: function (error) { }
                 });
+            }
+            function getOrglogo(storeName){
+                $.ajax({
+                        url: baseUrl + 'stores/' + storeName,
+                        method: 'GET',
+                        headers: {
+                            "Authorization": "Bearer " + bearerToken
+                        },
+                        success: function (res) {
+                            var orgName = res.orgName;
+                            $.ajax({
+                                url: baseUrl + 'org/' + orgName,
+                                method: 'GET',
+                                headers: {
+                                    "Authorization": "Bearer " + bearerToken
+                                },
+                                success: function (res) {
+                                    $('#customLogo').attr('src', res.logoUrl);
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        },
+                        error: function (error) {
+                            console.log(error);
+                         }
+                    });
             }
         });    
     </script>

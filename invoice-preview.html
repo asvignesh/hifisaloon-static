@@ -127,6 +127,7 @@
                                     <img id="customLogo" class="center-image" alt="Logo" src="https://i.ibb.co/YRXpXDR/Whats-App-Image-2023-07-28-at-9-30-21-PM.jpg" style="width: 125px; height: auto;">
                                     <div style="text-align: center;" id="storeName"></div>
                                     <div style="text-align: center;" id="storeAddress"></div>
+                                    <div style="text-align: center;" id="storePhoneNo">Ph No:</div>
                                     <table style="border-top: none;">
                                         <tbody>
                                             <tr>
@@ -590,9 +591,10 @@
                             console.log("InvoiceDetails", invoiceData);
                             $('.custName').text(invoiceData.client.name);
                             $('.custMobile').text(invoiceData.clientMobile);
-                            $('#storeName').text(invoiceData.storeName);
-                            $('#storeAddress').text(invoiceData.store.address + ", " + invoiceData.store.phone);
-                           // $('#customLogo').attr('src', invoiceData.store.org.logoUrl);
+                            $('#storeName').text(invoiceData.store.displayName);
+                            $('#storeAddress').text(invoiceData.store.address);
+                            $('#storePhoneNo').append(" " + invoiceData.store.phone);
+                            $('#customLogo').attr('src', invoiceData.store.org.logoUrl);
                             $('.invoiceNumber').text(invoiceData.invoiceNumber);
                             $('.invoiceDate').text(moment(invoiceData.createdAt).format('DD-MM-YYYY HH:mm'));
                             $('.basicSales').text(invoiceData.basicSales.toFixed(2));
