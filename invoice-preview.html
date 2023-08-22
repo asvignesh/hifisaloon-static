@@ -74,7 +74,6 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
     <!-- Argon CSS -->
     <link href="public/includes/css/argon.css" rel="stylesheet">
-    <!-- <link href="public/includes/css/mystyle.css" rel="stylesheet"> -->
     <link href="public/includes/css/invoice/invoice-create.css" rel="stylesheet">
     <link href="public/includes/css/invoice/invoice-preview.css" rel="stylesheet">
 
@@ -154,6 +153,10 @@
                                             <tr>
                                                 <td colspan="2" class="description">Date: </td>
                                                 <td colspan="2" class="description invoiceDate"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="description">Biller: </td>
+                                                <td colspan="2" class="description invoiceBiller"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -492,30 +495,6 @@
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
-    <!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
-<script src="assets/vendor/libs/jquery/jquery.js"></script>
-<script src="assets/vendor/libs/popper/popper.js"></script>
-<script src="assets/vendor/js/bootstrap.js"></script>
-<script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="assets/vendor/libs/node-waves/node-waves.js"></script>
-
-<script src="assets/vendor/libs/hammer/hammer.js"></script>
-<script src="assets/vendor/libs/i18n/i18n.js"></script>
-<script src="assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
-<script src="assets/vendor/js/menu.js"></script>
-<!-- endbuild -->
-
-<!-- Vendors JS -->
-<script src="assets/vendor/libs/flatpickr/flatpickr.js"></script>
-<script src="assets/vendor/libs/cleavejs/cleave.js"></script>
-<script src="assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-<script src="assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
-
-<!-- Main JS -->
-<script src="assets/js/main.js"></script>
-
 <!-- Plugins for Print and Download Functionality -->
 <script src="assets/vendor/libs/jQuery.print/jQuery.print.js"></script>
 <script
@@ -526,7 +505,6 @@
 ></script>
 
 <!-- Page JS -->
-<!-- <script src="assets/js/offcanvas-send-invoice.js"></script> -->
 <script src="assets/js/app-invoice-add.js"></script>
     
     <script type="module">
@@ -548,11 +526,10 @@
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
-                //var selectedOption = $('#store').text();
-                storeName = $(this).find(':selected').val();
+                //storeName = $(this).find(':selected').val();
                 invoiceNum = JSON.parse(localStorage.getItem("invoiceData")).invoiceNumber;
-                getInvoiceDetails()
-                getStoreAddress(storeName);
+                //getInvoiceDetails()
+                //getStoreAddress(storeName);
                 $('#store').on('change', function () {
                     storeName = $(this).find(':selected').val();
                    // getStoreAddress(storeName);
@@ -597,6 +574,7 @@
                             $('#customLogo').attr('src', invoiceData.store.org.logoUrl);
                             $('.invoiceNumber').text(invoiceData.invoiceNumber);
                             $('.invoiceDate').text(moment(invoiceData.createdAt).format('DD-MM-YYYY HH:mm'));
+                            $('.invoiceBiller').text(localStorage.getItem("username"));
                             $('.basicSales').text(invoiceData.basicSales.toFixed(2));
                             $('.discountCoupons').text( invoiceData.coupons.join(", ") ? 'Discount ' + discountData[invoiceData.coupons.join(", ")] + '%' : 'Discount' );
                             $('.couponDiscount').text(invoiceData.couponDiscount.toFixed(2));

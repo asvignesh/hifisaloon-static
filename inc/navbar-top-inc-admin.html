@@ -73,7 +73,7 @@
                                 <img class="small_round" src="public/storage/images/users/noimage.jpg">
                             </span>
                             <div class="media-body  ml-2  d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold" id="username"> Super Admin </span>
+                                <span class="mb-0 text-sm  font-weight-bold userName" id="username"></span>
                             </div>
                         </div>
                     </a>
@@ -144,7 +144,6 @@
             // Get the selected option element
             
             var selectedOption = storeSelect.options[storeSelect.selectedIndex];
-            console.log("selected option: ",selectedOption)
             // Get the value and text of the selected option
             var selectedValue = selectedOption.value;
             var selectedText = selectedOption.text;
@@ -154,19 +153,19 @@
                 value: selectedValue,
                 text: selectedText
             };
-            localStorage.setItem("selectedStore", JSON.stringify(selectedStore));
+            console.log("selectedValue: ",selectedValue);
+            localStorage.setItem("selectedStore", selectedValue);
             setSelectedStore()
         });
-        console.log("Store select1: ", storeSelect.text);
 
         function setSelectedStore() {
             // Check if there's a previously selected store and update the dropdown accordingly
+            console.log(localStorage.getItem("selectedStore"))
             var storedStore = localStorage.getItem("selectedStore");
             if (storedStore) {
                 var parsedStore = JSON.parse(storedStore);
-                console.log("Store select2: ", parsedStore.value);
+                console.log(parsedStore.value);
                 $(storeSelect).val(parsedStore.value).change()
-                // storeSelect.value = parsedStore.value;
             }
         }
     });

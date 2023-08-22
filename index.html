@@ -113,6 +113,7 @@
         crossorigin="anonymous"></script>
 
 <script>
+    //localStorage.clear();
     jQuery(".form-control")
         .on("blur", function () {
             if (jQuery(this).val().length <= 0) {
@@ -164,7 +165,7 @@
                                 Authorization: "Bearer " + token
                             },
                             success: function (userResponse) {
-                                if(userResponse.role === "admin"){
+                                if(userResponse[0].role === "admin"){
                                     window.location.href = 'owner-dashboard.html'
                                 }else{
                                     window.location.href = 'store-dashboard.html'

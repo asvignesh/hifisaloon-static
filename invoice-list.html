@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="KBfEthUSZQCRbWviYR5cAUjNkvYqSP7RTLNR02OK">
+    <meta name="base_url" content="public">
+
+    <style>
+        :root {
+            --primary_color: #502f8f;
+            --primary_color_hover: #502f8fcc;
+        }
+        .invoice-calculations, .tax-summary {
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            }
+            
+            .hr {
+                margin-top: 0rem;
+                margin-bottom: 0rem;
+
+                border: 0;
+                border-top: 1px solid rgba(0, 0, 0, .1);
+            }
+
+            .circle-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #e77878;
+                color: white;
+                cursor: pointer;
+            }
+
+            .circle-icon i {
+                font-size: 12px;
+            }
+
+    </style>
+
+    <!-- Title -->
+    <title>HiFi Salon</title>
+
+    <!-- Favicon -->
+    <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+    <!-- CSS -->
+    <link href="public/includes/css/nucleo.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/includes/css/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css"/>
+    <link href="public/includes/css/all.min.css" rel="stylesheet">
+    <link href="public/includes/css/sweetalert2.scss">
+    <link href="public/includes/css/jquery.timepicker.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/vendor/css/pages/app-invoice.css"/>
+    <link rel="stylesheet" href="assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css"/>
+    <link rel="stylesheet" href="assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css"/>
+    <link rel="stylesheet" href="assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css"/>
+    <link rel="stylesheet" href="assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="public/includes/js/jquery-3.5.1.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet'/>
+    <!-- Argon CSS -->
+    <link href="public/includes/css/argon.css" rel="stylesheet">
+    <link href="public/includes/css/invoice/invoice-create.css" rel="stylesheet">
+    <link href="public/includes/css/invoice/invoice-preview.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div class="preload">
+    <img src="public/storage/images/app/loader.gif" class="loader" alt="">
+</div>
+<div class="for-loader">
+    <form id="logout-form" action="public/logout" method="POST" style="display: none;">
+        <input type="hidden" name="_token" value="5O57DdIfZRvjAFgpQy1mzNGXw26aW2G9AGIdnel7">
+    </form>
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div id="navbar-left"></div>
+    </nav>
+
+    <div class="main-content">
+        <div id="navbar-top"></div>
+
+        <div class="header pt-7"
+             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
+            <span class="mask bg-gradient-dark opacity-7"></span>
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4 pb-7">
+                        <div class="col-lg-6 col-7">
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <!-- Invoice List Table -->
+                <div class="card">
+                    <div class="card-datatable table-responsive">
+                        <table class="invoice-list-table table">
+                            <thead class="table-light">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>#ID</th>
+                                <th>Client</th>
+                                <th>Total</th>
+                                <th class="text-truncate">Issued Date</th>
+                                <th class="cell-fit">Actions</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl">
+                    <div
+                            class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            <a href="https://asvignesh.in" target="_blank"
+                                class="footer-link fw-medium">laserpoint</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+
+    <script src="public/includes/js/popper.min.js"></script>
+    <script src="public/includes/js/Chart.min.js"></script>
+    <script src="public/includes/js/Chart.extension.js"></script>
+    <script src="public/includes/js/jquery.min.js"></script>
+    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+    <script src="public/includes/js/argon.js"></script>
+    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+    <script src="public/includes/js/sweetalert.all.js"></script>
+    <script src="public/includes/js/jquery.timepicker.js"></script>
+
+    <script src="public/includes/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="public/includes/js/myjavascript.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script src="../public/includes/js/common.js"></script>
+    <script type="module" src="assets/js/app-invoice-list.js"></script>
+    <script src="assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#body-content").load("dashboard.html");
+            $("#navbar-left").load("inc/navbar.inc-admin.html");
+            $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
+                storeName = $(this).find(':selected').val();
+                console.log('selectedOption', storeName)
+                $('#store').on('change', function () {
+                    storeName = $(this).find(':selected').val();
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>

@@ -56,12 +56,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="assets/vendor/fonts/materialdesignicons.css"/>
     <!-- CSS -->
     <link href="public/includes/css/nucleo.css" rel="stylesheet">
     <link rel="stylesheet" href="public/includes/css/core.css" class="template-customizer-core-css"/>
-    <!-- <link rel="stylesheet" href="assets/vendor/css/rtl/core.css" class="template-customizer-core-css"/> -->
     <link rel="stylesheet" href="assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css"/>
     <link href="public/includes/css/all.min.css" rel="stylesheet">
     <link href="public/includes/css/sweetalert2.scss">
@@ -419,7 +416,7 @@
                                 </div>
                                 <div class="border rounded position-relative UPIDetails p-2 mb-1">
                                     <div class="form-floating form-floating-outline mb-4">
-                                        <input type="text" class="form-control" id="upiTxnID" placeholder="UPI Txn ID">
+                                        <input type="text" class="form-control" id="upiTxnID" readonly placeholder="UPI Txn ID">
                                         <label for="upiTxnID">UPI Txn ID</label>
                                     </div>
                                     <div class="form-floating form-floating-outline">
@@ -429,7 +426,7 @@
                                 </div>
                                 <div class="border rounded position-relative cardDetails p-2 mb-1">
                                     <div class="form-floating form-floating-outline mb-4">
-                                        <input type="text" class="form-control" id="cardTxnID" placeholder="Card Txn ID">
+                                        <input type="text" class="form-control" id="cardTxnID" readonly placeholder="Card Txn ID">
                                         <label for="cardTxnID">Card Txn ID</label>
                                     </div>
                                     <div class="form-floating form-floating-outline">
@@ -560,10 +557,6 @@
     <script src="public/includes/js/jquery-scrollLock.min.js"></script>
     <script src="public/includes/js/sweetalert.all.js"></script>
     <script src="public/includes/js/jquery.timepicker.js"></script>
-    <!-- <script src="public/includes/js/common.js"></script> -->
-    <script src="public/includes/js/jquery-repeater.js"></script>
-
-    <!-- <script src="public/includes/js/invoice/invoice-add.js"></script> -->
 
     <script src="public/includes/js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
@@ -588,29 +581,7 @@
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="assets/vendor/libs/popper/popper.js"></script>
-    <script src="assets/vendor/js/bootstrap.js"></script>
-    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="assets/vendor/libs/node-waves/node-waves.js"></script>
-
-    <script src="assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
-    <script src="assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="assets/vendor/libs/flatpickr/flatpickr.js"></script>
-    <script src="assets/vendor/libs/cleavejs/cleave.js"></script>
-    <script src="assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-    <script src="assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
-
     <!-- Page JS -->
-    <!-- <script src="assets/js/offcanvas-send-invoice.js"></script> -->
     <script src="assets/js/app-invoice-add.js"></script>
     <script src="assets/js/app-invoice-add-total.js"></script>
     
@@ -700,12 +671,16 @@
                 }
 
                 if($("#upi").is(":checked")) {
+                    const upiTxnID = "UPI" + generateTxnID();
+                    $('#upiTxnID').val(upiTxnID);   
                     $(".UPIDetails").show();
                 } else {
                     $(".UPIDetails").hide();
                 }
 
                 if($("#cardPay").is(":checked")) {
+                    const cardTxnID = "CARD" + generateTxnID();
+                    $('#cardTxnID').val(cardTxnID);
                     $(".cardDetails").show();
                 } else {
                     $(".cardDetails").hide();
@@ -882,7 +857,11 @@
                 var contact = $('#contact').val();
                 var items = $('.item').map((idx, val) => {
                     const $row = $(val)
-                    const service = $row.find('.item-details').val()
+                    //const service = $row.find('.item-details').val()
+                     const serviceSelect = $row.find('.item-details')[0]; // Assuming this is the <select> element
+                     const selectedIndex = serviceSelect.selectedIndex;
+                     const selectedService1 = serviceSelect.options[selectedIndex].text;
+
                     const stylist = $row.find('.item-stylist').val()
                     const itemQty = $row.find('input.invoice-item-qty').val();
                     const itemRate = $row.find('input.invoice-item-rate').val();
@@ -890,7 +869,8 @@
                     
                     return {
                         itemType: "service",
-                        itemName: service,
+                        //itemName: "service",
+                        itemName: selectedService1,
                         itemQty: itemQty,
                         itemPrice: itemRate,
                         serviceProviderId: stylist,
@@ -981,6 +961,12 @@
                             console.log(error);
                          }
                     });
+            }
+
+            function generateTxnID() {
+                const currentDate = moment();
+                const formattedDate = currentDate.format('YYYYMMDDHHmmss');
+                return formattedDate;
             }
         });    
     </script>
