@@ -208,9 +208,10 @@
             $("#navbar-left").load("inc/navbar.inc-admin.html");
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 storeName = $(this).find(':selected').val();
-                console.log('selectedOption', storeName)
+                //console.log('selectedOption', storeName)
                 $('#store').on('change', function () {
                     storeName = $(this).find(':selected').val();
+                    console.log('selectedOption', storeName)
                 });
             });
         });

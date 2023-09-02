@@ -1,7 +1,6 @@
 /**
  * App Invoice List (jquery)
  */
-console.log(baseUrl);
 var selectedStore = JSON.parse(storeName);
 var selectedStoreName = selectedStore.value;
 console.log(selectedStoreName);
@@ -20,30 +19,34 @@ $(function () {
         headers: {
           "Authorization": "Bearer " + bearerToken
         },
-        // data: { 
-        //   client: 'y'
-        // },
         crossDomain: true,
         data: function(d) {
           console.log(d)
           let requestBody = {
-            draw: d.draw,
-            client: 'y',
+            includeClient: 'y',
             page: ((d.start/d.length) + 1), 
-            pageSize: d.length,  
+            pageSize: d.length,
             sortBy: d.columns[d.order[0].column].name, 
             sortOrder: d.order[0].dir 
           };
-          if (d.search.value) {
-              requestBody.keyword = d.search.value;
+          if (d.search.value.length==10) {
+              requestBody.client = d.search.value;
           };
           return (requestBody);
         },
         dataSrc: function(json){
+          console.log("Data: ",json);
           json.recordsTotal = json.totalCount;
           json.recordsFiltered = json.totalCount;
           json.data = json.data.filter((item) => (item.invoiceNumber != undefined && item.client != undefined))
           return json.data;
+        },
+        error: function (xhr, error, thrown) {
+          if (xhr.status === 200 && xhr.responseJSON && xhr.responseJSON.data.length === 0) {
+              alert("Invalid Phone Number");
+          } else {
+            alert("Invalid Phone Number");
+          }
         }
       },
       processing: true,
@@ -76,8 +79,7 @@ $(function () {
           orderable: false,
           render: function () {
             return '<input type="checkbox" class="dt-checkboxes form-check-input">';
-          }
-          ,
+          },
           checkboxes: {
             selectAllRender: '<input type="checkbox" class="form-check-input">'
           }
@@ -89,7 +91,8 @@ $(function () {
           render: function (data, type, full, meta) {
             var $invoiceNumber = full['invoiceNumber'];
             // Creates full output for row
-            var $row_output = '<a href="invoice-preview.html"><span>#' + $invoiceNumber + '</span></a>';
+            //Karchange var $row_output = '<a href="invoice-preview.html"><span>#' + $invoiceNumber + '</span></a>';
+            var $row_output = '<span>#' + $invoiceNumber + '</span></a>';
             return $row_output;
           }
         },
@@ -97,6 +100,7 @@ $(function () {
           // Client name and Service
           targets: 3,
           responsivePriority: 4,
+          name: 'client.name',
           render: function (data, type, full, meta) {
             var $name = full.client['name'],
               $mobile = full.client['mobile']
@@ -117,6 +121,7 @@ $(function () {
         },
         {
           // Total Invoice Amount
+          name: 'netAmount',
           targets: 4,
           render: function (data, type, full, meta) {
             var $total = full['netAmount'];
@@ -125,6 +130,7 @@ $(function () {
         },
         {
           // Due Date
+          name: 'createdAt',
           targets: 5,
           render: function (data, type, full, meta) {
             var $due_date = new Date(full['createdAt']);
@@ -147,8 +153,9 @@ $(function () {
           render: function (data, type, full, meta) {
             return (
               '<div class="d-flex align-items-center">' +
-              '<a href="javascript:;" data-bs-toggle="tooltip" class="text-body delete-record" data-bs-placement="top" title="Download Invoice"><i class="mdi mdi-cloud-download mdi-20px mx-1"></i></a>' +
-              '<a href="app-invoice-preview.html" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Preview Invoice"><i class="mdi mdi-eye-outline mdi-20px mx-1"></i></a>' +
+              // '<a href="javascript:;" data-bs-toggle="tooltip" class="text-body delete-record" data-bs-placement="top" title="Download Invoice"><i class="mdi mdi-cloud-download mdi-20px mx-1"></i></a>' +
+              '<a href="invoice-preview.html?invoiceNumber=' + full['invoiceNumber']+ '" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Preview Invoice"><i class="mdi mdi-eye-outline mdi-20px mx-1"></i></a>' +
+              '<a href="invoice-edit.html?invoiceNumber=' + full['invoiceNumber']+ '" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Edit Invoice"><i class="mdi mdi-lead-pencil mdi-20px mx-1"></i></a>' +
               '</div>'
             );
           }
@@ -158,7 +165,7 @@ $(function () {
       dom:
         '<"row ms-2 me-3"' +
         '<"col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start gap-3"l<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start mt-md-0 mt-3"B>>' +
-        '<"col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-3"f<"invoice_status mb-3 mb-md-0">>' +
+        '<"col-12 col-md-13 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-3"f<"invoice_status mb-3 mb-md-0">>' +
         '>t' +
         '<"row mx-2"' +
         '<"col-sm-12 col-md-6"i>' +
@@ -167,7 +174,7 @@ $(function () {
       language: {
         sLengthMenu: 'Show _MENU_',
         search: '',
-        searchPlaceholder: 'Search Invoice'
+        searchPlaceholder: 'Search Mobile#'
       },
       // Buttons with Dropdown
       buttons: [
@@ -175,7 +182,7 @@ $(function () {
           text: '<i class="mdi mdi-plus me-md-1"></i><span class="d-md-inline-block d-none">Create Invoice</span>',
           className: 'btn btn-primary',
           action: function (e, dt, button, config) {
-            window.location = 'app-invoice-add.html';
+            window.location = 'invoice-add.html';
           }
         }
       ],

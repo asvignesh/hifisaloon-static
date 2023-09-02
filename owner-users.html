@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,10 +32,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css"/>
+        href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="public/includes/js/jquery-3.5.1.js"></script>
 
@@ -46,345 +45,324 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="public/includes/js/common.js"></script>
 </head>
 
 <body class="">
-<div class="preload" id="preload">
-    <img src="public/storage/images/app/loader.gif" class="loader" alt="">
-</div>
-<div class="for-loader">
-    <form id="logout-form" action="public/logout" method="POST" style="display: none;">
-        <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
-    </form>
-
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        <div id="navbar-left"></div>
-    </nav>
-
-    <div class="main-content">
-
-        <div id="navbar-top"></div>
-
-        <div class="header pt-7"
-             style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
-            <span class="mask bg-gradient-dark opacity-7"></span>
-            <div class="container-fluid">
-                <div class="header-body">
-                    <div class="row align-items-center py-4 pb-7">
-                        <div class="col-lg-6 col-7">
-                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    <!-- <li class="breadcrumb-item text-white"><a href="public/owner/dashboard"><i
-                                            class="fas fa-home text-salon"></i></a></li> -->
-                                    <!-- <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Clients -->
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid mt--6 mb-5 only_search">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <!-- Card header -->
-                        <div class="card-header border-0">
-                            <span class="h3">Clients</span>
-                            <button class="btn btn-primary addbtn float-right p-2 add_user" id="add_user"><i
-                                    class="fas fa-plus mr-1"></i>Add Client
-                            </button>
-                        </div>
-
-                        <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
-                        <div class="row rtl-date-filter-row">
-                            <div class="form-group col-3">
-                                <input type="text" value="" class="search-mobile" placeholder="Search by Name">
-                            </div>
-                            <!--                            <div class="form-group col-3">-->
-                            <!--                                <button type="submit" id="filter_btn"-->
-                            <!--                                        class="btn btn-primary  rtl-date-filter-btn">Apply-->
-                            <!--                                </button>-->
-                            <!--                            </div>-->
-                        </div>
-
-                        <!-- table -->
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush" id="dataTableUser"
-                                   class="dataTableUser">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th scope="col" class="sort">#</th>
-                                    <th scope="col" class="sort">Name</th>
-                                    <th scope="col" class="sort">Email</th>
-                                    <th scope="col" class="sort">Mobile</th>
-                                    <th scope="col" class="sort">First Visit</th>
-                                    <th scope="col" class="sort">Recent Visit</th>
-                                    <th scope="col" class="sort">Total Spent (avg / year )</th>
-                                    <!-- <th scope="col" class="sort">Action</th> -->
-
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody class="list">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid sidebar_open " id="add_user_sidebar">
-            <div class="row">
-                <div class="col">
-                    <div class="card py-3 border-0">
-                        <!-- Card header -->
-                        <div class="border_bottom_pink pb-3 pt-2 mb-4">
-                            <span class="h3">Create Client</span>
-                            <button type="button" class="add_user close">&times;</button>
-                        </div>
-                        <form class="form-horizontal" id="create_user_form" method="post"
-                              enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
-                            <div class="my-0">
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="referral_code">Your reference
-                                        code</label>
-                                    <input type="text" name="referral_code" value="1AOE9N" id="referral_code"
-                                           class="form-control" readonly>
-                                    <div class="invalid-div "><span class="referral_code"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="friend_code">Referral code</label>
-                                    <input type="text" name="friend_code" value="" id="friend_code"
-                                           class="form-control" placeholder="Referral code" autofocus>
-                                    <div class="invalid-div "><span class="friend_code"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="name">Name</label>
-                                    <input type="text" name="name" value="" id="name" class="form-control"
-                                           placeholder="User name" autofocus>
-                                    <div class="invalid-div "><span class="name"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="email">Email</label><br>
-                                    <input type="text" name="email" value="" id="email" class="form-control"
-                                           placeholder="Email Address" autocomplete="email">
-                                    <div class="invalid-div "><span class="email"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="phone">Phone no.</label><br>
-                                    <input type="text" name="phone" value="" id="phone" class="form-control"
-                                           placeholder="Phone number">
-                                    <div class="invalid-div "><span class="phone"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="name">Date of Birth</label>
-                                    <input type="date" name="name" value="" id="dob" class="form-control"
-                                           placeholder="Date of Birth " autofocus>
-                                    <div class="invalid-div "><span class="name"></span></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label" for="name">Anniversary Date</label>
-                                    <input type="date" name="name" value="" id="doa" class="form-control"
-                                           placeholder="Anniversary Date" autofocus>
-                                    <div class="invalid-div "><span class="name"></span></div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="button" id="submit-btn"
-                                            class="btn btn-primary mt-4 mb-5 rtl-float-none">Create
-                                    </button>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="preload" id="preload">
+        <img src="public/storage/images/app/loader.gif" class="loader" alt="">
     </div>
+    <div class="for-loader">
+        <form id="logout-form" action="public/logout" method="POST" style="display: none;">
+            <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+        </form>
 
-    <script src="public/includes/js/popper.min.js"></script>
-    <script src="public/includes/js/Chart.min.js"></script>
-    <script src="public/includes/js/Chart.extension.js"></script>
-    <script src="public/includes/js/jquery.min.js"></script>
-    <script src="public/includes/js/bootstrap.bundle.min.js"></script>
-    <script src="public/includes/js/argon.js"></script>
-    <script src="public/includes/js/jquery.scrollbar.min.js"></script>
-    <script src="public/includes/js/jquery-scrollLock.min.js"></script>
-    <script src="public/includes/js/sweetalert.all.js"></script>
+        <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+            <div id="navbar-left"></div>
+        </nav>
+
+        <div class="main-content">
+
+            <div id="navbar-top"></div>
+
+            <div class="header pt-7"
+                style="background-image: url(public/storage/images/app/bg_img.jpg); background-size: cover; background-position: center center;">
+                <span class="mask bg-gradient-dark opacity-7"></span>
+                <div class="container-fluid">
+                    <div class="header-body">
+                        <div class="row align-items-center py-4 pb-7">
+                            <div class="col-lg-6 col-7">
+                                <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                        <!-- <li class="breadcrumb-item text-white"><a href="public/owner/dashboard"><i
+                                            class="fas fa-home text-salon"></i></a></li> -->
+                                        <!-- <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;Clients -->
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mt--6 mb-5 only_search">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <!-- Card header -->
+                            <div class="card-header border-0">
+                                <span class="h3">Clients</span>
+                                <button class="btn btn-primary addbtn float-right p-2 add_user" id="add_user"><i
+                                        class="fas fa-plus mr-1"></i>Add Client
+                                </button>
+                            </div>
+
+                            <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+
+                            <!-- table -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush" id="dataTableUser"
+                                    class="dataTableUser">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" class="sort">Name</th>
+                                            <th scope="col" class="sort">Mobile</th>
+                                            <th scope="col" class="sort">Email</th>
+                                            <th scope="col" class="sort">Gender</th>
+                                            <th scope="col" class="sort">DOB</th>
+                                            <th scope="col" class="sort">Address</th>
+                                            <th scope="col" class="sort">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid sidebar_open " id="add_user_sidebar">
+                <div class="row">
+                    <div class="col">
+                        <div class="card py-3 border-0">
+                            <!-- Card header -->
+                            <div class="border_bottom_pink pb-3 pt-2 mb-4">
+                                <span class="h3">Create Client</span>
+                                <button type="button" class="add_user close">&times;</button>
+                            </div>
+                            <form class="form-horizontal" id="create_user_form" method="post"
+                                enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="XzcED2DAeqRPGd31R6iFlDEcWkwws9TErwEDKcmD">
+                                <div class="my-0">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="name">Name</label>
+                                        <input type="text" name="name" value="" id="name" class="form-control"
+                                            placeholder="User name" autofocus>
+                                        <div class="invalid-div"><span class="name"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="phone">Phone no.</label><br>
+                                        <input type="text" name="phone" value="" id="phone" class="form-control"
+                                            placeholder="Phone number">
+                                        <div class="invalid-div"><span class="phone"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="email">Email</label><br>
+                                        <input type="text" name="email" value="" id="email" class="form-control"
+                                            placeholder="Email Address" autocomplete="email">
+                                        <div class="invalid-div "><span class="email"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="gender">Gender</label><br>
+                                        <select class="form-control form-select" name="gender" id="gender">
+                                            <option value="" disabled>Select Gender</option>
+                                            <option selected value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="any">Prefer not to say</option>
+                                        </select>
+                                        <div class="invalid-div"><span class="gender"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="dob">Date of Birth</label>
+                                        <input type="date" name="dob" value="" id="dob" class="form-control"
+                                            placeholder="Date of Birth " autofocus>
+                                        <div class="invalid-div"><span class="dob"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="name">Address</label>
+                                        <input type="text" name="address" value="" id="address" class="form-control"
+                                            placeholder="Address" autofocus>
+                                        <div class="invalid-div"><span class="address"></span></div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="button" id="submit-btn-create"
+                                            class="btn btn-primary mt-4 mb-5 rtl-float-none">Create
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="public/includes/js/popper.min.js"></script>
+        <script src="public/includes/js/Chart.min.js"></script>
+        <script src="public/includes/js/Chart.extension.js"></script>
+        <script src="public/includes/js/jquery.min.js"></script>
+        <script src="public/includes/js/bootstrap.bundle.min.js"></script>
+        <script src="public/includes/js/argon.js"></script>
+        <script src="public/includes/js/jquery.scrollbar.min.js"></script>
+        <script src="public/includes/js/jquery-scrollLock.min.js"></script>
+        <script src="public/includes/js/sweetalert.all.js"></script>
 
 
-    <script src="public/includes/js/jquery.timepicker.js"></script>
+        <script src="public/includes/js/jquery.timepicker.js"></script>
 
 
-    <script src="public/includes/js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
+        <script src="public/includes/js/map.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
 
-    <script type="text/javascript"
+        <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript"
+        <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
-    <script type="text/javascript"
+        <script type="text/javascript"
             src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.2/b-flash-1.6.2/b-html5-1.6.2/b-print-1.6.2/datatables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src="public/includes/js/myjavascript.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <script src="public/includes/js/myjavascript.js"></script>
 
-    <!-- Argon JS -->
-    <script>
+        <!-- Argon JS -->
+        <script>
 
-
-        var _users;
-
-        $(document).ready(function () {
-
-            $.ajax({
-                url: 'public/data/users.json',
-                dataType: 'json',
-                success: function (users) {
-                    console.log(users);
-                    _users = users;
-                    // Clear existing table rows
-                    $('#dataTableUser tbody').empty();
-
-                    // Loop through each user object in the response data
-                    $.each(users, function (index, user) {
-                        console.log(user);
-                        // Create a new row with the user data
-                        var row = '<tr>' +
-                            '<td>' + user.id + '</td>' +
-                            '<td>' + user.name + '</td>' +
-                            '<td>' + maskEmail(user.email) + '</td>' +
-                            '<td>' + user.mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
-                            '<td>' + user.firstVisit + '</td>' +
-                            '<td>' + user.lastVisit + '</td>' +
-                            '<td style="text-align-last: right;">' + user.spendByYear + '</td>' +
-                            '</tr>';
-
-                        // Append the row to the table body
-                        $('#dataTableUser tbody').append(row);
-                    });
-                    $('#dataTableUser').DataTable({
-                        dom: 'Bfrtip',
-                        language: {
-                            paginate: {
-                                previous: "<i class='fas fa-angle-left'>",
-                                next: "<i class='fas fa-angle-right'>"
-                            }
+            $(document).ready(function () {
+                getUsers();
+                function getUsers() {
+                    $.ajax({
+                        url: baseUrl + 'client/',
+                        method: 'GET',
+                        headers: {
+                            "Authorization": "Bearer " + bearerToken
                         },
-                        buttons: []
+                        success: function (users) {
+                            // Clear existing table rows
+                            $('#dataTableUser tbody').empty();
+
+                            // Loop through each user object in the response data
+                            $.each(users, function (index, user) {
+                                console.log(user);
+                                let slNo = parseInt(index) + 1;
+
+                                // Append the row to the table body
+                                $('#dataTableUser tbody').append($("<tr>")
+                                    .append($("<td>").append(user.name))
+                                    .append($("<td>").append(user.mobile.replace(/\d(?=\d{4})/g, '*')))
+                                    .append($("<td>").append(maskEmail(user.email)))
+                                    .append($("<td>").append(displayDefaultIfEmpty(user.gender)))
+                                    .append($("<td>").append(moment(user.dob).format("DD-MM-YYYY")))
+                                    .append($("<td>").append(displayDefaultIfEmpty(user.address)))
+                                    .append($(`<td class="table-actions">`).append(`
+                                <i style="cursor:pointer;" class="fas fa-user-edit editUser" title="Edit User Details" data-userid="`+ user.mobile + `"></i> 
+                                <i style="cursor:pointer;" class="fas fa-trash deleteUser" title="Delete User" data-username="`+ user.name + `" data-userid="` + user.mobile + `"></i>
+                            `)));
+                            });
+                            loadActionButtons();
+                            $('#dataTableUser').DataTable({
+                                dom: 'Bfrtip',
+                                language: {
+                                    paginate: {
+                                        previous: "<i class='fas fa-angle-left'>",
+                                        next: "<i class='fas fa-angle-right'>"
+                                    }
+                                },
+                                buttons: []
+                            });
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
                     });
-                },
-                error: function (error) {
-                    console.log(error);
                 }
-            });
-            // Set the initial content
-            $("#body-content").load("dashboard.html");
-            $("#navbar-left").load("inc/navbar.inc-admin.html");
-            $("#navbar-top").load("inc/navbar-top-inc-admin.html");
-        });
 
+                // Set the initial content
+                $("#body-content").load("dashboard.html");
+                $("#navbar-left").load("inc/navbar.inc-admin.html");
+                $("#navbar-top").load("inc/navbar-top-inc-admin.html");
 
-        $(document).ready(
-            function () {
-                $('.search-mobile').on('keyup', function () {
-                    var searchText = $(this).val().toLowerCase();
-
-                    // Filter the table rows based on the search text
-                    $('#dataTableUser tbody tr').filter(function () {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+                function loadActionButtons() {
+                    $(".editUser").click(function (e) {
+                        console.log($($(this)[0]).data("userid"));
+                        getOneUser($($(this)[0]).data("tutid"));
+                        e.preventDefault();
                     });
 
+                    $(".deleteUser").click(function (e) {
+                        const userName = $($(this)[0]).data("username");
+                        debugger;
+                        if (confirm('Are you sure you want to delete ' + userName + ' ?')) {
+                            console.log($($(this)[0]).data("userid"));
+                            const mobileNum = $($(this)[0]).data("userid");
+                            $.ajax({
+                                url: baseUrl + 'client/' + mobileNum,
+                                method: 'DELETE',
+                                headers: {
+                                    "Authorization": "Bearer " + bearerToken
+                                },
+                                success: function (data) {
+                                    console.log(data);
+                                    // Reloading now , until datatable reload work is done.
+                                    window.location.reload();
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            alert('Delete operation cancelled');
+                        }
+
+                        e.preventDefault();
+                    });
+                }
+
+                $("#submit-btn-create").on("click", function (e) {
+
+                    let data = {
+                        name: $($("#create_user_form")[0].name).val(),
+                        mobile: $($("#create_user_form")[0].phone).val(),
+                        email: $($("#create_user_form")[0].email).val(),
+                        gender: $($("#create_user_form")[0].gender).val(),
+                        dob: $($("#create_user_form")[0].dob).val(),
+                        address: $($("#create_user_form")[0].address).val(),
+                    }
+
+                    $.ajax({
+                        url: baseUrl + 'client/',
+                        method: 'POST',
+                        headers: {
+                            "Authorization": "Bearer " + bearerToken
+                        },
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            console.log(data);
+                            $("#create_user_form").trigger("reset");
+                            $("#add_user_sidebar").slideDown(50), $("#add_user_sidebar").toggleClass("show_sidebar_create");
+                            // Reloading now , until datatable reload work is done.
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+
+
+                    e.preventDefault();
                 });
-            },
-        );
-
-        $(document).ready(function () {
-            var index = 3;
-            $("#submit-btn").click(function (event) {
-                event.preventDefault();
-
-                var referralCode = $("#referral_code").val();
-                var friendCode = $("#friend_code").val();
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var mobile = $("#phone").val();
-                var dob = $("#dob").val();
-                var doa = $("#doa").val();
-
-
-                var now = new Date();
-                var year = now.getFullYear();
-                var month = now.getMonth() + 1;
-                var day = now.getDate();
-                var hours = now.getHours();
-                var minutes = now.getMinutes();
-                var seconds = now.getSeconds();
-
-                if (month.toString().length == 1) {
-                    month = '0' + month;
-                }
-                if (day.toString().length == 1) {
-                    day = '0' + day;
-                }
-                if (hours.toString().length == 1) {
-                    hours = '0' + hours;
-                }
-                if (minutes.toString().length == 1) {
-                    minutes = '0' + minutes;
-                }
-                if (seconds.toString().length == 1) {
-                    seconds = '0' + seconds;
-                }
-
-                var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-
-
-                var row = '<tr>' +
-                    '<td>' + index + '</td>' +
-                    '<td>' + name + '</td>' +
-                    '<td>' + maskEmail(email) + '</td>' +
-                    '<td>' + mobile.replace(/\d(?=\d{4})/g, '*') + '</td>' +
-                    '<td>' + dateTime + '</td>' +
-                    '<td>' + dateTime + '</td>' +
-                    '<td>  0 </td>' +
-                    '</tr>';
-
-                // Append the row to the table body
-                $('#dataTableUser tbody').append(row);
-
-                index++;
-                // validate the inputs here
-
-                // if all inputs are valid, submit the form
-                //$("form").submit();
             });
-        });
 
-
-    </script>
-</div>
+        </script>
+    </div>
 </body>
 
 </html>

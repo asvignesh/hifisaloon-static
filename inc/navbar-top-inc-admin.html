@@ -153,18 +153,18 @@
                 value: selectedValue,
                 text: selectedText
             };
-            console.log("selectedValue: ",selectedValue);
-            localStorage.setItem("selectedStore", selectedValue);
+           // console.log("selectedValue: ",selectedValue);
+            localStorage.setItem("selectedStore", JSON.stringify(selectedStore));
             setSelectedStore()
         });
 
         function setSelectedStore() {
             // Check if there's a previously selected store and update the dropdown accordingly
-            console.log(localStorage.getItem("selectedStore"))
             var storedStore = localStorage.getItem("selectedStore");
+            //console.log("storedStore: ", storedStore)
             if (storedStore) {
                 var parsedStore = JSON.parse(storedStore);
-                console.log(parsedStore.value);
+               // console.log("set selected store: ",parsedStore.value);
                 $(storeSelect).val(parsedStore.value).change()
             }
         }

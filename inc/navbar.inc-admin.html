@@ -121,11 +121,28 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link review" href="invoice-add.html">
+                <a aria-controls="navbar-examples" aria-expanded=" " class="nav-link " data-toggle="collapse" href="#navbar-invoice-list"
+                   role="button">
                     <i class="ni ni-shop text-teal"></i>
                     <span class="nav-link-text">Invoice</span>
                 </a>
+
+                <div class="collapse  " id="navbar-invoice-list">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link review" href="invoice-add.html">
+                                <span class="nav-link-text">Create Invoice</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link review" href="invoice-list.html">
+                                <span class="nav-link-text">Invoice List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
 
             <li class="nav-item">
                 <a aria-controls="navbar-examples" aria-expanded=" " class="nav-link " data-toggle="collapse" href="#navbar-examples1"

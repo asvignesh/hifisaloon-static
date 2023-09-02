@@ -2,6 +2,7 @@
 var csrf = $('meta[name="csrf-token"]').attr('content');
 var base_url = $('meta[name="base_url"]').attr('content');
 var curr_url = window.location.origin + window.location.pathname;
+// var salesChartData = [[],[]];
 
 jQuery(".form-control")
     .on("blur", function () {
@@ -1657,84 +1658,6 @@ function getProfitLossExpensesReportLoadWidgets(storeId, dateStart, dateEnd, age
     });
 }
 
-// Sales Analysis Report chart
-var salesChart;
-
-function updateSalesChart(data) {
-    salesChart.data = {
-        labels: data[1],
-        datasets: [{
-            label: '',
-            data: data[0]
-        }]
-    };
-    salesChart.update();
-    salesChart.render({
-        duration: 800,
-        lazy: false,
-    });
-}
-
-function loadSalesChartFromApi(storeId) {
-    $.ajax({
-        url: 'public/data/storesales/' + storeId + '-SR.json',
-        method: 'get',
-        success: function (data) {
-            updateSalesChart(data);
-        },
-        error: function (err) {
-        }
-    });
-}
-
-function initSalesChart() {
-    if (document.getElementById("sales_chart")) {
-        salesChart = new Chart($('#sales_chart'), {
-            type: 'bar',
-            options: {
-                title: {
-                    display: true,
-                    text: 'Service Sales Chart'
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            color: Charts.colors.gray[900],
-                            zeroLineColor: Charts.colors.gray[900]
-                        },
-                        ticks: {
-                            callback: function (value) {
-                                if (!(value % 10)) {
-                                    return value;
-                                }
-                            }
-                        }
-                    }]
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function (item, data) {
-                            var label = data.datasets[item.datasetIndex].label || '';
-                            var yLabel = item.yLabel;
-                            var content = '';
-                            if (data.datasets.length > 1) {
-                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-                            }
-                            content += '<span class="popover-body-value">' + yLabel + '</span>';
-                            return content;
-                        }
-                    }
-                }
-            },
-        });
-    }
-};
-
-function initAndLoadSalesChart(storeId) {
-    initSalesChart();
-    loadSalesChartFromApi(storeId);
-}
-
 var empTargetChart;
 
 function updateEmpTargetChart(data) {
@@ -1810,45 +1733,6 @@ function initEmpTargetChart() {
 function initAndLoadEmpTargetChart(storeId) {
     initEmpTargetChart();
     loadEmpTargetChartFromApi(storeId);
-}
-
-function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
-    $.ajax({
-        url: 'public/data/storesales/salesreport.json',
-        method: 'get',
-        success: function (data) {
-            console.log(data);
-            // Clear existing table rows
-            $('#dataTableSalesReports tbody').empty();
-
-            var totalSmiles = 0;
-            var totalSpendByYear = 0;
-
-            // Loop through each user object in the response data
-            $.each(data, function (index, sales) {
-                console.log(sales);
-                // Create a new row with the user data
-                var row = '<tr>' +
-                    '<td>' + sales.id + '</td>' +
-                    '<td>' + sales.name + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.service + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.services + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.product + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.clients + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.bills + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.abv + '</td>' +
-                    '<td style="text-align-last: right;">' + sales.asb + '</td>' +
-                    '</tr>';
-
-
-                // Append the row to the table body
-                $('#dataTableSalesReports tbody').append(row);
-            });
-
-        },
-        error: function (err) {
-        }
-    });
 }
 
 var mrrChart;
@@ -2094,6 +1978,9 @@ function initAndLoadAvgMrrChart(storeId) {
 }
 
 function maskEmail(email) {
+    if(isEmpty(email)){
+        return '';
+    }
     var parts = email.split('@');
     var username = parts[0];
     var domain = parts[1];
@@ -2107,6 +1994,14 @@ function maskEmail(email) {
     var maskedExtension = domainParts[1];
 
     return maskedUsername + '@' + maskedDomain + '.' + maskedExtension;
+}
+
+function isEmpty(value) {
+    return (value == null || (typeof value === "string" && value.trim().length === 0));
+}
+
+function displayDefaultIfEmpty(value) {
+    return isEmpty(value) ? '' : value;
 }
 
 var incomeexpChart;

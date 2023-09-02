@@ -46,19 +46,22 @@
     </style>
 
     <!-- Title -->
-    <title>HiFi Salon::Create Invoice</title>
+    <title>HiFi Salon::Edit Invoice</title>
 
     <!-- Favicon -->
     <link href="public/storage/images/app/favicon.png" rel="icon" type="image/png">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
+    <!-- Icons -->
+    <link rel="stylesheet" href="assets/vendor/fonts/materialdesignicons.css"/>
     <!-- CSS -->
     <link href="public/includes/css/nucleo.css" rel="stylesheet">
     <link rel="stylesheet" href="public/includes/css/core.css" class="template-customizer-core-css"/>
+    <!-- <link rel="stylesheet" href="assets/vendor/css/rtl/core.css" class="template-customizer-core-css"/> -->
     <link rel="stylesheet" href="assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css"/>
     <link href="public/includes/css/all.min.css" rel="stylesheet">
     <link href="public/includes/css/sweetalert2.scss">
@@ -82,7 +85,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/cleave.js@1.6.0/dist/cleave.min.js"></script>
     <script>
 
     </script>
@@ -138,6 +140,7 @@
                                                                     <img id="customLogo" src="https://i.ibb.co/YRXpXDR/Whats-App-Image-2023-07-28-at-9-30-21-PM.jpg" style="width: 125px; height: auto;">
                                                                 </td>
                                                                 <td>
+                                                                    <b><span class="invoice-number"><b>Invoice Number: #</span></b><br />
                                                                     <b><span class="invoice-date"><b>Date: January 1, 2015</span></b>
                                                                 </td>
                                                             </tr>
@@ -176,6 +179,14 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <input type="text" class="form-control membershipId" readonly placeholder="MembershipId" id="membershipId"/>
                                                                         </div>
+                                                                        <!-- <label class="switch switch-primary me-0">
+                                                                            <input type="checkbox" class="switch-input" id="membership"/>
+                                                                            <span class="switch-toggle-slider">
+                                                                                <span class="switch-on"></span>
+                                                                                <span class="switch-off"></span>
+                                                                            </span>
+                                                                            <span class="switch-label membershipId"></span>
+                                                                        </label> -->
                                                                     </dd>
                                                                 </dl>
                                                             </div>
@@ -196,6 +207,14 @@
                                                                         <textarea class="form-control" rows="4" placeholder="Address" id="custAddress"></textarea>
                                                                     </dd>
                                                                 </dl>
+                                                                <!-- <dl class="row mb-2 g-2">
+                                                                    <dt class="col-sm-4 mb-2 d-md-flex align-items-center justify-content-end">
+                                                                        <span class="fw-normal">Biller</span>
+                                                                    </dt>
+                                                                    <dd class="col-sm-8">
+                                                                        <input type="text" class="form-control" placeholder="Biller" id="biller"/>
+                                                                    </dd>
+                                                                </dl> -->
                                                             </div>
                                                         </div>
                                                     </td>
@@ -207,7 +226,7 @@
                                                     <td width="20%">Price</td>
                                                 </tr>
                                             
-                                                <tr class="item">
+                                                <tr class="item dummyItem">
                                                     <td colspan="4">
                                                         <table style="width: 100%;">
                                                             <tr>
@@ -252,6 +271,15 @@
                                                                     </select>
                                                                 </td>
                                                                 <td width="30%"></td>
+                                                                <!-- <td width="30%">
+                                                                    <input
+                                                                        type="number"
+                                                                        class="form-control stylist-service-charge mt-2"
+                                                                        min="1" max="1000000"
+                                                                        placeholder="00"
+                                                                        readonly
+                                                                    />
+                                                                </td> -->
                                                                 <td class="subtotal2">
                                                                     <a class="btn-delete-row">
                                                                         <div class="circle-icon">
@@ -283,7 +311,8 @@
                                                         <select
                                                             style="width:120px; float: right;text-align: center;"
                                                             class="form-select item-discount"
-                                                            id="discount">
+                                                            id="discount"
+                                                        >
                                                             <option selected value="STORE0" disabled>Discount</option>
                                                             <option value="STORE50">5%</option>
                                                             <option value="STORE75">7.5%</option>
@@ -318,11 +347,29 @@
                                                     </td>
                                                 </tr>
                                                 <tr class="roundOff">
-                                                    <td colspan="3" style="text-align: right">(roundOff)</td>
+                                                    <td colspan="3" style="text-align: right">Round(Off)</td>
                                                     <td>
                                                         0.00
                                                     </td>
                                                 </tr>
+                                                
+                                                <!-- <tr class="heading">
+                                                    <td colspan="3">
+                                                        Payment Method
+                                                    </td>
+                                                    <td>
+                                                        Check #
+                                                    </td>
+                                                </tr>
+                                            
+                                                <tr class="details">
+                                                    <td colspan="3">
+                                                        Check
+                                                    </td>
+                                                    <td>
+                                                        1000
+                                                    </td>
+                                                </tr> -->
                                             </table>
                                             <table width="80%">
                                                 <tr>
@@ -381,7 +428,7 @@
                                 </div>
                                 <div class="border rounded position-relative UPIDetails p-2 mb-1">
                                     <div class="form-floating form-floating-outline mb-4">
-                                        <input type="text" class="form-control" id="upiTxnID" readonly placeholder="UPI Txn ID">
+                                        <input type="text" class="form-control" id="upiTxnID" placeholder="UPI Txn ID">
                                         <label for="upiTxnID">UPI Txn ID</label>
                                     </div>
                                     <div class="form-floating form-floating-outline">
@@ -391,7 +438,7 @@
                                 </div>
                                 <div class="border rounded position-relative cardDetails p-2 mb-1">
                                     <div class="form-floating form-floating-outline mb-4">
-                                        <input type="text" class="form-control" id="cardTxnID" readonly placeholder="Card Txn ID">
+                                        <input type="text" class="form-control" id="cardTxnID" placeholder="Card Txn ID">
                                         <label for="cardTxnID">Card Txn ID</label>
                                     </div>
                                     <div class="form-floating form-floating-outline">
@@ -410,7 +457,7 @@
                                         <span class="d-flex align-items-center justify-content-center text-nowrap">
                                             <i class="mdi mdi-send-outline scaleX-n1-rtl me-2"></i>Send Invoice</span>
                                     </button>
-                                    <button type="button" id="previewInvoice" disabled
+                                    <button type="button" id="previewInvoice"
                                     class="btn btn-outline-secondary d-grid w-100">Save & Preview</button>
                                     <!-- <button type="button" class="btn btn-outline-secondary d-grid w-100">Save</button> -->
                                 </div>
@@ -522,6 +569,10 @@
     <script src="public/includes/js/jquery-scrollLock.min.js"></script>
     <script src="public/includes/js/sweetalert.all.js"></script>
     <script src="public/includes/js/jquery.timepicker.js"></script>
+    <script src="public/includes/js/common.js"></script>
+    <script src="public/includes/js/jquery-repeater.js"></script>
+
+    <!-- <script src="public/includes/js/invoice/invoice-add.js"></script> -->
 
     <script src="public/includes/js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=" async defer></script>
@@ -546,12 +597,39 @@
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="assets/vendor/libs/popper/popper.js"></script>
+    <script src="assets/vendor/js/bootstrap.js"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/vendor/libs/node-waves/node-waves.js"></script>
+
+    <script src="assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+    <script src="assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="assets/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="assets/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
     <!-- Page JS -->
+    <!-- <script src="assets/js/offcanvas-send-invoice.js"></script> -->
     <script src="assets/js/app-invoice-add.js"></script>
     <script src="assets/js/app-invoice-add-total.js"></script>
     
     <script type="module">
         $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            var invoiceNum;
             var services = []
             var products = []
             var selectedItemType = 'service' 
@@ -559,9 +637,6 @@
             var membership = false
             var storeName; 
             var existingClient = false
-
-            removeDeleteBtn();
-            showPaymentDetails();
             
             $("#body-content").load("dashboard.html");
             $("#navbar-left").load("inc/navbar.inc-admin.html");
@@ -569,17 +644,46 @@
                 // Set the initial content
                 storeName = $(this).find(':selected').val();
                 console.log('selectedOption', storeName)
-                getServices(storeName, selectedItemType);
-                getProducts(storeName, selectedItemType);
-                getEmployees(storeName);
-                getOrglogo(storeName);
-                $('#store').on('change', function () {
-                    storeName = $(this).find(':selected').val();
+                invoiceNum = urlParams.get('invoiceNumber');
+                if(storeName) {
+                    //getStoreAddress(storeName);
                     getServices(storeName, selectedItemType);
                     getProducts(storeName, selectedItemType);
                     getEmployees(storeName);
+                    getInvoiceDetails(invoiceNum);
+                    getOrglogo(storeName);
+                }
+                
+                removeDeleteBtn();
+                showPaymentDetails();
+
+                $('#store').on('change', function () {
+                    storeName = $(this).find(':selected').val();
+                    //getStoreAddress(storeName);
+                    getServices(storeName, selectedItemType);
+                    getProducts(storeName, selectedItemType);
+                    getEmployees(storeName);
+                    getInvoiceDetails(invoiceNum);
                     getOrglogo(storeName);
                 });
+
+                // function getStoreAddress(storeName){
+                //     $.ajax({
+                //             url: baseUrl + 'stores/' + storeName,
+                //             method: 'GET',
+                //             headers: {
+                //                 "Authorization": "Bearer " + bearerToken
+                //             },
+                //             success: function (response) {
+                //                 console.log("Success");
+                //                 $('#address').text(response.address);
+                //                // $('#customLogo').attr('src', response.logo);
+                //             },
+                //             error: function () {
+                //                 console.log('Failed to fetch available numbers');
+                //             }
+                //         });
+                // }
                 
                 function getServices(storeName, selectedItemType) {
                     console.log('selectedItemType', selectedItemType)
@@ -618,7 +722,7 @@
                             $('.item-details').empty();
                             $('.item-details').append("<option selected disabled>Select Products</option>");
                             $.each(data, function(i,item){
-                                $('.item-details').append('<option value="'+data[i].name+'">'+data[i].displayName+'</option>');
+                                $('.item-details').append('<option value="'+data[i].name+'">'+data[i].displayName+'</optoin>');
                             });  
                         },
                         error: function() {
@@ -647,10 +751,132 @@
                         }
                     });
                 }
+
+                function getInvoiceDetails(invoiceNum) {
+                    let storeProducts, storeService = []
+                    $.ajax({
+                        url: baseUrl + 'stores/' + storeName + '/products',
+                        method: 'GET',
+                        headers: {
+                        "Authorization": "Bearer " + bearerToken
+                        },
+                        success: function(data) { 
+                            storeProducts = data
+                            $.ajax({
+                                url: baseUrl + 'stores/' + storeName + '/services',
+                                method: 'GET',
+                                headers: {
+                                "Authorization": "Bearer " + bearerToken
+                                },
+                                success: function(data) { 
+                                    storeService = data
+                                    $.ajax({
+                                        url: baseUrl + 'stores/' + storeName + '/invoice/' + invoiceNum,
+                                        method: 'GET',
+                                        data: { 
+                                            client: 'y', 
+                                            store: 'y', 
+                                            org: 'y'
+                                        },
+                                        headers: {
+                                            "Authorization": "Bearer " + bearerToken
+                                        },
+                                        success: (invoiceData) => {
+                                            console.log('invoiceData_Edit', invoiceData)
+                                            $('.invoice-number').text('Invoice Number: ' + invoiceData.invoiceNumber);
+                                            $('.invoice-date').text('Created Date: ' + moment(invoiceData.createdAt).format('DD-MM-YYYY HH:mm'));
+                                            $('#custName').val(invoiceData.client.name);
+                                            $('#contact').val(invoiceData.clientMobile).trigger('keyup');
+                                            $('#custAddress').val(invoiceData.client.address);
+                                            $('#custEmailId').val(invoiceData.client.email);
+
+                                            // Items Summary
+                                            var totalQty = 0;
+                                            var membership = invoiceData.membershipDiscount > 0;
+                                            
+                                            invoiceData.items.forEach(function(item) {
+                                                var $lastRow = $('.item:last');
+                                                var $newRow = $lastRow.clone().removeClass("dummyItem");
+                                                let price = 0
+                                                let selectedItem
+                                                if(item.itemType === 'service') {                                                    
+                                                    selectedItem = storeService.filter((service) => service.displayName === item.itemName)[0]
+                                                    price = membership ? selectedItem.membershipPrice : item.itemPrice
+                                                    $newRow.find('.item-details').empty();
+                                                    $newRow.find('.item-details').append("<option disabled>Select Service</option>");
+                                                    $.each(storeService, function(i, data){
+                                                        $newRow.find('.item-details').append('<option value="'+data.name+'">'+data.displayName+'</optoin>');
+                                                    });
+
+                                                    $newRow.find('select.item-type').val(item.itemType).change();
+                                                    $newRow.find('select.item-details').val(selectedItem.name).change();
+                                                    $newRow.find('input.invoice-item-rate').val(price);
+                                                    $newRow.find('select.item-stylist').val(item.serviceProviderId);
+                                                    $newRow.find('input.invoice-item-qty').val(item.itemQty).change();
+
+                                                    $newRow.find('.btn-delete-row').show();
+                                                    $newRow.find('td.subtotal1').text(formatAsCurrency(item.itemQty * item.itemPrice));
+                                                    
+                                                    $newRow.insertAfter($lastRow);
+                                                } else if (item.itemType === 'product') {
+                                                    selectedItem = storeProducts.filter((product) => product.displayName === item.itemName)[0]
+                                                    price = membership ? selectedItem.membershipPrice : item.itemPrice
+                                                    $newRow.find('.item-details').empty();
+                                                    $newRow.find('.item-details').append("<option disabled>Select Product</option>");
+                                                    $.each(storeProducts, function(i, data){
+                                                        $newRow.find('.item-details').append('<option value="'+data.name+'">'+data.displayName+'</optoin>');
+                                                    });
+
+                                                    $newRow.find('select.item-type').val(item.itemType).change();
+                                                    $newRow.find('select.item-details').val(selectedItem.name).change();
+                                                    $newRow.find('input.invoice-item-rate').val(price);
+                                                    $newRow.find('select.item-stylist').val(item.serviceProviderId);
+                                                    $newRow.find('input.invoice-item-qty').val(item.itemQty).change();
+
+                                                    $newRow.find('.btn-delete-row').show();
+                                                    $newRow.find('td.subtotal1').text(formatAsCurrency(item.itemQty * item.itemPrice));
+                                                    
+                                                    $newRow.insertAfter($lastRow);
+                                                }                           
+                                            });
+                                            $('#discount').val(invoiceData.coupons[0]).change();
+                                            calculateTotals()
+                                            $('textarea#invoiceNote').val(invoiceData.notes);
+                                            invoiceData.paymentDetails.forEach(function(payment) {
+                                                if(payment.paymentMode === 'CASH') {
+                                                    $("#cash").prop('checked', true).change();
+                                                    $('#cashAmount').val(payment.amount)
+                                                } else if(payment.paymentMode === 'UPI') {
+                                                    $("#upi").prop('checked', true).change();
+                                                    $('#upiTxnID').val(payment.paymentTransactionId)
+                                                    $('#upiAmount').val(payment.amount)
+                                                } else if(payment.paymentMode === 'CARD') {
+                                                    $("#cardPay").prop('checked', true).change();
+                                                    $('#upiTxnID').val(payment.paymentTransactionId)
+                                                    $('#cardAmount').val(payment.amount)
+                                                }
+                                            })
+                                            
+                                            $('.dummyItem').remove();
+                                        }
+                                    })
+                                },
+                                error: function() {
+                                    console.log('Failed to fetch services');
+                                }
+                            });
+                        },
+                        error: function() {
+                            console.log('Failed to fetch services');
+                        }
+                    });
+                }
+
             });
 
+        
             function removeDeleteBtn() {
-                console.log($('table.main tr.item').first())
+                // console.log($('table.main tr.item').first())
                 $('table.main tr.item').first().find('.btn-delete-row').hide();
             }
 
@@ -666,16 +892,12 @@
                 }
 
                 if($("#upi").is(":checked")) {
-                    const upiTxnID = "UPI" + generateTxnID();
-                    $('#upiTxnID').val(upiTxnID);   
                     $(".UPIDetails").show();
                 } else {
                     $(".UPIDetails").hide();
                 }
 
                 if($("#cardPay").is(":checked")) {
-                    const cardTxnID = "CARD" + generateTxnID();
-                    $('#cardTxnID').val(cardTxnID);
                     $(".cardDetails").show();
                 } else {
                     $(".cardDetails").hide();
@@ -705,7 +927,6 @@
                         }
                     })
                 }
-                
             });
 
             $('table.main').on('change', 'select.item-type', function () {
@@ -726,7 +947,31 @@
                 } else {
                     $row.find('.item-details').append("<option selected disabled>Select Item</option>");
                 }
-                
+                // $.ajax({
+                //     url: baseUrl + 'stores/' + storeName + '/services',
+                //     method: 'GET',
+                //     headers: {
+                //     "Authorization": "Bearer " + bearerToken
+                //     },
+                //     success: function(data) { 
+                //         services = data
+                //         $row.find('.item-details').empty();
+                //         if (selectedItemType === 'service') {
+                //             $row.find('.item-details').append("<option selected disabled>Select Service</option>");
+                //         } else if (selectedItemType === 'product') {
+                //             $row.find('.item-details').append("<option selected disabled>Select Product</option>");
+                //         } else {
+                //             $row.find('.item-details').append("<option selected disabled>Select Item</option>");
+                //         }
+                        
+                //         $.each(data, function(i,item){
+                //             $row.find('.item-details').append('<option value="'+data[i].name+'">'+data[i].displayName+'</optoin>');
+                //         });  
+                //     },
+                //     error: function() {
+                //         console.log('Failed to fetch services');
+                //     }
+                // });
             });
 
             $('table.main').on('change', 'select.item-stylist', function () {
@@ -793,7 +1038,6 @@
 
             $(".btn-calculate-total ").on('click', function() {
                 calculateInvoiceTotal();
-                $("#previewInvoice").prop("disabled", false);
             });
 
             function calculateInvoiceTotal() {
@@ -803,21 +1047,24 @@
                 const discount = $('select.item-discount').val()
                 var items = $('.item').map((idx, val) => {
                     const $row = $(val)
-                    const itemtype = $row.find('.item-type').val()
+                    const itemType = $row.find('.item-type').val()
                     const service = $row.find('.item-details').val()
                     const stylist = $row.find('.item-stylist').val()
                     const itemQty = $row.find('input.invoice-item-qty').val();
+                    const itemRate = $row.find('input.invoice-item-rate').val();
+                    // const stylistCharge = $row.find('input.stylist-service-charge').val();
                     
                     return {
-                        itemType: itemtype,
+                        itemType: itemType,
                         itemName: service,
                         itemQty: itemQty,
-                        serviceProviderCode: stylist
+                        itemPrice: itemRate,
+                        serviceProviderId: stylist,
+                        serviceCharge: 0
                     }
                 }).toArray()
 
                 const invoiceDataForTotal = {
-                    clientNumber: $('#contact').val(),
                     coupons: [
                         discount
                     ],
@@ -848,7 +1095,7 @@
             $("#previewInvoice").on('click', function() {
                 previewInvoice();
             });
-            
+
             function previewInvoice() {
                 console.log("Invoice save & preview");
                 localStorage.removeItem("invoiceData");
@@ -883,16 +1130,20 @@
                 var contact = $('#contact').val();
                 var items = $('.item').map((idx, val) => {
                     const $row = $(val)
-                    const itemtype = $row.find('.item-type').val()
+                    const itemType = $row.find('.item-type').val()
                     const service = $row.find('.item-details').val()
                     const stylist = $row.find('.item-stylist').val()
                     const itemQty = $row.find('input.invoice-item-qty').val();
+                    const itemRate = $row.find('input.invoice-item-rate').val();
+                    // const stylistCharge = $row.find('input.stylist-service-charge').val();
                     
                     return {
-                        itemType: itemtype,
+                        itemType: itemType,
                         itemName: service,
                         itemQty: itemQty,
+                        itemPrice: itemRate,
                         serviceProviderCode: stylist,
+                        serviceCharge: 0
                     }
                 }).toArray()
 
@@ -907,33 +1158,9 @@
                 };
                 console.log('invoiceData', invoiceData)
                 
-                if(!existingClient) {
-                    const clientData = {
-                        mobile: contact,
-                        name: custName,
-                        dob: "01-01-1997",
-                        address: custAddress,
-                        email: custEmailId
-                    }
-
-                    $.ajax({
-                        url: baseUrl + 'client/',
-                        method: 'post',
-                        headers: {
-                        "Authorization": "Bearer " + bearerToken
-                        },
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(clientData),
-                        success: function (res) { 
-                            
-                        },
-                        error: function (error) { }
-                    });
-                }
-
                 $.ajax({
-                    url: baseUrl + 'stores/' + storeName + '/invoice/',
-                    method: 'post',
+                    url: baseUrl + 'stores/' + storeName + '/invoice/' + invoiceNum,
+                    method: 'put',
                     headers: {
                         "Authorization": "Bearer " + bearerToken
                     },
@@ -944,11 +1171,12 @@
                         if(cashChecked && (cashCollected > invoiceTotal)){
                             localStorage.setItem("tenderedAmount", cashCollected);
                         }
-                        window.location.href = "./invoice-preview.html?invoiceNumber=" + res.invoiceNumber;
+                        window.location.href = "./invoice-preview.html?invoiceNumber="+invoiceNum;
                     },
                     error: function (error) { }
                 });
             }
+
             function getOrglogo(storeName){
                 $.ajax({
                         url: baseUrl + 'stores/' + storeName,
@@ -976,12 +1204,6 @@
                             console.log(error);
                          }
                     });
-            }
-
-            function generateTxnID() {
-                const currentDate = moment();
-                const formattedDate = currentDate.format('YYYYMMDDHHmmss');
-                return formattedDate;
             }
         });    
     </script>

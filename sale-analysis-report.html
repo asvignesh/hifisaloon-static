@@ -124,10 +124,10 @@
                                 <!-- Chart wrapper -->
                                 <canvas id="sales_chart" class="chart-canvas"></canvas>
                             </div>
-                            <div class="chart">
+                            <!-- <div class="chart"> -->
                                 <!-- Chart wrapper -->
-                                <canvas id="empTarget_chart" class="chart-canvas"></canvas>
-                            </div>
+                                <!-- <canvas id="empTarget_chart" class="chart-canvas"></canvas>
+                            </div> -->
                             <form action="public/admin/report/user" class="ml-4" id="filter_revene_form" method="post" style="padding-top: 20px;">
                                 <input name="_token" type="hidden" value="sMftmRlC8POqBlvMrb9kMmdZG75rKy3Aj41Sq24E">
                             </form>
@@ -136,15 +136,14 @@
                                        id="dataTableSalesReports">
                                     <thead class="thead-light">
                                     <tr>
-                                        <th>#</th>
+                                        <!-- <th>#</th> -->
                                         <th class="sort" scope="col">Name</th>
-                                        <th class="sort" scope="col">Service Value</th>
-                                        <th class="sort" scope="col">#Services</th>
-                                        <th class="sort" scope="col">Product Value</th>
-                                        <th class="sort" scope="col">#Clients</th>
-                                        <th class="sort" scope="col">#Bills</th>
-                                        <th scope="col" class="sort">ABV</th>
-                                        <th class="sort" scope="col">ASB</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">Service Value</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">#Services</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">#Clients</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">#Bills</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">ABV</th>
+                                        <th class="sort" style="text-align-last: center;" scope="col">ASB</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -206,21 +205,138 @@
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
                 var selectedOption = $('#store').val();
-                console.log(selectedOption);
-                initAndLoadSalesChart(selectedOption);
-                initAndLoadEmpTargetChart(selectedOption);
                 getSalesReportAndLoadWidgets(selectedOption, 0, 0);
+                clearSalesChart();
             });
 
         });
 
         $(document).on("change", '#store', function () {
             var selectedOption = $(this).val();
-            console.log(selectedOption);
-            initAndLoadSalesChart(selectedOption);
-            initAndLoadEmpTargetChart(selectedOption);
-           
+            getSalesReportAndLoadWidgets(selectedOption, 0, 0);
+            clearSalesChart();
         });
+
+         var salesChart;
+
+        function updateSalesChart(data) {
+            salesChart.data = {
+                labels: data[1],
+                datasets: [{
+                    label: '',
+                    data: data[0]
+                }]
+            };
+            salesChart.update();
+            salesChart.render({
+                duration: 800,
+                lazy: false,
+            });
+        }
+
+        function clearSalesChart() {
+            if (salesChart) {
+                salesChart.destroy(); // Destroy the existing chart instance
+            }
+        }
+        
+        function initAndLoadSalesChart(salesChartData) {
+            initSalesChart();
+            updateSalesChart(salesChartData);
+        }
+
+        function initSalesChart() {
+            if (document.getElementById("sales_chart")) {
+                salesChart = new Chart($('#sales_chart'), {
+                    type: 'bar',
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Service Sales Chart'
+                        },
+                        scales: {
+                            yAxes: [{
+                                gridLines: {
+                                    color: Charts.colors.gray[900],
+                                    zeroLineColor: Charts.colors.gray[900]
+                                },
+                                ticks: {
+                                    callback: function (value) {
+                                        if (!(value % 10)) {
+                                            return value;
+                                        }
+                                    }
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (item, data) {
+                                    var label = data.datasets[item.datasetIndex].label || '';
+                                    var yLabel = item.yLabel;
+                                    var content = '';
+                                    if (data.datasets.length > 1) {
+                                        content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+                                    }
+                                    content += '<span class="popover-body-value">' + yLabel + '</span>';
+                                    return content;
+                                }
+                            }
+                        }
+                    },
+                });
+            }
+        };
+
+        function getSalesReportAndLoadWidgets(storeId, dateStart, dateEnd) {
+            var salesChartData = [[],[]];
+            $.ajax({
+                // url: 'public/data/storesales/salesreport.json',
+                url: baseUrl + '/stores/'+ storeId +'/report/salesanalysis',
+                method: 'get',
+                headers: {
+                    "Authorization": "Bearer " + bearerToken
+                },
+                success: function (data) {
+                    // console.log(data);
+                    
+                    // Clear existing table rows
+                    data.forEach((item, i) => {
+                        salesChartData[0].push(item['Service Value'])
+                        salesChartData[1].push(item['Name'])
+                    })
+
+                    initAndLoadSalesChart(salesChartData);
+                    $('#dataTableSalesReports tbody').empty();
+
+                    var totalSmiles = 0;
+                    var totalSpendByYear = 0;
+
+                    // Loop through each user object in the response data
+                    $.each(data, function (index, sales) {
+                        // Create a new row with the user data
+                        var row = '<tr>' +
+                            // '<td>' + sales.Id + '</td>' +
+                            '<td>' + sales.Name + '</td>' +
+                            '<td style="text-align-last: center;">' + sales['Service Value'] + '</td>' +
+                            '<td style="text-align-last: center;">' + sales.Services + '</td>' +
+                            //'<td style="text-align-last: right;">' + sales.product + '</td>' +
+                            '<td style="text-align-last: center;">' + sales.Clients + '</td>' +
+                            '<td style="text-align-last: center;">' + sales.Bills + '</td>' +
+                            '<td style="text-align-last: center;">' + sales.ABV + '</td>' +
+                            '<td style="text-align-last: center;">' + sales.ASB + '</td>' +
+                            '</tr>';
+
+                        // Append the row to the table body
+                        $('#dataTableSalesReports tbody').append(row);
+                    });
+
+                },
+                error: function (err) {
+                }
+            });
+        }
+
     </script>
     <!-- Argon JS -->
 </div>

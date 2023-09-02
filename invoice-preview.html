@@ -191,9 +191,7 @@
                                                 <td colspan="2" class="description">Sub Total</td>
                                                 <td colspan="2" class="price subTotal">0.00</td>
                                             </tr>
-                                            <tr class="previewGst">
-                                                
-                                            </tr>
+                                            <tr class="previewGst"></tr>
                                             <tr>
                                                 <th colspan="2" class="description">Net Amount</th>
                                                 <th colspan="2" class="price netAmount">0.00</th>
@@ -284,10 +282,7 @@
                                 </button>
                                 <button id="btnDownloadInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Download</button>
                                 <button id="btnPrintInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Print</button>
-                                <a href="./invoice-edit.html"
-                                   class="btn btn-outline-secondary d-grid w-100 mb-3">
-                                    Edit Invoice
-                                </a>
+                                <button id="btnEditInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Edit Invoice</button>
                                 <button id="btnCancelInvoive" class="btn btn-outline-secondary d-grid w-100 mb-3">Cancel Invoice</button>
                                 <!-- <button
                                     class="btn btn-success d-grid w-100"
@@ -509,6 +504,7 @@
     
     <script type="module">
         $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
             var invoiceNum;
             // var storeName;
             const discountData = {
@@ -527,30 +523,13 @@
             $("#navbar-top").load("inc/navbar-top-inc-admin.html", function () {
                 // Set the initial content
                 //storeName = $(this).find(':selected').val();
-                invoiceNum = JSON.parse(localStorage.getItem("invoiceData")).invoiceNumber;
+                invoiceNum = urlParams.get('invoiceNumber');
                 //getInvoiceDetails()
                 //getStoreAddress(storeName);
                 $('#store').on('change', function () {
                     storeName = $(this).find(':selected').val();
-                   // getStoreAddress(storeName);
                     getInvoiceDetails()
                 });
-
-                // function getStoreAddress(storeName){
-                //     $.ajax({
-                //         url: baseUrl + 'stores/' + storeName,
-                //         method: 'GET',
-                //         headers: {
-                //             "Authorization": "Bearer " + bearerToken
-                //         },
-                //         success: function (response) {
-                //             console.log("Success");
-                //         },
-                //         error: function () {
-                //             console.log('Failed to fetch available numbers');
-                //         }
-                //     });
-                // }
 
                 function getInvoiceDetails() {
                     $.ajax({
@@ -590,7 +569,7 @@
                             $('.store-info').text(invoiceData.store.org.message);
                             
                             // Items Summary
-                            const itemcontainer = $('.preview-items');
+                            const itemcontainer = $('.preview-items').empty();
                             var totalQty = 0;
                             invoiceData.items.forEach(function(item) {
                                 totalQty += item.itemQty;
@@ -621,7 +600,7 @@
 
                             // Tax Summary 
                             var totalTax = 0;
-                            const taxcontainer = $('.taxSummary');
+                            const taxcontainer = $('.taxSummary').empty();
                             invoiceData.taxSummary.forEach(function(tax) {
                                 totalTax += tax.percentage;
                                 var tr = $('<tr>');
@@ -629,7 +608,7 @@
                                 tr.append('<td colspan="2" class="price">' + tax.amount.toFixed(2) + '</td>');
                                 taxcontainer.append(tr)
                             });
-                            const gstcontainer = $('.previewGst');
+                            const gstcontainer = $('.previewGst').empty();
                             gstcontainer.append('<td colspan="2" class="description">' + "GST" + '</td>');
                             gstcontainer.append('<td class="rate">' + totalTax + "%" + '</td>');
                             gstcontainer.append('<td class="price">' + invoiceData.tax.toFixed(2) + '</td>');
@@ -743,6 +722,11 @@
                     }
                 });
             });
+
+            $('#btnEditInvoive').on('click', function() { 
+                window.location.href = "./invoice-edit.html?invoiceNumber=" + invoiceNum;
+            });
+
         });
     </script>
 
